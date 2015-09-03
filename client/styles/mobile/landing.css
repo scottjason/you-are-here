@@ -3,7 +3,7 @@
 @media (min-width: 321px) and (max-width: 667px) {
   .container-inner {
     width: 320px;
-    height: 400px;
+    height: 250px;
   }
 }
 
@@ -13,6 +13,7 @@
 @media (min-width: 320px) and (max-width: 568px) {
   .container-inner {
     width: 280px;
-    height: 400px;
+    height: 250px;
+
   }
 }

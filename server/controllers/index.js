@@ -12,8 +12,15 @@ exports.render = function(req, res, next) {
   res.render('index');
 };
 
+exports.redirect = function(req, res, next) {
+  res.redirect('/');
+};
+
 exports.searchYelp = function(req, res, next) {
-  yelp.search({term: "food", location: req.body.city}, function(err, results) {
-    console.log(err || results);
+  yelp.search({
+    term: req.body.term,
+    location: req.body.city
+  }, function(err, results) {
+    res.status(200).json(results);
   });
 };

@@ -1,27 +1,39 @@
 angular.module('SearchPickGo')
-  .directive('ngAutoComplete', function(GoogleMaps, RequestApi) {
+  .directive('ngAutoComplete', function($state, GoogleMaps, RequestApi, StateService) {
 
     'use strict';
 
     var directive = {
       restrict: 'A',
+      scope: {
+        requestOpts: '=',
+        onSubmit: '='
+      },
       link: function(scope, element, attrs) {
         element.bind('click', function($event) {});
       },
       controller: ['$scope', function($scope) {
 
-        $scope.location = {};
+        $scope.requestOpts = {};
 
         $scope.onAutoComplete = function() {
           GoogleMaps.generateLocation($scope.autoComplete.getPlace(), function(err, city, state) {
-            $scope.location.city = city;
-            $scope.location.state = state;
-            if (err) console.log(err);
-            RequestApi.searchYelp($scope.location).then(function(response) {
+            $scope.requestOpts.city = city;
+            $scope.requestOpts.state = state;
+          });
+        };
+
+        $scope.onSubmit = function() {
+          if ($scope.requestOpts.term && $scope.requestOpts.city && $scope.requestOpts.state) {
+            RequestApi.searchYelp($scope.requestOpts).then(function(response) {
+              StateService.data['results'] = response.data;
+              $state.go('results');
             }, function(err) {
               console.log(err);
-            })
-          });
+            });
+          } else {
+            console.log('bad submit', $scope.requestOpts);
+          }
         };
 
         function init() {
@@ -31,5 +43,5 @@ angular.module('SearchPickGo')
       }],
     }
     return directive;
-    ngAutoComplete.$inject('GoogleMaps', 'RequestApi');
+    ngAutoComplete.$inject('$state', 'GoogleMaps', 'RequestApi', 'StateService');
   });

@@ -1,0 +1,13 @@
+.layout-container {
+  position: relative;
+  text-align: center;
+}
+
+.layout-container-inner {
+  position: relative;
+  margin: auto;
+  width: 280px;
+  height: 350px;
+  display: inline-block;
+  background: green;
+}

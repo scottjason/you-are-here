@@ -6,8 +6,11 @@ angular.module('SearchPickGo')
     $stateProvider
       .state('landing', {
         url: '/',
-        templateUrl: 'views/landing.html',
-        controller: 'LandingCtrl'
+        templateUrl: 'views/landing.html'
+      })
+      .state('results', {
+        url: '/results',
+        templateUrl: 'views/layout.html'
       })
 
     $urlRouterProvider.otherwise('/');

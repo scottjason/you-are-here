@@ -1,20 +1,11 @@
 'use strict';
 
-angular.module('BoilerPlate')
+angular.module('PickAndRide')
   .controller('LandingCtrl', LandingCtrl);
 
-function LandingCtrl($scope, $rootScope, $state, $timeout) {
-
-  var ctrl = this;
-
-  this.initialize = function() {
-    ctrl.welcomeUser();
-  };
-
-  ctrl.welcomeUser = function() {
-    console.log("Welcome User!");
-  };
+function LandingCtrl($scope, $rootScope, $state, $timeout, $window, GoogleMaps) {
 
 
-  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout'];
+
+  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', '$window', 'GoogleMaps'];
 }

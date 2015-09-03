@@ -1,12 +1,9 @@
 /* Iphone 6 */
 
 @media (min-width: 321px) and (max-width: 667px) {
-  .landing-container-inner {
+  .container-inner {
     width: 320px;
     height: 400px;
-  }
-  .landing-container-inner > p {
-    color: orange;
   }
 }
 
@@ -14,11 +11,16 @@
 /* Iphone 5, 5s */
 
 @media (min-width: 320px) and (max-width: 568px) {
-  .landing-container-inner {
+  .container-inner {
     width: 280px;
     height: 400px;
   }
-  .landing-container-inner > p {
-    color: red;
+  .location {
+    margin-bottom: 20px;
+  }
+  .location,
+  .category {
+    border: 1px solid white;
+    width: 250px;
   }
 }

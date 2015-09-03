@@ -1,10 +1,8 @@
 @media (min-width: 668px) and (max-width: 1024px) {
-
-  .landing-container-inner {
-    background: #042C43;
+  .container-inner {
     width: 628px;
   }
-  .landing-container-inner > p {
+  .container-inner > p {
     color: white;
   }
 }

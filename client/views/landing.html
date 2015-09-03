@@ -1,6 +1,8 @@
-<div ng-init='landingCtrl.initialize();' class='landing-container'>
-  <div class='landing-container-inner'>
-    <p>Responsive Boilerplate</p>
-    <p>Angular.js, Node.js, Express.js</p>
+<div class='container' ng-init='init();'>
+  <div class='container-inner'>
+    <div ng-auto-complete  class='user-input'>
+      <input class='location' id='autocomplete' type='text'>
+      <input class='category' id='category' type='text'>
+    </div ng-auto-complete>
   </div>
 </div>

@@ -1,6 +1,5 @@
 'use strict';
 
-angular
-  .module('BoilerPlate', [
-    'ui.router'
-  ]);
+angular.module('PickAndRide', [
+  'ui.router'
+]);

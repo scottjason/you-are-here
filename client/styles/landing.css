@@ -1,37 +1,50 @@
-  .landing-container {
-    background: black;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .landing-container-inner {
-    background: #042C43;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 800px;
-    height: 600px;
-    margin: auto;
-    text-align: center;
-    border: 1px solid rgba(225, 225, 225, .3);
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-  }
-  
-  .landing-container-inner > p {
-    color: orange;
-    position: relative;
-    top: 120px;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-  }
+/*
+  * Landing Input Fields
+**/
+
+.container {
+  background: black;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.container-inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 800px;
+  height: 600px;
+  margin: auto;
+  text-align: center;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.location,
+.category  {
+  position: relative;
+  margin: auto;
+  background: transparent;
+  height: 10px;
+  color: #1FBAD6;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.location {
+  margin-bottom: 20px;
+}
+
+.location,
+.category {
+  border: 1px solid white;
+  width: 250px;
+}

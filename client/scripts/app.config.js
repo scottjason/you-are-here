@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('BoilerPlate')
+angular.module('PickAndRide')
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $stateProvider
       .state('landing', {
         url: '/',
         templateUrl: 'views/landing.html',
-        controller: 'LandingCtrl as landingCtrl'
+        controller: 'LandingCtrl'
       })
 
     $urlRouterProvider.otherwise('/');

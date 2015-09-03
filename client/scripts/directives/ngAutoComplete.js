@@ -1,4 +1,4 @@
-angular.module('PickAndRide')
+angular.module('SearchPickGo')
   .directive('ngAutoComplete', function(GoogleMaps, RequestApi) {
 
     'use strict';

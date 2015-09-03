@@ -1,4 +1,4 @@
-angular.module('PickAndRide')
+angular.module('SearchPickGo')
   .service('GoogleMaps', function() {
 
     'use strict'

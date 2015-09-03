@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PickAndRide')
+angular.module('SearchPickGo')
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $stateProvider

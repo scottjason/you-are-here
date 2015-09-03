@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('PickAndRide', [
+angular.module('SearchPickGo', [
   'ui.router'
 ]);

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PickAndRide')
+angular.module('SearchPickGo')
   .controller('LandingCtrl', LandingCtrl);
 
 function LandingCtrl($scope, $rootScope, $state, $timeout, $window, GoogleMaps) {

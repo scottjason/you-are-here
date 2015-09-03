@@ -1,4 +1,4 @@
-angular.module('PickAndRide')
+angular.module('SearchPickGo')
   .service('RequestApi', function($http) {
 
     'use strict'

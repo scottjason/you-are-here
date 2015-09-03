@@ -10,7 +10,12 @@ angular.module('SearchPickGo')
         onSubmit: '='
       },
       link: function(scope, element, attrs) {
-        element.bind('click', function($event) {});
+        element.bind('keydown', function($event) {
+          var isEnterBtn = ($event.which === 13);
+          if (isEnterBtn) {
+            scope.$parent.onSubmit();
+          }
+        });
       },
       controller: ['$scope', function($scope) {
 

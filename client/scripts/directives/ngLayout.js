@@ -1,21 +1,20 @@
 angular.module('SearchPickGo')
-  .directive('ngLayout', function(GoogleMaps, RequestApi, StateService) {
+  .directive('ngLayout', function($timeout, GoogleMaps, RequestApi, DataService, StateService) {
 
     'use strict';
 
     var directive = {
-      scope: {},
-      link: function(scope, element, attrs) {
-        element.bind('click', function($event) {
-          console.log('clicked in ngLayout')
-        });
+      scope: {
+        results: '='
       },
+      link: function(scope, element, attrs) {},
       controller: ['$scope', function($scope) {
-        console.log('contrller called in ngLayout');
-        var results = StateService.data['results'];
-        console.log(results);
+        $timeout(function() {
+          $scope.results = StateService.data['results'].businesses;
+          console.debug('Results', $scope.results);
+        });
       }],
     }
     return directive;
-    ngLayout.$inject('GoogleMaps', 'RequestApi', 'StateService');
+    ngLayout.$inject('$timeout', 'GoogleMaps', 'RequestApi', 'DataService', 'StateService');
   });

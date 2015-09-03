@@ -1,8 +1,6 @@
 @media (min-width: 668px) and (max-width: 1024px) {
   .container-inner {
-    width: 628px;
-  }
-  .container-inner > p {
-    color: white;
+    width: 320px;
+    height: 400px;
   }
 }

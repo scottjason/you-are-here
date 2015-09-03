@@ -1,2 +1,6 @@
-@media (min-width: 1025px) {}
-
+@media (min-width: 1025px) {
+  .container-inner {
+    width: 320px;
+    height: 400px;
+  }
+}

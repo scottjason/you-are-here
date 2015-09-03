@@ -1,5 +1,5 @@
 /*
-  * Landing Input Fields
+  * Containers
 **/
 
 .container {
@@ -28,8 +28,21 @@
   transition: all .3s ease;
 }
 
+/*
+  * AutoComplete Google Api
+**/
+
+#autocomplete {
+  text-transform: lowercase;
+}
+
+/*
+  * Location and Category Inputs
+**/
+
+
 .location,
-.category  {
+.category {
   position: relative;
   margin: auto;
   background: transparent;
@@ -37,14 +50,12 @@
   color: #1FBAD6;
   font-size: 14px;
   padding: 15px;
+  border: 1px solid white;
+  width: 250px;
+  display: block;
 }
 
 .location {
   margin-bottom: 20px;
 }
 
-.location,
-.category {
-  border: 1px solid white;
-  width: 250px;
-}

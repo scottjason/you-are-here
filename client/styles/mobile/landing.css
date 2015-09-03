@@ -15,12 +15,4 @@
     width: 280px;
     height: 400px;
   }
-  .location {
-    margin-bottom: 20px;
-  }
-  .location,
-  .category {
-    border: 1px solid white;
-    width: 250px;
-  }
 }

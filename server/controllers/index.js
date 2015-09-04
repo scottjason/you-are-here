@@ -21,6 +21,7 @@ exports.searchYelp = function(req, res, next) {
     term: req.body.term,
     location: req.body.city
   }, function(err, results) {
+    console.log(err || results);
     res.status(200).json(results);
   });
 };

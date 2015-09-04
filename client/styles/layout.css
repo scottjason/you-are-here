@@ -8,7 +8,7 @@
   position: relative;
   margin: auto;
   width: 240px;
-  height: 300px;
+  height: 400px;
   display: inline-block;
   background: transparent;
   border: 1px solid white;
@@ -76,7 +76,30 @@
   color: #efeffe;
   font-size: 14px;
   font-family: 'geomanist_regularregular';
-  padding-bottom: 5px;
+  padding-bottom: 8px;
+}
+
+.layout-img {
+  position: relative;
+  display: block;
+  border: 1px solid rgba(225, 225, 225, .7);
+  margin: auto;
+  margin-bottom: 13px;
+}
+
+.yelp-logo {
+  position: relative;
+  display: block;
+  width: 50px;
+  margin: auto;
+  padding-bottom: 8px;
+}
+
+.layout-snippet {
+  position: relative;
+  padding-top: 1px;
+  font-family: 'geomanist_regularregular';
+  font-size: 12px;
 }
 
 .call-uber-btn {

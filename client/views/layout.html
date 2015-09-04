@@ -6,13 +6,14 @@
       <p class='layout-city-state-zip'>{{ result.location.city + ", " + result.location.state_code + " " + result.location.postal_code }}</p>
       <p class='layout-phone'>{{ result.display_phone }}</p>
       <div class='layout-line'></div>
+      <img class='yelp-logo' src="//s3-media4.fl.yelpcdn.com/assets/srv0/developer_pages/7e704c57a423/assets/img/yelp_logo_75x38.png">
       <img class='layout-rating-img' ng-src="{{result.rating_img_url}}">
-
       <p class='layout-rating-number'>{{ result.rating }} stars with </p>
       <p class='layout-rating-count'>{{ result.review_count }} reviews</p>
-      <!-- <p class='layout-header'>{{ result.snippet_text }}</p> -->
-      <!-- <p class='layout-header'>{{ result.url }}</p> -->
-      <!-- <img class='rating' ng-src="{{result.image_url}}"> -->
+
+      <img class='layout-img' ng-src="{{result.image_url}}">
+      <p class='layout-snippet'>{{ result.snippet_text }}</p>
+
       <div class='call-uber-btn'><P>request uber</P></div>
     </div>
   </div>

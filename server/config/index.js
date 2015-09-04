@@ -17,14 +17,14 @@ module.exports = {
   },
   root: path.normalize(__dirname + '../../../'),
   uber: {
-    clientId: env.uber.clientId,
-    clientSecret: env.uber.clientSecret,
-    serverToken: env.uber.serverToken
+    clientId: process.env.UBER_CLIENT_ID || env.uber.clientId,
+    clientSecret: process.env.UBER_CLIENT_SECRET || env.uber.clientSecret,
+    serverToken: process.env.UBER_SERVER_TOKEN || env.uber.serverToken
   },
   yelp: {
-    consumerKey: env.yelp.consumerKey,
-    consumerSecret: env.yelp.consumerSecret,
-    token: env.yelp.token,
-    tokenSecret: env.yelp.tokenSecret
+    consumerKey: process.env.YELP_CONSUMER_KEY || env.yelp.consumerKey,
+    consumerSecret: process.env.YELP_CONSUMER_SECRET || env.yelp.consumerSecret,
+    token: process.env.YELP_CONSUMER_KEY || env.yelp.token,
+    tokenSecret: process.env.YELP_TOKEN || env.yelp.tokenSecret
   }
 };

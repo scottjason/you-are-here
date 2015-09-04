@@ -24,7 +24,7 @@ module.exports = {
   yelp: {
     consumerKey: process.env.YELP_CONSUMER_KEY || env.yelp.consumerKey,
     consumerSecret: process.env.YELP_CONSUMER_SECRET || env.yelp.consumerSecret,
-    token: process.env.YELP_CONSUMER_KEY || env.yelp.token,
-    tokenSecret: process.env.YELP_TOKEN || env.yelp.tokenSecret
+    token: process.env.YELP_TOKEN || env.yelp.token,
+    tokenSecret: process.env.YELP_TOKEN_SECRET || env.yelp.tokenSecret
   }
 };

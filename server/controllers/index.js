@@ -17,6 +17,7 @@ exports.redirect = function(req, res, next) {
 };
 
 exports.searchYelp = function(req, res, next) {
+  console.log('search yelp', req.body)
   yelp.search({
     term: req.body.term,
     location: req.body.city

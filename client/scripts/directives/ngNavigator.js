@@ -6,18 +6,36 @@ angular.module('SearchPickGo')
     var directive = {
       restrict: 'A',
       scope: {
-        getLocation: '='
+        getLocation: '=',
+        onSubmit: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {});
       },
       controller: ['$scope', '$rootScope', '$timeout', function($scope, $rootScope, $timeout) {
 
+        $scope.position = {};
+        $scope.requestOpts = {};
+
         $scope.getLocation = function() {
           navigator.geolocation.getCurrentPosition(success, error);
         }
 
+        $scope.onSubmit = function() {
+          $scope.requestOpts.term = 'dinner';
+          $scope.requestOpts.city = 'San Francisco';
+          RequestApi.searchYelp($scope.requestOpts).then(function(response) {
+            StateService.data['results'] = response.data;
+            console.log(response.data)
+            $state.go('results');
+          }, function(err) {
+            console.log(err);
+          });
+        };
+
+
         function success(position) {
+          $scope.position.startLat = position.coords.latitude;
           reverseGeo(position.coords.latitude, position.coords.longitude);
         };
 
@@ -27,7 +45,10 @@ angular.module('SearchPickGo')
 
         function reverseGeo(startLat, startLon) {
           var geocoder = new google.maps.Geocoder();
-          var latlng = {lat: startLat, lng: startLon};
+          var latlng = {
+            lat: startLat,
+            lng: startLon
+          };
           geocoder.geocode({
             'location': latlng
           }, function(results, status) {

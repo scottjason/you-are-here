@@ -1,20 +1,12 @@
 <div class='container'>
   <div class='container-inner'>
-    <div ng-navigator get-location='getLocation' ng-click='getLocation();' class="icon-location"></div ng-navigator>
-        <p class='logo'>search.pick.go</p>
-    <!-- <div ng-auto-complete request-opts='requestOpts' is-authorized='isAuthorized' on-submit='onSubmit' class='user-input'> -->
-      <!-- <div ng-show="isAuthorized ==='true'"> -->
-    <!-- <input class='location' id='autocomplete' type='text' placeholder="enter a location"> -->
-    <!-- <input class='category' id='category' type='text' ng-model='requestOpts.term' placeholder="tacos,dinner, bars, Max's"> -->
-    <!-- <div class='submit-btn' ng-click='onSubmit();'> -->
-    <!-- <p>SUBMIT</p> -->
-    <!--       </div>
-    </div> -->
-    <!--       <div ng-show="isAuthorized ==='false'">
-        <div class='submit-btn' ng-click='onSubmit(true);'>
-          <p>LOGIN WITH UBER</p>
-        </div>
-      </div> -->
-    <!-- </div ng-auto-complete> -->
+    <div ng-navigator get-location='getLocation' on-submit='onSubmit'>
+      <div ng-click='getLocation();' class="icon-location"></div>
+      <p class='logo'>search.pick.go</p>
+      <input class='category' id='category' type='text' ng-model='requestOpts.term' placeholder="tacos, dinner, bars, Max's">
+      <div class='submit-btn' ng-click='onSubmit();'>
+        <p>LOGIN WITH UBER</p>
+      </div>
+    </div ng-navigator>
   </div>
 </div>

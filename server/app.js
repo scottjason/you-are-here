@@ -1,35 +1,52 @@
 var express = require('express');
+var fs = require('fs');
+var session = require('express-session');
+var passport = require('passport');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
 var config = require('./config');
+var https = require('https');
+var options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
 
 var app = express();
+
+require('./config/passport/init')(passport);
 
 app.set('port', process.env.PORT || 3000);
 
 var isProduction = (process.env.NODE_ENV === 'production');
-
 isProduction ? app.set('env', 'production') : app.set('env', 'development');
+
+app.disable('x-powered-by');
 
 app.set('views', path.join(config.root, 'server/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
+// Use the body-parser package in our application
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 
-app.use(cookieParser());
+// Use express session support since OAuth2orize requires it
+app.use(session({
+  secret: 'Super Secret Session Key',
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(express.static(path.join(config.root, 'client')));
 
-app.use('/', routes);
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./routes/index')(app, passport)
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -55,8 +72,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Server listening on port ' + app.get('port') + ' in ' + app.get('env') + ' mode');
-});
+https.createServer(options, app, function (req, res) {
+  console.log('server listening on port 3000')
+}).listen(3000);
 
-module.exports = app;
+// set port and start server
+// var port = process.env.PORT || 3000;
+// var server = app.listen(port, function() {
+//   console.log('listening to port:', port);
+// });

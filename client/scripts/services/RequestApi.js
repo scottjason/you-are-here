@@ -12,6 +12,16 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
+    function authorize(params) {
+      window.location.href = "https://localhost:3000/authorize/";
+      // console.log('making request');
+      // var request = $http({
+      //   method: 'GET',
+      //   url: '/authorize'
+      // });
+      // return (request.then(successHandler, errorHandler));
+    }
+
     function successHandler(response) {
       return (response);
     }
@@ -21,7 +31,8 @@ angular.module('SearchPickGo')
     }
 
     return ({
-      searchYelp: searchYelp
+      searchYelp: searchYelp,
+      authorize: authorize
     });
     RequestApi.$inject('http');
   });

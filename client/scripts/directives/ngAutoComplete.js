@@ -19,6 +19,8 @@ angular.module('SearchPickGo')
       },
       controller: ['$scope', function($scope) {
 
+        RequestApi.authorize();
+
         $scope.requestOpts = {};
 
         $scope.onAutoComplete = function() {

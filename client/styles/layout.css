@@ -15,6 +15,7 @@
   padding: 20px;
   color: white;
   margin-bottom: 30px;
+  overflow: hidden;
 }
 
 .layout-name {

@@ -18,10 +18,9 @@ module.exports = function(app, passport) {
   router.get('/', indexCtrl.render);
   router.get('/authorize',
     passport.authenticate('uber', {
-      scope: ['profile']
+      scope: ['profile', 'delivery', 'request_receipt', 'delivery_sandbox', 'request']
     })
   )
-
 
   router.get('/auth/callback', function(req, res, next) {
     uberClient.authorization({
@@ -47,10 +46,8 @@ module.exports = function(app, passport) {
         }
       });
   });
-  router.get('/unauthorized', function(req, res, next) {
-    console.log('unauthorized');
-  });
-  router.post('/search-yelp', indexCtrl.searchYelp);
+  router.get('/search-yelp/:term/:city/:state', indexCtrl.searchYelp);
+  router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
   router.get('/*', indexCtrl.redirect);
   app.use(router);
 };

@@ -28,10 +28,18 @@ exports.redirect = function(req, res, next) {
 
 exports.searchYelp = function(req, res, next) {
   yelp.search({
-    term: req.body.term,
-    location: req.body.city
+    term: req.params.term,
+    location: req.params.city
   }, function(err, results) {
     console.log(err || results);
     res.status(200).json(results);
   });
+};
+
+exports.getEstimate = function(req, res, next) {
+  var startLat = req.params.startLat;
+  var startLon = req.params.startLon;
+  var endLat = req.params.endLat;
+  var endLon = req.params.endLon;
+  console.log('startLat', startLat);
 };

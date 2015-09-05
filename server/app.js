@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-https.createServer(options, app, function (req, res) {
+https.createServer(options, app, function(req, res) {
   console.log('server listening on port 3000')
 }).listen(3000);
 

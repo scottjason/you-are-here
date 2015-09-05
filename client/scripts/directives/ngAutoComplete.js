@@ -26,8 +26,20 @@ angular.module('SearchPickGo')
           console.log('Access Token', accessToken);
           console.log('Refresh Token', refreshToken);
           console.log('First Name', firstName);
-        }, 200);
+        }, 300);
 
+        function success(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          console.log('latitude', latitude);
+          console.log('longitude', longitude);
+        };
+
+        function error() {
+          console.log('unable to retreive your location')
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error);
 
         $scope.requestOpts = {};
 
@@ -41,8 +53,10 @@ angular.module('SearchPickGo')
         $scope.onSubmit = function(isLogin) {
           if (!isLogin) {
             if ($scope.requestOpts.term && $scope.requestOpts.city && $scope.requestOpts.state) {
+              console.log($scope.requestOpts)
               RequestApi.searchYelp($scope.requestOpts).then(function(response) {
                 StateService.data['results'] = response.data;
+                console.log(response.data)
                 $state.go('results');
               }, function(err) {
                 console.log(err);

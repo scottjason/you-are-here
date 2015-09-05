@@ -5,21 +5,14 @@ angular.module('SearchPickGo')
 
     function searchYelp(params) {
       var request = $http({
-        method: 'POST',
-        url: '/search-yelp',
-        data: params
+        method: 'GET',
+        url: '/search-yelp/' + params.term + '/' + params.city + '/' + params.state
       });
       return (request.then(successHandler, errorHandler));
     }
 
     function authorize(params) {
       window.location.href = "https://localhost:3000/authorize/";
-      // console.log('making request');
-      // var request = $http({
-      //   method: 'GET',
-      //   url: '/authorize'
-      // });
-      // return (request.then(successHandler, errorHandler));
     }
 
     function successHandler(response) {

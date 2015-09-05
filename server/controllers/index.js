@@ -1,5 +1,6 @@
 var config = require('../config');
 var passport = require('passport');
+var request = require('request');
 
 var yelp = require("yelp").createClient({
   consumer_key: config.yelp.consumerKey,
@@ -7,11 +8,6 @@ var yelp = require("yelp").createClient({
   token: config.yelp.token,
   token_secret: config.yelp.tokenSecret
 });
-
-
-exports.authCallback = function(req, res, next) {
-  console.log('authCallback', req.query.code);
-};
 
 exports.render = function(req, res, next) {
   var opts = {};
@@ -24,6 +20,25 @@ exports.render = function(req, res, next) {
 
 exports.redirect = function(req, res, next) {
   res.redirect('/');
+};
+
+exports.getProductId = function(req, res, next) {
+
+  var url = 'https://api.uber.com/v1/products?latitude=' + req.body.startLat + '&longitude=' + req.body.startLon;
+  request(url, {
+      'auth': {
+        'bearer': req.session.accessToken
+      }
+    },
+    function(err, response, body) {
+      if (err) return next(err);
+      if (response.statusCode === 200) {
+        var results = JSON.parse(body);
+        res.status(200).json(results);
+      } else {
+        res.status(401).end();
+      }
+    });
 };
 
 exports.searchYelp = function(req, res, next) {

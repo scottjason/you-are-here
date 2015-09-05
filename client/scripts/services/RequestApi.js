@@ -15,6 +15,15 @@ angular.module('SearchPickGo')
       window.location.href = "http://localhost:3000/authorize/";
     }
 
+    function getProductId(params) {
+      var request = $http({
+        method: 'POST',
+        url: '/product-id',
+        params: params
+      });
+      return (request.then(successHandler, errorHandler));
+    }
+
     function successHandler(response) {
       return (response);
     }
@@ -25,7 +34,8 @@ angular.module('SearchPickGo')
 
     return ({
       searchYelp: searchYelp,
-      authorize: authorize
+      authorize: authorize,
+      getProductId: getProductId
     });
     RequestApi.$inject('http');
   });

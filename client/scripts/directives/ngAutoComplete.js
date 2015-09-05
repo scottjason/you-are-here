@@ -28,18 +28,6 @@ angular.module('SearchPickGo')
           console.log('First Name', firstName);
         }, 300);
 
-        function success(position) {
-          var latitude = position.coords.latitude;
-          var longitude = position.coords.longitude;
-          console.log('latitude', latitude);
-          console.log('longitude', longitude);
-        };
-
-        function error() {
-          console.log('unable to retreive your location')
-        };
-
-        navigator.geolocation.getCurrentPosition(success, error);
 
         $scope.requestOpts = {};
 

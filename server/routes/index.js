@@ -22,6 +22,7 @@ module.exports = function(app, passport) {
   )
 
   router.get('/auth/callback', function(req, res, next) {
+    console.log(req)
     uberClient.authorization({
         authorization_code: req.query.code
       },
@@ -36,6 +37,9 @@ module.exports = function(app, passport) {
             function(error, response, body) {
               var user = JSON.parse(body);
               var opts = {};
+              req.session.accessToken = access_token;
+              req.session.refreshToken = refresh_token;
+              req.session.firstName = user.firstName;
               opts.isAuthorized = true;
               opts.accessToken = access_token;
               opts.refreshToken = refresh_token;
@@ -47,6 +51,7 @@ module.exports = function(app, passport) {
   });
   router.get('/search-yelp/:term/:city/:state', indexCtrl.searchYelp);
   router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
+  router.post('/product-id', indexCtrl.getProductId);
   router.get('/*', indexCtrl.redirect);
   app.use(router);
 };

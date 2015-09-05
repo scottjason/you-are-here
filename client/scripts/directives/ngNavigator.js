@@ -9,7 +9,8 @@ angular.module('SearchPickGo')
         getLocation: '=',
         onSubmit: '=',
         formattedAddress: '=',
-        showLocationSpinner: '='
+        showLocationSpinner: '=',
+        showOneMoment: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {});
@@ -19,8 +20,17 @@ angular.module('SearchPickGo')
         $scope.position = {};
         $scope.requestOpts = {};
 
+        $scope.$watch('showOneMoment', function() {
+          if ($scope.showOneMoment) {
+            $timeout(function() {
+              $scope.showOneMoment = false;
+            }, 2400);
+          }
+        })
+
         $scope.getLocation = function() {
           $scope.showLocationSpinner = true;
+          $scope.showOneMoment = true;
           navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
         };
 
@@ -58,9 +68,19 @@ angular.module('SearchPickGo')
             if (status === google.maps.GeocoderStatus.OK) {
               if (results[1]) {
                 $timeout(function() {
-                  // $scope.showLocationSpinner = false;
-                  // $scope.formattedAddress = results[1].formatted_address;
-                  console.log(results[1].formatted_address);
+                  if ($scope.showOneMoment) {
+                    $scope.showOneMoment = false;
+                    $timeout(function() {
+                      $scope.showLocationSpinner = false;
+                      $scope.formattedAddress = results[1].formatted_address;
+                      console.log(results[1].formatted_address);
+                    }, 1600)
+
+                  } else {
+                    $scope.showLocationSpinner = false;
+                    $scope.formattedAddress = results[1].formatted_address;
+                    console.log(results[1].formatted_address);
+                  }
                 });
               } else {
                 window.alert('No results found');

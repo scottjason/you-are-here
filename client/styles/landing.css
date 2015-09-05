@@ -34,6 +34,23 @@
   transition: all .3s ease;
 }
 
+.one-moment {
+  color: white;
+  position: relative;
+  margin: auto;
+  opacity: 0;
+  font-size: 14px;
+  font-family: 'geomanist_regularregular';
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.one-moment.add-opacity {
+  opacity: 1;
+}
+
 
 /*
   * Location Icon

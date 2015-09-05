@@ -4,12 +4,14 @@
          get-location='getLocation' 
          on-submit='onSubmit' 
          formatted-address='formattedAddress'
+         show-one-moment='showOneMoment'
          show-location-spinner='showLocationSpinner'>
       <div ng-hide='formattedAddress || formattedAdress.length'>
         <div ng-if='!showLocationSpinner' ng-click='getLocation();' class="icon-location"></div>
         <div ng-if='showLocationSpinner' class="loader"></div>
       </div>
       <p class='logo'>search.pick.go</p>
+      <p ng-class="{ 'add-opacity' : (showOneMoment) }" class='one-moment'>collecting your location...</p>
       <div ng-show='formattedAddress.length'>
         <input class='category' id='category' type='text' ng-model='requestOpts.term' placeholder="tacos, dinner, bars, Max's">
         <div class='submit-btn' ng-click='onSubmit();'>

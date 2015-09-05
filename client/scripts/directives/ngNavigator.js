@@ -1,5 +1,5 @@
 angular.module('SearchPickGo')
-  .directive('ngNavigator', function($state, GoogleMaps, RequestApi, StateService) {
+  .directive('ngNavigator', function($state, $timeout, GoogleMaps, RequestApi, StateService) {
 
     'use strict';
 
@@ -7,7 +7,9 @@ angular.module('SearchPickGo')
       restrict: 'A',
       scope: {
         getLocation: '=',
-        onSubmit: '='
+        onSubmit: '=',
+        formattedAddress: '=',
+        showLocationSpinner: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {});
@@ -18,8 +20,9 @@ angular.module('SearchPickGo')
         $scope.requestOpts = {};
 
         $scope.getLocation = function() {
-          navigator.geolocation.getCurrentPosition(success, error);
-        }
+          $scope.showLocationSpinner = true;
+          navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+        };
 
         $scope.onSubmit = function() {
           $scope.requestOpts.term = 'dinner';
@@ -33,28 +36,32 @@ angular.module('SearchPickGo')
           });
         };
 
-
-        function success(position) {
+        function onLocationSuccess(position) {
           $scope.position.startLat = position.coords.latitude;
-          reverseGeo(position.coords.latitude, position.coords.longitude);
-        };
+          $scope.position.startLon = position.coords.longitude;
+          reverseGeo();
+        }
 
-        function error() {
-          console.log('unable to retreive your location')
-        };
+        function onLocationError() {
+          console.error('unable to retreive your location')
+        }
 
         function reverseGeo(startLat, startLon) {
           var geocoder = new google.maps.Geocoder();
           var latlng = {
-            lat: startLat,
-            lng: startLon
+            lat: $scope.position.startLat,
+            lng: $scope.position.startLon
           };
           geocoder.geocode({
             'location': latlng
           }, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
               if (results[1]) {
-                console.log(results[1].formatted_address);
+                $timeout(function() {
+                  // $scope.showLocationSpinner = false;
+                  // $scope.formattedAddress = results[1].formatted_address;
+                  console.log(results[1].formatted_address);
+                });
               } else {
                 window.alert('No results found');
               }
@@ -67,5 +74,5 @@ angular.module('SearchPickGo')
       }],
     }
     return directive;
-    ngNavigator.$inject('$state', 'GoogleMaps', 'RequestApi', 'StateService');
+    ngNavigator.$inject('$state', '$timeout', 'GoogleMaps', 'RequestApi', 'StateService');
   });

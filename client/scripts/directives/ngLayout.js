@@ -10,31 +10,6 @@ angular.module('SearchPickGo')
       link: function(scope, element, attrs) {},
       controller: ['$scope', function($scope) {
 
-        navigator.geolocation.getCurrentPosition(success, error);
-
-        function success(position) {
-          console.log('on success');
-          var startLat = position.coords.latitude;
-          var startLon = position.coords.longitude;
-          var endLat = 37.778595;
-          var endLon = -122.389270;
-          var opts = {
-            startLat: startLat,
-            startLon: startLon,
-            endLat: endLat,
-            endLon: endLon
-          }
-          RequestApi.getProductId(opts).then(function(response) {
-            console.log(response);
-          }, function(err) {
-            console.log(err);
-          })
-        };
-
-        function error() {
-          console.log('unable to retreive your location')
-        };
-
 
 
         $timeout(function() {

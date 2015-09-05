@@ -1,4 +1,10 @@
 /*
+  * Colors
+  ** Blue #1FBAD6
+**/
+
+
+/*
   * Containers
 **/
 
@@ -48,7 +54,6 @@
 
 .icon-location:hover {
   color: #1FBAD6;
-  font-size: 28px;
 }
 
 

@@ -15,5 +15,4 @@ angular.module('SearchPickGo')
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });

@@ -1,20 +1,15 @@
-var express = require('express');
 var fs = require('fs');
+var path = require('path');
+var express = require('express');
 var session = require('express-session');
 var passport = require('passport');
-var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var config = require('./config');
-var https = require('https');
-var options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
 
 var app = express();
 
-require('./config/passport/init')(passport);
+require('./config/passport/uber')(passport);
 
 app.set('port', process.env.PORT || 3000);
 
@@ -28,21 +23,18 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(logger('dev'));
-// Use the body-parser package in our application
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// Use express session support since OAuth2orize requires it
-app.use(session({
-  secret: 'Super Secret Session Key',
+var sessionOpts = {
+  secret: config.session.key,
   saveUninitialized: true,
   resave: true
-}));
+};
+
+app.use(session(sessionOpts));
 app.use(express.static(path.join(config.root, 'client')));
-
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -72,12 +64,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-https.createServer(options, app, function(req, res) {
-  console.log('server listening on port 3000')
-}).listen(3000);
 
-// set port and start server
-// var port = process.env.PORT || 3000;
-// var server = app.listen(port, function() {
-//   console.log('listening to port:', port);
-// });
+var server = app.listen(app.get('port'), function() {
+  console.log('listening to port:', app.get('port'));
+});

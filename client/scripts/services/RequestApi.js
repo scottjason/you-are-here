@@ -12,7 +12,7 @@ angular.module('SearchPickGo')
     }
 
     function authorize(params) {
-      window.location.href = "https://localhost:3000/authorize/";
+      window.location.href = "http://localhost:3000/authorize/";
     }
 
     function successHandler(response) {

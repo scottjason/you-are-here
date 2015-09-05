@@ -15,11 +15,16 @@ module.exports = {
   server: {
     port: process.env.PORT || 3000
   },
+  session: {
+    key: process.env.SESSION_KEY || env.session.sessionKey
+  },
   root: path.normalize(__dirname + '../../../'),
   uber: {
+    name: process.env.UBER_NAME || env.uber.name,
     clientId: process.env.UBER_CLIENT_ID || env.uber.clientId,
     clientSecret: process.env.UBER_CLIENT_SECRET || env.uber.clientSecret,
-    serverToken: process.env.UBER_SERVER_TOKEN || env.uber.serverToken
+    serverToken: process.env.UBER_SERVER_TOKEN || env.uber.serverToken,
+    callbackUrl: process.env.UBER_CALLBACK_URL || env.uber.callbackUrl
   },
   yelp: {
     consumerKey: process.env.YELP_CONSUMER_KEY || env.yelp.consumerKey,

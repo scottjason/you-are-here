@@ -10,9 +10,8 @@ var uberClient = new Uber({
   client_secret: "HJULx3gClM36zIeKEWpSCMl_EwGaPWwbMFPQ25Kg",
   server_token: "_98dQg10COpUn8XCCqVHDOE9E1Fyl41Q-WzU8ZaT",
   name: 'search-pick-go',
-  redirect_uri: "https://localhost:3000/auth/callback"
+  redirect_uri: "http://localhost:3000/auth/callback"
 });
-
 
 module.exports = function(app, passport) {
   router.get('/', indexCtrl.render);

@@ -7,7 +7,8 @@ angular.module('SearchPickGo')
       restrict: 'A',
       scope: {
         requestOpts: '=',
-        onSubmit: '='
+        onSubmit: '=',
+        isAuthorized: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {
@@ -17,9 +18,16 @@ angular.module('SearchPickGo')
           }
         });
       },
-      controller: ['$scope', function($scope) {
+      controller: ['$scope', '$rootScope', '$timeout', function($scope, $rootScope, $timeout) {
 
-        RequestApi.authorize();
+        $timeout(function() {
+          $scope.isAuthorized = isAuthorized;
+          $scope.firstName = firstName;
+          console.log('Access Token', accessToken);
+          console.log('Refresh Token', refreshToken);
+          console.log('First Name', firstName);
+        }, 200);
+
 
         $scope.requestOpts = {};
 
@@ -30,16 +38,20 @@ angular.module('SearchPickGo')
           });
         };
 
-        $scope.onSubmit = function() {
-          if ($scope.requestOpts.term && $scope.requestOpts.city && $scope.requestOpts.state) {
-            RequestApi.searchYelp($scope.requestOpts).then(function(response) {
-              StateService.data['results'] = response.data;
-              $state.go('results');
-            }, function(err) {
-              console.log(err);
-            });
+        $scope.onSubmit = function(isLogin) {
+          if (!isLogin) {
+            if ($scope.requestOpts.term && $scope.requestOpts.city && $scope.requestOpts.state) {
+              RequestApi.searchYelp($scope.requestOpts).then(function(response) {
+                StateService.data['results'] = response.data;
+                $state.go('results');
+              }, function(err) {
+                console.log(err);
+              });
+            } else {
+              console.log('bad submit', $scope.requestOpts);
+            }
           } else {
-            console.log('bad submit', $scope.requestOpts);
+            RequestApi.authorize();
           }
         };
 

@@ -22,6 +22,7 @@ module.exports = function(app, passport) {
     })
   )
 
+
   router.get('/auth/callback', function(req, res, next) {
     uberClient.authorization({
         authorization_code: req.query.code
@@ -29,25 +30,22 @@ module.exports = function(app, passport) {
       function(err, access_token, refresh_token) {
         if (err) console.error(err);
         else {
-          console.log("access_token", access_token);
-          console.log("refresh_token", refresh_token);
+          request.get('https://api.uber.com/v1/me', {
+              'auth': {
+                'bearer': access_token
+              }
+            },
+            function(error, response, body) {
+              var user = JSON.parse(body);
+              var opts = {};
+              opts.isAuthorized = true;
+              opts.accessToken = access_token;
+              opts.refreshToken = refresh_token;
+              opts.firstName = user.first_name;
+              res.render('index', opts);
+            });
         }
       });
-    // res.redirect('/success ');
-  });
-
-  // router.get('/auth/callback', function(req, res, next) {
-  //   console.log(req);
-
-  // });
-
-  router.get('/success', function(req, res, next) {
-    console.log('success');
-    console.log(req);
-  })
-
-  router.get('/authorized', function(req, res, next) {
-    console.log('authorized', req);
   });
   router.get('/unauthorized', function(req, res, next) {
     console.log('unauthorized');

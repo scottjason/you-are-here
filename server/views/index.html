@@ -5,7 +5,7 @@
   <base href="/"></base>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <title>Scott Jason</title>
+  <title>search.pick.go</title>
   <meta name="viewport" content="initial-scale=1.0" />
   <link rel='stylesheet' href='/styles/global.css' />
   <link rel='stylesheet' href='/styles/landing.css' />
@@ -13,11 +13,17 @@
   <link rel='stylesheet' href='/styles/desktop/landing.css' />
   <link rel='stylesheet' href='/styles/tablet/landing.css' />
   <link rel='stylesheet' href='/styles/mobile/landing.css' />
+  <script>
+  var isAuthorized = "<%= isAuthorized %>";
+  var accessToken = "<%= accessToken %>";
+  var refreshToken = "<%= refreshToken %>";
+  var firstName = "<%= firstName %>";
+  </script>
 </head>
 
 <body ng-app='SearchPickGo'>
   <div ui-view></div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
   <script type='text/javascript' src='/bower_components/angular/angular.min.js'></script>
   <script type='text/javascript' src='/bower_components/angular-ui-router/release/angular-ui-router.min.js'></script>
   <script type='text/javascript' src='/scripts/app.js'></script>

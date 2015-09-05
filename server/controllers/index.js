@@ -14,7 +14,12 @@ exports.authCallback = function(req, res, next) {
 };
 
 exports.render = function(req, res, next) {
-  res.render('index');
+  var opts = {};
+  opts.isAuthorized = false;
+  opts.accessToken = null;
+  opts.refreshToken = null;
+  opts.firstName = null;
+  res.render('index', opts);
 };
 
 exports.redirect = function(req, res, next) {

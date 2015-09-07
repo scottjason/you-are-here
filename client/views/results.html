@@ -1,6 +1,8 @@
-<div ng-layout results='results' class='container'>
+<div ng-layout
+     results='results'
+     class='container'>
   <div class='layout-container'>
-    <div ng-repeat='result in results' class='layout-container-inner'>
+    <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>
       <p class='layout-name'>{{ result.name }}</p>
       <p class='layout-street'>{{ result.location.display_address[0] }}</p>
       <p class='layout-city-state-zip'>{{ result.location.city + ", " + result.location.state_code + " " + result.location.postal_code }}</p>

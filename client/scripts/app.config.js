@@ -8,9 +8,13 @@ angular.module('SearchPickGo')
         url: '/',
         templateUrl: 'views/landing.html'
       })
+      .state('search', {
+        url: '/search',
+        templateUrl: 'views/search.html'
+      })
       .state('results', {
         url: '/results',
-        templateUrl: 'views/layout.html'
+        templateUrl: 'views/results.html'
       })
 
     localStorageServiceProvider

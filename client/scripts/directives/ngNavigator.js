@@ -7,7 +7,6 @@ angular.module('SearchPickGo')
       restrict: 'A',
       scope: {
         getLocation: '=',
-        onSubmit: '=',
         formattedAddress: '=',
         showLocationSpinner: '=',
         onLogin: '='
@@ -22,11 +21,12 @@ angular.module('SearchPickGo')
             localStorageService.set('accessToken', accessToken);
             localStorageService.set('refreshToken', refreshToken);
             localStorageService.set('firstName', firstName);
-            console.log('isAuthorized');
+            $state.go('search');
+            return;
           }
 
-          $scope.position = {};
-          $scope.requestOpts = {};
+          localStorageService.clearAll();
+          $scope.startPosition = {};
 
           $scope.getLocation = function() {
             $scope.showLocationSpinner = true;
@@ -37,22 +37,10 @@ angular.module('SearchPickGo')
             RequestApi.login();
           };
 
-          $scope.onSubmit = function() {
-            $scope.requestOpts.term = 'dinner';
-            $scope.requestOpts.city = 'San Francisco';
-            RequestApi.searchYelp($scope.requestOpts).then(function(response) {
-              StateService.data['results'] = response.data;
-              console.log(response.data)
-              $state.go('results');
-            }, function(err) {
-              console.log(err);
-            });
-          };
-
           function onLocationSuccess(position) {
-            $scope.position.startLat = position.coords.latitude;
-            $scope.position.startLon = position.coords.longitude;
-            localStorageService.set('position', $scope.position);
+            $scope.startPosition.lat = position.coords.latitude;
+            $scope.startPosition.lon = position.coords.longitude;
+            localStorageService.set('startPosition', $scope.startPosition);
             reverseGeo();
           }
 
@@ -63,8 +51,8 @@ angular.module('SearchPickGo')
           function reverseGeo() {
             var geocoder = new google.maps.Geocoder();
             var latlng = {
-              lat: $scope.position.startLat,
-              lng: $scope.position.startLon
+              lat: $scope.startPosition.lat,
+              lng: $scope.startPosition.lon
             };
             geocoder.geocode({
               'location': latlng

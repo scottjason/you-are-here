@@ -59,7 +59,7 @@ module.exports = function(app, passport) {
         }
       });
   });
-  router.get('/search-yelp/:term/:city/:state', indexCtrl.searchYelp);
+  router.get('/search-yelp/:term/:city', indexCtrl.searchYelp);
   router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
   router.post('/product-id', indexCtrl.getProductId);
   router.get('/*', indexCtrl.redirect);

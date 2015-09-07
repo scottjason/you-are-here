@@ -3,10 +3,10 @@ angular.module('SearchPickGo')
 
     'use strict'
 
-    function searchYelp(params) {
+    function searchYelp(term, city) {
       var request = $http({
         method: 'GET',
-        url: '/search-yelp/' + params.term + '/' + params.city + '/' + params.state
+        url: '/search-yelp/' + term + '/' + city
       });
       return (request.then(successHandler, errorHandler));
     }

@@ -17,8 +17,6 @@ angular.module('SearchPickGo')
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
 
-          console.log('### ngNavigator.js')
-
           var requestOpts = {};
 
           if (isAuthorized === 'true') {
@@ -29,6 +27,9 @@ angular.module('SearchPickGo')
             $state.go('search');
             return;
           }
+
+          console.log('### ngNavigator.js')
+
 
           localStorageService.clearAll();
 
@@ -66,7 +67,10 @@ angular.module('SearchPickGo')
                 if (results[1]) {
                   $timeout(function() {
                     $scope.showLoader = false;
+                    console.log('results', results)
                     $scope.formattedAddress = results[1].formatted_address;
+                    $scope.city =  angular.copy($scope.formattedAddress).split(',')[1];
+                    localStorageService.set('city', $scope.city);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
                   });
                 } else {

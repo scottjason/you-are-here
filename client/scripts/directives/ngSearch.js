@@ -34,25 +34,21 @@ angular.module('SearchPickGo')
               $scope.startLat = localStorageService.get('startLat');
               $scope.startLon = localStorageService.get('startLon');
               $scope.uberXId = localStorageService.get('uberXId');
+              $scope.city = localStorageService.get('city');
+              $scope.formattedAddress = localStorageService.get('formattedAddress');
             }
           }
 
-
           $scope.onSearch = function(isLogin) {
-            if (!$scope.accessToken || !$scope.startLat || !$scope.startLon) {
+            if (!$scope.accessToken) {
               localStorageService.clearAll();
               $state.go('landing');
               return;
             }
             if ($scope.searchTerm) {
               var requestOpts = {};
-              requestOpts.searchTerm = $scope.searchTerm;
-              requestOpts.startLat = $scope.startLat;
-              requestOpts.startLon = $scope.startLon;
-              console.log('isValid', requestOpts);
-              return;
-              RequestApi.searchYelp(requestOpts).then(function(response) {
-                StateService.data['results'] = response.data;
+              RequestApi.searchYelp($scope.searchTerm, $scope.city).then(function(response) {
+                localStorageService.set('results', response.data);
                 $state.go('results');
               }, function(err) {
                 console.log(err);

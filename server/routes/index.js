@@ -15,14 +15,13 @@ var uberClient = new Uber({
 
 module.exports = function(app, passport) {
   router.get('/', indexCtrl.render);
-  router.get('/authorize',
+  router.get('/login',
     passport.authenticate('uber', {
       scope: ['profile', 'delivery', 'request_receipt', 'delivery_sandbox', 'request']
     })
   )
 
   router.get('/auth/callback', function(req, res, next) {
-    console.log(req)
     uberClient.authorization({
         authorization_code: req.query.code
       },

@@ -34,23 +34,6 @@
   transition: all .3s ease;
 }
 
-.one-moment {
-  color: white;
-  position: relative;
-  margin: auto;
-  opacity: 0;
-  font-size: 14px;
-  font-family: 'geomanist_regularregular';
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
-}
-
-.one-moment.add-opacity {
-  opacity: 1;
-}
-
 
 /*
   * Location Icon
@@ -143,11 +126,23 @@
 **/
 
 .logo {
-  position: relative;
-  color: #1FBAD6;
-  font-size: 24px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
   font-family: 'geomanist_regularregular';
-  margin-bottom: 20px;
+  font-size: 24px;
+  color: #1FBAD6;
+}
+
+.formatted-address {
+  position: relative;
+  top: 38px;
+  font-family: 'geomanist_regularregular';
+  font-size: 14px;
+  color: white;
+  white-space: nowrap;
+  padding-bottom: 55px;
 }
 
 
@@ -191,7 +186,7 @@
   position: relative;
   top: 12px;
   font-family: 'geomanist_regularregular';
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   font-size: 18px;
   cursor: pointer;
 }

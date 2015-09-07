@@ -11,8 +11,8 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
-    function authorize(params) {
-      window.location.href = "http://localhost:3000/authorize/";
+    function login(params) {
+      window.location.href = "http://localhost:3000/login/";
     }
 
     function getProductId(params) {
@@ -34,7 +34,7 @@ angular.module('SearchPickGo')
 
     return ({
       searchYelp: searchYelp,
-      authorize: authorize,
+      login: login,
       getProductId: getProductId
     });
     RequestApi.$inject('http');

@@ -57,8 +57,22 @@
   color: #1FBAD6;
 }
 
+.loader-big {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  background-color: black;
+  -webkit-animation: loadLocation .9s infinite linear;
+  animation: loadLocation .9s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  margin: auto;
+  top: 200px;
+}
+
 .loader {
-  font-size: 10px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -73,7 +87,8 @@
   margin-bottom: 10px;
 }
 
-.loader:before {
+.loader:before,
+.loader-big:before {
   width: 50%;
   height: 50%;
   background: #1FBAD6;
@@ -84,7 +99,8 @@
   content: '';
 }
 
-.loader:after {
+.loader:after,
+.loader-big:after {
   background: rgba(225, 225, 225, .3);
   width: 75%;
   height: 75%;

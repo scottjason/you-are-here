@@ -127,3 +127,61 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.status {
+  position: absolute;
+  margin: auto;
+  background: black;
+  width: 400px;
+  height: 400px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.request-status {
+  position: relative;
+  color: #efeffe;
+  font-size: 14px;
+  font-family: 'geomanist_regularregular';
+  padding-bottom: 8px;
+  padding-top: 15px;
+  text-transform: uppercase;
+}
+
+.request-location {
+  position: relative;
+  color: #efeffe;
+  font-size: 14px;
+  font-family: 'geomanist_regularregular';
+  padding-bottom: 8px;
+  padding-top: 15px;
+}
+
+.cancel-uber-btn {
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  width: 200px;
+  height: 50px;
+  background-color: #1FBAD6;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  cursor: pointer;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.cancel-uber-btn > p {
+  position: relative;
+  top: 14px;
+  font-family: 'geomanist_regularregular';
+  letter-spacing: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}

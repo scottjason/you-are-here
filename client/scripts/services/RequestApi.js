@@ -23,6 +23,30 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
+    function cancelRide(requestId) {
+      var request = $http({
+        method: 'GET',
+        url: '/cancel-ride/' + requestId
+      });
+      return (request.then(successHandler, errorHandler));
+    }
+
+    function getRideStatus() {
+      var request = $http({
+        method: 'GET',
+        url: '/get-ride-status'
+      });
+      return (request.then(successHandler, errorHandler));
+    }
+
+    function updateRideStatus(endLat, endLon) {
+      var request = $http({
+        method: 'GET',
+        url: '/update-ride-status/' + endLat + '/' + endLon
+      });
+      return (request.then(successHandler, errorHandler));
+    }
+
     function successHandler(response) {
       return (response);
     }
@@ -34,7 +58,10 @@ angular.module('SearchPickGo')
     return ({
       login: login,
       searchYelp: searchYelp,
-      requestRide: requestRide
+      requestRide: requestRide,
+      cancelRide: cancelRide,
+      getRideStatus: getRideStatus,
+      updateRideStatus: updateRideStatus
     });
     RequestApi.$inject('http');
   });

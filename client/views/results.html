@@ -1,10 +1,26 @@
 <div ng-navbar></div ng-navbar>
 <div ng-results
-     results='results'
      on-request-uber='onRequestUber'
+     on-cancel-uber='onCancelUber'
+     show-loader='showLoader'
+     show-status='showStatus'
+     results='results'
+     ride='ride'
      class='container'>
+
+  <!-- Status -->
+  <div ng-show='showStatus' class='status'>
+    <p class='request-location'>UBER REQUESTED TO {{ ride.location }}</p>
+    <p class='request-status'>STATUS: {{ ride.status }}</p>
+
+    <div class='cancel-uber-btn' ng-click='onCancelUber();'>
+        <P>CANCEL UBER</P>
+      </div>
+  </div>
+
+  <!-- Results -->
   <div class='layout-container'>
-    <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>
+    <div ng-show='results && !showLoader && !showStatus' ng-repeat='result in results' class='layout-container-inner'>
       <p class='layout-name'>{{ result.name }}</p>
       <p class='layout-street'>{{ result.location.display_address[0] }}</p>
       <p class='layout-city-state-zip'>{{ result.location.city + ", " + result.location.state_code + " " + result.location.postal_code }}</p>
@@ -17,7 +33,7 @@
       <img class='layout-img' ng-src="{{result.image_url}}">
       <p class='layout-snippet'>{{ result.snippet_text }}</p>
       <div class='call-uber-btn' ng-click='onRequestUber(result.lat, result.lon);'>
-        <P>request uber</P>
+        <P>REQUEST UBER</P>
       </div>
     </div>
   </div>

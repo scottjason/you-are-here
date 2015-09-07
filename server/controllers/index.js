@@ -96,13 +96,65 @@ exports.requestRide = function(req, res, next) {
       end_longitude: req.params.endLon
     }
   }, function(err, httpResponse, body) {
-    req.session.requestId = body.request_id;
     res.send(body);
   });
 };
 
-exports.cancelRide = function(req, res, next) {
+exports.getRideStatus = function(req, res, next) {
+  var url = "https://sandbox-api.uber.com/v1/requests/" + req.session.requestId;
+  request(url, {
+      'auth': {
+        'bearer': req.session.accessToken
+      }
+    },
+    function(err, response, body) {
+      if (err) return next(err);
+      if (response.statusCode === 200) {
+        res.status(200).send(body);
+      } else {
+        res.status(401).send(new Error('unknown error occurred while retreiving uber ride status'));
+      }
+    });
+};
+exports.updateRideStatus = function(req, res, next) {
+  request.put({
+      url: "https://sandbox-api.uber.com/v1/sandbox/requests/" + req.session.requestId,
+      'auth': {
+        'bearer': req.session.accessToken,
+        "Content-Type": "application/json"
+      },
+      json: {
+        "status": "accepted"
+      }
+    },
+    function(err, response, body) {
+      console.log(response)
+      console.log(body)
+      if (err) return next(err);
+      if (response.statusCode === 200) {
+        res.status(200).send(body);
+      } else {
+        res.status(401).send(new Error('unknown error occurred while updating uber ride status'));
+      }
+    });
+};
 
+exports.cancelRide = function(req, res, next) {
+  request.del({
+      url: "https://sandbox-api.uber.com/v1/requests/" + req.params.requestId,
+      'auth': {
+        'bearer': req.session.accessToken
+      }
+    },
+    function(err, response, body) {
+      console.log(response)
+      if (err) return next(err);
+      if (response.statusCode === 204) {
+        res.status(200).end();
+      } else {
+        res.status(401).send(new Error('unknown error occurred while updating uber ride status'));
+      }
+    });
 };
 
 exports.getEstimate = function(req, res, next) {

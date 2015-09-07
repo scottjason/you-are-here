@@ -19,7 +19,6 @@ module.exports = function(app, passport) {
   router.get('/login/:startLat/:startLon', function(req, res, next) {
     req.session.startLat = req.params.startLat;
     req.session.startLon = req.params.startLon;
-    console.log('req.session on login', req.session);
     passport.authenticate('uber', {
       scope: ['profile', 'delivery', 'request_receipt', 'delivery_sandbox', 'request']
     })(req, res, next);
@@ -43,12 +42,12 @@ module.exports = function(app, passport) {
               req.session.accessToken = access_token;
               req.session.refreshToken = refresh_token;
               req.session.firstName = user.first_name;
-              opts.isAuthorized = true;
               opts.accessToken = access_token;
               opts.refreshToken = refresh_token;
               opts.firstName = user.first_name;
               indexCtrl.getProductId(req.session, function(err, response) {
                 if (!err) {
+                  opts.isAuthorized = req.session.isAuthorized = true;
                   opts.uberXId = req.session.uberXId = response.products[0].product_id;
                   opts.expiresAt = req.session.expiresAt = new Date().getTime() + 1.74e+6;
                   console.log('req.session on sucess', req.session);

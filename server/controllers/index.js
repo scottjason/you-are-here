@@ -10,9 +10,8 @@ var yelp = require("yelp").createClient({
 });
 
 exports.render = function(req, res, next) {
-  console.log('in render', req.isAuthorized);
   var opts = {};
-  if (!req.isAuthorized) {
+  if (!req.session.isAuthorized) {
     opts.isAuthorized = false;
     opts.accessToken = false;
     opts.refreshToken = false;
@@ -33,21 +32,23 @@ exports.redirect = function(req, res, next) {
 };
 
 exports.isAuthorized = function(req, res, next) {
-  console.log('isAuthorized', req.session);
-  if (!req.session.expiresAt) {
-    return res.redirect('/')
-  }
-  var currentTime = new Date().getTime();
-  var expiresAt = req.session.expiresAt;
-  var isExpired = (currentTime >= expiresAt);
-  if (isExpired) {
+  if (!req.session.isAuthorized) {
     req.session.destroy(function(err) {
       if (err) console.log('error destroying session', err);
       res.redirect('/');
     });
   } else {
-    req.isAuthorized = true;
-    next(null);
+    var currentTime = new Date().getTime();
+    var expiresAt = req.session.expiresAt;
+    var isExpired = (currentTime >= expiresAt);
+    if (isExpired) {
+      req.session.destroy(function(err) {
+        if (err) console.log('error destroying session', err);
+        res.redirect('/');
+      });
+    } else {
+      next(null);
+    }
   }
 };
 

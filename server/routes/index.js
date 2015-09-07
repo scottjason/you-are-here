@@ -14,7 +14,6 @@ var uberClient = new Uber({
 });
 
 module.exports = function(app, passport) {
-
   router.get('/', indexCtrl.render);
   router.get('/login/:startLat/:startLon', function(req, res, next) {
     req.session.startLat = req.params.startLat;
@@ -23,7 +22,6 @@ module.exports = function(app, passport) {
       scope: ['profile', 'delivery', 'request_receipt', 'delivery_sandbox', 'request']
     })(req, res, next);
   });
-
   router.get('/auth/callback', function(req, res, next) {
     uberClient.authorization({
         authorization_code: req.query.code
@@ -39,12 +37,9 @@ module.exports = function(app, passport) {
             function(error, response, body) {
               var user = JSON.parse(body);
               var opts = {};
-              req.session.accessToken = access_token;
-              req.session.refreshToken = refresh_token;
-              req.session.firstName = user.first_name;
-              opts.accessToken = access_token;
-              opts.refreshToken = refresh_token;
-              opts.firstName = user.first_name;
+              opts.accessToken = req.session.accessToken = access_token;
+              opts.refreshToken = req.session.refreshToken = refresh_token;
+              opts.firstName = req.session.firstName = user.first_name;
               indexCtrl.getProductId(req.session, function(err, response) {
                 if (!err) {
                   opts.isAuthorized = req.session.isAuthorized = true;
@@ -60,10 +55,9 @@ module.exports = function(app, passport) {
         }
       });
   });
-
   /*
    * Authentication Required Endpoints
-  **/
+   **/
   router.get('/search-yelp/:term/:city', indexCtrl.isAuthorized, indexCtrl.searchYelp);
   router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
   router.get('/search', indexCtrl.isAuthorized, indexCtrl.render);

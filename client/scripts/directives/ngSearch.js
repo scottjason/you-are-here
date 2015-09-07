@@ -31,6 +31,8 @@ angular.module('SearchPickGo')
               $scope.accessToken = localStorageService.get('accessToken');
               $scope.startLat = localStorageService.get('startLat');
               $scope.startLon = localStorageService.get('startLon');
+              $scope.uberXId = localStorageService.get('uberXId');
+              console.log($scope);
             }
           }
 

@@ -12,9 +12,10 @@ var yelp = require("yelp").createClient({
 exports.render = function(req, res, next) {
   var opts = {};
   opts.isAuthorized = false;
-  opts.accessToken = null;
-  opts.refreshToken = null;
-  opts.firstName = null;
+  opts.accessToken = false;
+  opts.refreshToken = false;
+  opts.firstName = false;
+  opts.uberXId = false;
   res.render('index', opts);
 };
 
@@ -22,12 +23,12 @@ exports.redirect = function(req, res, next) {
   res.redirect('/');
 };
 
-exports.getProductId = function(startLat, startLon, cb) {
+exports.getProductId = function(session, cb) {
 
-  var url = 'https://api.uber.com/v1/products?latitude=' + startLat + '&longitude=' + startLon;
+  var url = 'https://api.uber.com/v1/products?latitude=' + session.startLat + '&longitude=' + session.startLon;
   request(url, {
       'auth': {
-        'bearer': req.session.accessToken
+        'bearer': session.accessToken
       }
     },
     function(err, response, body) {
@@ -35,7 +36,6 @@ exports.getProductId = function(startLat, startLon, cb) {
       if (response.statusCode === 200) {
         var results = JSON.parse(body);
         cb(null, results)
-        res.status(200).json(results);
       } else {
         cb(new Error('unknown error occurred while retreiving uber product id'));
       }

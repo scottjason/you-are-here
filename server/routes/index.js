@@ -41,13 +41,20 @@ module.exports = function(app, passport) {
               var opts = {};
               req.session.accessToken = access_token;
               req.session.refreshToken = refresh_token;
-              req.session.firstName = user.firstName;
+              req.session.firstName = user.first_name;
               opts.isAuthorized = true;
               opts.accessToken = access_token;
               opts.refreshToken = refresh_token;
               opts.firstName = user.first_name;
-              console.log('req.session on sucess', req.session);
-              res.render('index', opts);
+              indexCtrl.getProductId(req.session, function(err, response) {
+                if (!err) {
+                  opts.uberXId = req.session.uberXId = response.products[0].product_id;
+                  console.log('req.session on sucess', req.session);
+                  res.render('index', opts);
+                } else {
+                  console.log('error requesting productId', err.message || err);
+                }
+              });
             });
         }
       });

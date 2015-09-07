@@ -23,6 +23,7 @@ angular.module('SearchPickGo')
             localStorageService.set('accessToken', accessToken);
             localStorageService.set('refreshToken', refreshToken);
             localStorageService.set('firstName', firstName);
+            localStorageService.set('uberXId', uberXId);
             $state.go('search');
             return;
           }

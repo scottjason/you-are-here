@@ -15,11 +15,14 @@ var uberClient = new Uber({
 
 module.exports = function(app, passport) {
   router.get('/', indexCtrl.render);
-  router.get('/login',
+  router.get('/login/:startLat/:startLon', function(req, res, next) {
+    req.session.startLat = req.params.startLat;
+    req.session.startLon = req.params.startLon;
+    console.log('req.session on login', req.session);
     passport.authenticate('uber', {
       scope: ['profile', 'delivery', 'request_receipt', 'delivery_sandbox', 'request']
-    })
-  )
+    })(req, res, next);
+  });
 
   router.get('/auth/callback', function(req, res, next) {
     uberClient.authorization({
@@ -43,6 +46,7 @@ module.exports = function(app, passport) {
               opts.accessToken = access_token;
               opts.refreshToken = refresh_token;
               opts.firstName = user.first_name;
+              console.log('req.session on sucess', req.session);
               res.render('index', opts);
             });
         }

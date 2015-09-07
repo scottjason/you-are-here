@@ -8,7 +8,7 @@ angular.module('SearchPickGo')
       scope: {
         getLocation: '=',
         formattedAddress: '=',
-        showLocationSpinner: '=',
+        showLoader: '=',
         onLogin: '='
       },
       link: function(scope, element, attrs) {
@@ -16,6 +16,8 @@ angular.module('SearchPickGo')
       },
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
+
+          var requestOpts = {};
 
           if (isAuthorized === 'true') {
             localStorageService.set('accessToken', accessToken);
@@ -26,21 +28,21 @@ angular.module('SearchPickGo')
           }
 
           localStorageService.clearAll();
-          $scope.startPosition = {};
 
           $scope.getLocation = function() {
-            $scope.showLocationSpinner = true;
+            $scope.showLoader = true;
             navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
           };
 
           $scope.onLogin = function() {
-            RequestApi.login();
+            RequestApi.login($scope.startLat, $scope.startLon);
           };
 
           function onLocationSuccess(position) {
-            $scope.startPosition.lat = position.coords.latitude;
-            $scope.startPosition.lon = position.coords.longitude;
-            localStorageService.set('startPosition', $scope.startPosition);
+            $scope.startLat = position.coords.latitude;
+            $scope.startLon = position.coords.longitude;
+            localStorageService.set('startLat', $scope.startLat);
+            localStorageService.set('startLon', $scope.startLon);
             reverseGeo();
           }
 
@@ -51,8 +53,8 @@ angular.module('SearchPickGo')
           function reverseGeo() {
             var geocoder = new google.maps.Geocoder();
             var latlng = {
-              lat: $scope.startPosition.lat,
-              lng: $scope.startPosition.lon
+              lat: $scope.startLat,
+              lng: $scope.startLon
             };
             geocoder.geocode({
               'location': latlng
@@ -60,10 +62,9 @@ angular.module('SearchPickGo')
               if (status === google.maps.GeocoderStatus.OK) {
                 if (results[1]) {
                   $timeout(function() {
-                    $scope.showLocationSpinner = false;
+                    $scope.showLoader = false;
                     $scope.formattedAddress = results[1].formatted_address;
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
-                    console.log(results[1].formatted_address);
                   });
                 } else {
                   window.alert('No results found');

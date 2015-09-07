@@ -4,11 +4,11 @@
          get-location='getLocation'
          on-submit='onSubmit'
          formatted-address='formattedAddress'
-         show-location-spinner='showLocationSpinner'
+         show-loader='showLoader'
          on-login='onLogin'>
       <div ng-hide='formattedAddress || formattedAdress.length'>
-        <div ng-if='!showLocationSpinner' ng-click='getLocation();' class="icon-location"></div>
-        <div ng-if='showLocationSpinner' class="loader"></div>
+        <div ng-if='!showLoader' ng-click='getLocation();' class="icon-location"></div>
+        <div ng-if='showLoader' class="loader"></div>
       </div>
       <p class='logo'>search.pick.go</p>
       <div ng-show='formattedAddress.length'>

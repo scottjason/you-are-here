@@ -22,21 +22,22 @@ exports.redirect = function(req, res, next) {
   res.redirect('/');
 };
 
-exports.getProductId = function(req, res, next) {
+exports.getProductId = function(startLat, startLon, cb) {
 
-  var url = 'https://api.uber.com/v1/products?latitude=' + req.body.startLat + '&longitude=' + req.body.startLon;
+  var url = 'https://api.uber.com/v1/products?latitude=' + startLat + '&longitude=' + startLon;
   request(url, {
       'auth': {
         'bearer': req.session.accessToken
       }
     },
     function(err, response, body) {
-      if (err) return next(err);
+      if (err) return cb(err);
       if (response.statusCode === 200) {
         var results = JSON.parse(body);
+        cb(null, results)
         res.status(200).json(results);
       } else {
-        res.status(401).end();
+        cb(new Error('unknown error occurred while retreiving uber product id'));
       }
     });
 };

@@ -23,13 +23,19 @@ angular.module('SearchPickGo')
           init();
 
           function init() {
-            $scope.firstName = localStorageService.get('firstName');
-            $scope.accessToken = localStorageService.get('accessToken');
-            $scope.startPosition = localStorageService.get('startPosition');
+            if (isAuthorized !== 'true') {
+              localStorageService.clearAll();
+              $state.go('landing');
+            } else {
+              $scope.firstName = localStorageService.get('firstName');
+              $scope.accessToken = localStorageService.get('accessToken');
+              $scope.startLat = localStorageService.get('startLat');
+              $scope.startLon = localStorageService.get('startLon');
+            }
           }
 
           $scope.onSearch = function(isLogin) {
-            if (!$scope.accessToken || !$scope.startPosition) {
+            if (!$scope.accessToken || !$scope.startLat || !$scope.startLon) {
               localStorageService.clearAll();
               $state.go('landing');
               return;
@@ -37,7 +43,8 @@ angular.module('SearchPickGo')
             if ($scope.searchTerm) {
               var requestOpts = {};
               requestOpts.searchTerm = $scope.searchTerm;
-              requestOpts.startPosition = $scope.startPosition;
+              requestOpts.startLat = $scope.startLat;
+              requestOpts.startLon = $scope.startLon;
               console.log('isValid', requestOpts);
               return;
               RequestApi.searchYelp(requestOpts).then(function(response) {

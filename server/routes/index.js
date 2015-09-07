@@ -10,6 +10,11 @@ var uberDev = 'https://sandbox-api.uber.com/v1';
 var uberProd = 'https://api.uber.com/v1';
 
 module.exports = function(app, passport) {
+
+  /*
+   * No Authentication Required Endpoints
+   **/
+
   router.get('/', indexCtrl.render);
   router.get('/login/:startLat/:startLon', function(req, res, next) {
     req.session.startLat = req.params.startLat;
@@ -50,17 +55,19 @@ module.exports = function(app, passport) {
                     opts.isAuthorized = req.session.isAuthorized = true;
                     opts.uberXId = req.session.uberXId = response.products[0].product_id;
                     opts.expiresAt = req.session.expiresAt = new Date().getTime() + 1.74e+6;
-                    console.log('req.session on sucess', req.session);
                     res.render('index', opts);
                   } else {
-                    console.log('error requesting productId', err.message || err);
+                    console.log('error requesting productId', err.message);
+                    req.session.destroy(function(err) {
+                      if (err) console.log('err destroying session', err.message);
+                      res.redirect('/');
+                    })
                   }
                 });
               });
           }
         });
     });
-
   });
 
   /*
@@ -68,16 +75,13 @@ module.exports = function(app, passport) {
    **/
 
   router.get('/request-ride/:endLat/:endLon', indexCtrl.isAuthorized, indexCtrl.requestRide);
+  router.get('/get-ride-status/:requestId', indexCtrl.isAuthorized, indexCtrl.getRideStatus);
+  router.get('/update-ride-status/:requestId', indexCtrl.isAuthorized, indexCtrl.updateRideStatus);
   router.get('/cancel-ride/:requestId', indexCtrl.isAuthorized, indexCtrl.cancelRide);
-  router.get('/get-ride-status', indexCtrl.isAuthorized, indexCtrl.getRideStatus);
-  router.get('/update-ride-status/:endLat/:endLon', indexCtrl.isAuthorized, indexCtrl.updateRideStatus);
   router.get('/search-yelp/:term/:city', indexCtrl.isAuthorized, indexCtrl.searchYelp);
-  router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
   router.get('/search', indexCtrl.isAuthorized, indexCtrl.render);
   router.get('/results', indexCtrl.isAuthorized, indexCtrl.render);
   router.get('/*', indexCtrl.isAuthorized, indexCtrl.render);
-  router.use(bodyParser.urlencoded({
-    extended: true
-  }));
+
   app.use(router);
 };

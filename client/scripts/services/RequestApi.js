@@ -31,18 +31,18 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
-    function getRideStatus() {
+    function getRideStatus(requestId) {
       var request = $http({
         method: 'GET',
-        url: '/get-ride-status'
+        url: '/get-ride-status/' + requestId
       });
       return (request.then(successHandler, errorHandler));
     }
 
-    function updateRideStatus(endLat, endLon) {
+    function updateRideStatus(requestId) {
       var request = $http({
         method: 'GET',
-        url: '/update-ride-status/' + endLat + '/' + endLon
+        url: '/update-ride-status/' + requestId
       });
       return (request.then(successHandler, errorHandler));
     }

@@ -101,13 +101,14 @@ exports.requestRide = function(req, res, next) {
 };
 
 exports.getRideStatus = function(req, res, next) {
-  var url = "https://sandbox-api.uber.com/v1/requests/" + req.session.requestId;
+  var url = "https://sandbox-api.uber.com/v1/requests/" + req.params.requestId;
   request(url, {
       'auth': {
         'bearer': req.session.accessToken
       }
     },
     function(err, response, body) {
+      console.log(err || response)
       if (err) return next(err);
       if (response.statusCode === 200) {
         res.status(200).send(body);
@@ -117,8 +118,9 @@ exports.getRideStatus = function(req, res, next) {
     });
 };
 exports.updateRideStatus = function(req, res, next) {
+  console.log('up', req.params)
   request.put({
-      url: "https://sandbox-api.uber.com/v1/sandbox/requests/" + req.session.requestId,
+      url: "https://sandbox-api.uber.com/v1/sandbox/requests/" + req.params.requestId,
       'auth': {
         'bearer': req.session.accessToken,
         "Content-Type": "application/json"
@@ -147,7 +149,6 @@ exports.cancelRide = function(req, res, next) {
       }
     },
     function(err, response, body) {
-      console.log(response)
       if (err) return next(err);
       if (response.statusCode === 204) {
         res.status(200).end();
@@ -155,12 +156,4 @@ exports.cancelRide = function(req, res, next) {
         res.status(401).send(new Error('unknown error occurred while updating uber ride status'));
       }
     });
-};
-
-exports.getEstimate = function(req, res, next) {
-  var startLat = req.params.startLat;
-  var startLon = req.params.startLon;
-  var endLat = req.params.endLat;
-  var endLon = req.params.endLon;
-  console.log('startLat', startLat);
 };

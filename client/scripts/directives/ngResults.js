@@ -56,10 +56,12 @@ angular.module('SearchPickGo')
                 $scope.ride = response.data;
               });
               console.log('response', response);
-              // getRideStatus();
               $timeout(function() {
-                // updateRideStatus();
-              }, 5000);
+                getRideStatus();
+              }, 3500);
+              $timeout(function() {
+                updateRideStatus();
+              }, 3500);
             }, function(err) {
               console.log('err', err);
             });
@@ -77,7 +79,7 @@ angular.module('SearchPickGo')
           };
 
           function updateRideStatus() {
-            RequestApi.updateRideStatus($scope.endLat, $scope.endLon).then(function(response) {
+            RequestApi.updateRideStatus($scope.ride.request_id).then(function(response) {
               console.log('response', response);
               $timeout(function() {
                 $scope.ride = response.data;
@@ -87,27 +89,17 @@ angular.module('SearchPickGo')
             });
           }
 
-          $scope.count = 0;
-
           function getRideStatus() {
-            $scope.count++
-              RequestApi.getRideStatus().then(function(response) {
-                console.log('response', response);
-                $timeout(function() {
-                  $scope.ride = response.data;
-                });
-                if (response.data.status !== 'accepted') {
-                  $timeout(getRideStatus, 3500);
-                } else {
-                  return;
-                }
-              }, function(err) {
-                console.err('ride status', err);
+            RequestApi.getRideStatus($scope.ride.request_id).then(function(response) {
+              console.log('response', response);
+              $timeout(function() {
+                $scope.ride = response.data;
               });
-          }
+              $timeout(getRideStatus, 3500);
 
-          function cancelRide() {
-
+            }, function(err) {
+              console.err('ride status', err);
+            });
           }
         }
       ],

@@ -33,20 +33,7 @@ angular.module('SearchPickGo')
             $scope.results = results;
             console.log('results', results);
           });
-          // driver: null
-          // eta: 9
-          // location: null
-          // request_id: "ae179c26-5f97-4eb0-8db5-f2b2149bd1cf"
-          // status: "processing"
-          // surge_multiplier: 1
-          // vehicle: null
-
-          // processing  The Request is matching to the most efficient available driver.
-          // accepted  The Request has been accepted by a driver and is "en route" to the start location (i.e. start_latitude and start_longitude).
-          // arriving  The driver has arrived or will be shortly.
-          // in_progress The Request is "en route" from the start location to the end location.
-          // driver_canceled The Request has been canceled by the driver.
-          // completed Request has been completed by the driver.
+   
           $scope.onRequestUber = function(endLat, endLon) {
             $scope.showStatus = true;
             $scope.endLat = endLat;

@@ -27,10 +27,6 @@ exports.render = function(req, res, next) {
   res.render('index', opts);
 };
 
-exports.redirect = function(req, res, next) {
-  res.redirect('/');
-};
-
 exports.isAuthorized = function(req, res, next) {
   if (!req.session.isAuthorized) {
     req.session.destroy(function(err) {

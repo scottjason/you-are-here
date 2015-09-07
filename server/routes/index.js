@@ -68,6 +68,6 @@ module.exports = function(app, passport) {
   router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
   router.get('/search', indexCtrl.isAuthorized, indexCtrl.render);
   router.get('/results', indexCtrl.isAuthorized, indexCtrl.render);
-  router.get('/*', indexCtrl.isAuthorized, indexCtrl.redirect);
+  router.get('/*', indexCtrl.isAuthorized, indexCtrl.render);
   app.use(router);
 };

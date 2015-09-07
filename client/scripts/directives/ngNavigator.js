@@ -17,6 +17,8 @@ angular.module('SearchPickGo')
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
 
+          console.log('### ngNavigator.js')
+
           var requestOpts = {};
 
           if (isAuthorized === 'true') {

@@ -11,6 +11,8 @@ angular.module('SearchPickGo')
       controller: ['$scope', '$timeout', 'RequestApi', 'StateService',
         function($scope, $timeout, RequestApi, StateService) {
 
+          console.log('### ngResults.js')
+
           $timeout(function() {
             var results = StateService.data['results'].businesses;
             results.forEach(function(obj) {

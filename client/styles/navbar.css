@@ -1,0 +1,41 @@
+.navbar-container {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+}
+
+.navbar-logo {
+  position: relative;
+  left: 15px;
+  top: 18px;
+  font-family: 'geomanist_regularregular';
+  font-size: 24px;
+  color: #1FBAD6;
+}
+
+.navbar-right {
+  position: absolute;
+  right: 0;
+  height: 60px;
+  width: auto;
+  top: 0;
+}
+
+.navbar-right-copy {
+  position: relative;
+  display: inline-block;
+  color: white;
+  font-family: 'geomanist_regularregular';
+  padding-right: 15px;
+  top: 15px;
+}
+
+.icon-user-1 {
+  color: #1FBAD6;
+  font-size: 21px;
+  position: relative;
+  display: inline-block;
+  top: 3px;
+  margin-left: 10px;
+}

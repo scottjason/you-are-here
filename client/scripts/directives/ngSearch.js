@@ -20,6 +20,8 @@ angular.module('SearchPickGo')
       controller: ['$scope', '$rootScope', '$timeout', '$state', 'RequestApi', 'StateService', 'localStorageService',
         function($scope, $rootScope, $timeout, $state, RequestApi, StateService, localStorageService) {
 
+          console.log('### ngSearch.js')
+
           init();
 
           function init() {
@@ -32,9 +34,9 @@ angular.module('SearchPickGo')
               $scope.startLat = localStorageService.get('startLat');
               $scope.startLon = localStorageService.get('startLon');
               $scope.uberXId = localStorageService.get('uberXId');
-              console.log($scope);
             }
           }
+
 
           $scope.onSearch = function(isLogin) {
             if (!$scope.accessToken || !$scope.startLat || !$scope.startLon) {

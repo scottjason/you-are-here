@@ -66,5 +66,5 @@ app.use(function(err, req, res, next) {
 
 
 var server = app.listen(app.get('port'), function() {
-  console.log('listening to port:', app.get('port'));
+  console.log('Express server listening to port:', app.get('port'), 'in', app.get('env'), 'mode');
 });

@@ -1,10 +1,10 @@
+<div ng-navbar></div ng-navbar>
 <div class='container'>
   <div class='container-inner'>
     <div ng-search
          on-search='onSearch'
          search-term='searchTerm'>
-      <p class='logo'>search.pick.go</p>
-      <input class='category' id='autocomplete' type='text' ng-model='searchTerm' placeholder="tacos, dinner, bars, Max's">
+      <input class='category' type='text' ng-model='searchTerm' placeholder="tacos, dinner, bars, Max's">
       <div class='submit-btn' ng-click='onSearch();'>
         <p>SEARCH</p>
       </div>

@@ -1,5 +1,5 @@
 angular.module('SearchPickGo')
-  .service('RequestApi', function($http, $window) {
+  .service('RequestApi', function($http) {
 
     'use strict'
 
@@ -15,11 +15,10 @@ angular.module('SearchPickGo')
       window.location.href = "http://localhost:3000/login/" + startLat + "/" + startLon;
     }
 
-    function getProductId(params) {
+    function requestRide(endLat, endLon) {
       var request = $http({
-        method: 'POST',
-        url: '/product-id',
-        params: params
+        method: 'GET',
+        url: '/request-ride/' + endLat.toString() + '/' + endLon.toString()
       });
       return (request.then(successHandler, errorHandler));
     }
@@ -33,9 +32,9 @@ angular.module('SearchPickGo')
     }
 
     return ({
-      searchYelp: searchYelp,
       login: login,
-      getProductId: getProductId
+      searchYelp: searchYelp,
+      requestRide: requestRide
     });
-    RequestApi.$inject('http', $window);
+    RequestApi.$inject('http');
   });

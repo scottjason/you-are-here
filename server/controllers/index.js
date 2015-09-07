@@ -1,6 +1,11 @@
 var config = require('../config');
+var querystring = require('querystring');
 var passport = require('passport');
 var request = require('request');
+var http = require('http');
+
+var uberDev = 'https://sandbox-api.uber.com/v1';
+var uberProd = 'https://api.uber.com/v1';
 
 var yelp = require("yelp").createClient({
   consumer_key: config.yelp.consumerKey,
@@ -50,7 +55,7 @@ exports.isAuthorized = function(req, res, next) {
 
 exports.getProductId = function(session, cb) {
 
-  var url = 'https://api.uber.com/v1/products?latitude=' + session.startLat + '&longitude=' + session.startLon;
+  var url = uberDev + '/products?latitude=' + session.startLat + '&longitude=' + session.startLon;
   request(url, {
       'auth': {
         'bearer': session.accessToken
@@ -72,9 +77,32 @@ exports.searchYelp = function(req, res, next) {
     term: req.params.term,
     location: req.params.city
   }, function(err, results) {
-    console.log(err || results);
     res.status(200).json(results);
   });
+};
+
+exports.requestRide = function(req, res, next) {
+  request.post({
+    url: 'https://sandbox-api.uber.com/v1/requests',
+    'auth': {
+      'bearer': req.session.accessToken,
+      "Content-Type": "application/json"
+    },
+    json: {
+      product_id: req.session.uberXId,
+      start_latitude: req.session.startLat,
+      start_longitude: req.session.startLon,
+      end_latitude: req.params.endLat,
+      end_longitude: req.params.endLon
+    }
+  }, function(err, httpResponse, body) {
+    req.session.requestId = body.request_id;
+    res.send(body);
+  });
+};
+
+exports.cancelRide = function(req, res, next) {
+
 };
 
 exports.getEstimate = function(req, res, next) {

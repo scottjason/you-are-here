@@ -1,6 +1,7 @@
 <div ng-navbar></div ng-navbar>
 <div ng-results
      results='results'
+     on-request-uber='onRequestUber'
      class='container'>
   <div class='layout-container'>
     <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>
@@ -15,7 +16,7 @@
       <p class='layout-rating-count'>{{ result.review_count }} reviews</p>
       <img class='layout-img' ng-src="{{result.image_url}}">
       <p class='layout-snippet'>{{ result.snippet_text }}</p>
-      <div class='call-uber-btn'>
+      <div class='call-uber-btn' ng-click='onRequestUber(result.lat, result.lon);'>
         <P>request uber</P>
       </div>
     </div>

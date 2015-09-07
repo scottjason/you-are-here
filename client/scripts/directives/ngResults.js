@@ -5,7 +5,8 @@ angular.module('SearchPickGo')
 
     var directive = {
       scope: {
-        results: '='
+        results: '=',
+        onRequestUber: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',
@@ -22,10 +23,20 @@ angular.module('SearchPickGo')
               if (obj.name && obj.name.length > 31) {
                 obj.name = (obj.name).slice(0, 28) + '...';
               }
+              obj.lat = obj.location.coordinate.latitude;
+              obj.lon = obj.location.coordinate.longitude;
             });
             $scope.results = results;
             console.log('results', results);
           });
+
+          $scope.onRequestUber = function(endLat, endLon) {
+            RequestApi.requestRide(endLat, endLon).then(function(response) {
+              console.log('response', response);
+            }, function(err) {
+              console.log('err', err);
+            });
+          }
         }
       ],
     }

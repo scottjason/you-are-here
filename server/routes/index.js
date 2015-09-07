@@ -4,6 +4,10 @@ var express = require('express');
 var router = express.Router();
 var indexCtrl = require('../controllers/index');
 var request = require('request');
+var bodyParser = require('body-parser');
+
+var uberDev = 'https://sandbox-api.uber.com/v1';
+var uberProd = 'https://api.uber.com/v1';
 
 var uberClient = new Uber({
   client_id: "sw-6_VLi2U9mlcZiFw_PWmWNvzy-GAnV",
@@ -29,7 +33,7 @@ module.exports = function(app, passport) {
       function(err, access_token, refresh_token) {
         if (err) console.error(err);
         else {
-          request.get('https://api.uber.com/v1/me', {
+          request.get(uberDev + '/me', {
               'auth': {
                 'bearer': access_token
               }
@@ -55,13 +59,17 @@ module.exports = function(app, passport) {
         }
       });
   });
+
   /*
    * Authentication Required Endpoints
    **/
+
+  router.get('/request-ride/:endLat/:endLon', indexCtrl.isAuthorized, indexCtrl.requestRide);
   router.get('/search-yelp/:term/:city', indexCtrl.isAuthorized, indexCtrl.searchYelp);
   router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
   router.get('/search', indexCtrl.isAuthorized, indexCtrl.render);
   router.get('/results', indexCtrl.isAuthorized, indexCtrl.render);
   router.get('/*', indexCtrl.isAuthorized, indexCtrl.render);
+  router.use(bodyParser.urlencoded({ extended: true }));
   app.use(router);
 };

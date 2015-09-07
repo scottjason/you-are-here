@@ -4,6 +4,7 @@ var express = require('express');
 var session = require('express-session');
 var passport = require('passport');
 var logger = require('morgan');
+var compression = require('compression');
 var bodyParser = require('body-parser');
 var config = require('./config');
 
@@ -23,9 +24,9 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var sessionOpts = {
   secret: config.session.key,
@@ -65,6 +66,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-var server = app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function() {
   console.log('Express server listening to port:', app.get('port'), 'in', app.get('env'), 'mode');
 });

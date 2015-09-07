@@ -10,17 +10,45 @@ var yelp = require("yelp").createClient({
 });
 
 exports.render = function(req, res, next) {
+  console.log('in render', req.isAuthorized);
   var opts = {};
-  opts.isAuthorized = false;
-  opts.accessToken = false;
-  opts.refreshToken = false;
-  opts.firstName = false;
-  opts.uberXId = false;
+  if (!req.isAuthorized) {
+    opts.isAuthorized = false;
+    opts.accessToken = false;
+    opts.refreshToken = false;
+    opts.firstName = false;
+    opts.uberXId = false;
+  } else {
+    opts.isAuthorized = true;
+    opts.accessToken = req.session.accessToken;
+    opts.refreshToken = req.session.refreshToken;
+    opts.firstName = req.session.firstName;
+    opts.uberXId = req.session.uberXId;
+  }
   res.render('index', opts);
 };
 
 exports.redirect = function(req, res, next) {
   res.redirect('/');
+};
+
+exports.isAuthorized = function(req, res, next) {
+  console.log('isAuthorized', req.session);
+  if (!req.session.expiresAt) {
+    return res.redirect('/')
+  }
+  var currentTime = new Date().getTime();
+  var expiresAt = req.session.expiresAt;
+  var isExpired = (currentTime >= expiresAt);
+  if (isExpired) {
+    req.session.destroy(function(err) {
+      if (err) console.log('error destroying session', err);
+      res.redirect('/');
+    });
+  } else {
+    req.isAuthorized = true;
+    next(null);
+  }
 };
 
 exports.getProductId = function(session, cb) {

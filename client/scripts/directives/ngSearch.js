@@ -20,7 +20,7 @@ angular.module('SearchPickGo')
       controller: ['$scope', '$rootScope', '$timeout', '$state', 'RequestApi', 'StateService', 'localStorageService',
         function($scope, $rootScope, $timeout, $state, RequestApi, StateService, localStorageService) {
 
-          console.log('### ngSearch.js')
+          console.log('### ngSearch.js');
 
           init();
 

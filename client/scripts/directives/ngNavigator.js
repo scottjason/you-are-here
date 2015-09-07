@@ -19,7 +19,8 @@ angular.module('SearchPickGo')
 
           var requestOpts = {};
 
-          if (isAuthorized === 'true') {
+          if (isAuthorized === 'true' || localStorageService.get('isAuthorized')) {
+            localStorageService.set('isAuthorized', true);
             localStorageService.set('accessToken', accessToken);
             localStorageService.set('refreshToken', refreshToken);
             localStorageService.set('firstName', firstName);
@@ -29,7 +30,6 @@ angular.module('SearchPickGo')
           }
 
           console.log('### ngNavigator.js')
-
 
           localStorageService.clearAll();
 

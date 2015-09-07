@@ -14,6 +14,7 @@ var uberClient = new Uber({
 });
 
 module.exports = function(app, passport) {
+
   router.get('/', indexCtrl.render);
   router.get('/login/:startLat/:startLon', function(req, res, next) {
     req.session.startLat = req.params.startLat;
@@ -49,6 +50,7 @@ module.exports = function(app, passport) {
               indexCtrl.getProductId(req.session, function(err, response) {
                 if (!err) {
                   opts.uberXId = req.session.uberXId = response.products[0].product_id;
+                  opts.expiresAt = req.session.expiresAt = new Date().getTime() + 1.74e+6;
                   console.log('req.session on sucess', req.session);
                   res.render('index', opts);
                 } else {
@@ -59,9 +61,14 @@ module.exports = function(app, passport) {
         }
       });
   });
-  router.get('/search-yelp/:term/:city', indexCtrl.searchYelp);
+
+  /*
+   * Authentication Required Endpoints
+  **/
+  router.get('/search-yelp/:term/:city', indexCtrl.isAuthorized, indexCtrl.searchYelp);
   router.get('/estimate/:startLat/:startLon/:endLat/:endLon', indexCtrl.getEstimate);
-  router.post('/product-id', indexCtrl.getProductId);
-  router.get('/*', indexCtrl.redirect);
+  router.get('/search', indexCtrl.isAuthorized, indexCtrl.render);
+  router.get('/results', indexCtrl.isAuthorized, indexCtrl.render);
+  router.get('/*', indexCtrl.isAuthorized, indexCtrl.redirect);
   app.use(router);
 };

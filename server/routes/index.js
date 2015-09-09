@@ -16,6 +16,7 @@ module.exports = function(app, passport) {
    **/
 
   router.get('/', indexCtrl.render);
+  router.get('/logout', indexCtrl.logout);
   router.get('/login/:startLat/:startLon', function(req, res, next) {
     req.session.startLat = req.params.startLat;
     req.session.startLon = req.params.startLon;

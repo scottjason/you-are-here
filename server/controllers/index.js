@@ -53,6 +53,17 @@ exports.isAuthorized = function(req, res, next) {
   }
 };
 
+exports.logout = function(req, res, next) {
+  req.session.destroy(function(err) {
+    if (!err) {
+      console.log('Session Destroyed', req.session);
+    } else {
+      console.log('Error Destroying Session', err.message);
+    }
+    res.status(200).end()
+  });
+}
+
 exports.getProductId = function(session, cb) {
 
   var url = uberDev + '/products?latitude=' + session.startLat + '&longitude=' + session.startLon;

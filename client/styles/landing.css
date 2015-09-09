@@ -1,8 +1,7 @@
 /*
-  * Colors
-  ** Blue #1FBAD6
+  ** Dark Blue #09091a
+  ** Light Blue #1FBAD6
 **/
-
 
 /*
   * Containers
@@ -154,7 +153,7 @@
 .formatted-address {
   position: relative;
   top: 38px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   color: white;
   white-space: nowrap;

@@ -1,3 +1,8 @@
+/*
+  ** Dark Blue #09091a
+  ** Light Blue #1FBAD6
+**/
+
 .layout-container {
   position: relative;
   text-align: center;
@@ -21,28 +26,28 @@
 .layout-name {
   color: #1FBAD6;
   font-size: 16px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 5px;
 }
 
 .layout-street {
   color: #fff;
   font-size: 14px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 0;
 }
 
 .layout-city-state-zip {
   color: #fff;
   font-size: 12px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 5px;
 }
 
 .layout-phone {
   color: #1FBAD6;
   font-size: 14px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 5px;
 }
 
@@ -67,7 +72,7 @@
   display: inline-block;
   color: #efeffe;
   font-size: 14px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 5px;
 }
 
@@ -76,7 +81,7 @@
   display: inline-block;
   color: #efeffe;
   font-size: 14px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 8px;
 }
 
@@ -85,7 +90,7 @@
   display: block;
   border: 1px solid rgba(225, 225, 225, .7);
   margin: auto;
-  margin-bottom: 13px;
+  margin-bottom: 7px;
 }
 
 .yelp-logo {
@@ -99,7 +104,7 @@
 .layout-snippet {
   position: relative;
   padding-top: 1px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   font-size: 12px;
 }
 
@@ -140,25 +145,43 @@
   bottom: 0;
   border: 1px solid white;
   text-align: center;
+  z-index: 1;
 }
 
 .request-status {
   position: relative;
-  color: #efeffe;
+  color: #1FBAD6;
   font-size: 14px;
-  font-family: 'geomanist_regularregular';
-  padding-bottom: 8px;
+  font-family: 'Open Sans', sans-serif;
   padding-top: 15px;
   text-transform: uppercase;
 }
 
-.request-location {
+.request-status.copy {
   position: relative;
   color: #efeffe;
   font-size: 14px;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 8px;
-  padding-top: 15px;
+  padding-top: 5px;
+  text-transform: capitalize;
+}
+
+.request-location {
+  position: relative;
+  font-size: 14px;
+  color: #1FBAD6;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 25px;
+}
+
+.request-location.address {
+  position: relative;
+  color: #efeffe;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 8px;
+  padding-top: 5px;
 }
 
 .cancel-uber-btn {

@@ -1,3 +1,8 @@
+/*
+  ** Dark Blue #09091a
+  ** Light Blue #1FBAD6
+**/
+
 .navbar-container {
   position: fixed;
   background: black;
@@ -13,6 +18,9 @@
   font-family: 'geomanist_regularregular';
   font-size: 24px;
   color: #1FBAD6;
+  cursor: pointer;
+  max-width: 160px;
+  text-align: center;
 }
 
 .navbar-right {
@@ -27,7 +35,7 @@
   position: relative;
   display: inline-block;
   color: white;
-  font-family: 'geomanist_regularregular';
+  font-family: 'Open Sans', sans-serif;
   padding-right: 15px;
   top: 21px;
 }
@@ -39,4 +47,5 @@
   display: inline-block;
   top: 3px;
   margin-left: 10px;
+  cursor: pointer;
 }

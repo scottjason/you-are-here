@@ -11,8 +11,16 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
-    function login(startLat, startLon) {
+    function onLogin(startLat, startLon) {
       window.location.href = "http://localhost:3000/login/" + startLat + "/" + startLon;
+    }
+
+    function onLogout() {
+      var request = $http({
+        method: 'GET',
+        url: '/logout'
+      });
+      return (request.then(successHandler, errorHandler));
     }
 
     function requestRide(endLat, endLon) {
@@ -56,7 +64,8 @@ angular.module('SearchPickGo')
     }
 
     return ({
-      login: login,
+      onLogin: onLogin,
+      onLogout: onLogout,
       searchYelp: searchYelp,
       requestRide: requestRide,
       cancelRide: cancelRide,

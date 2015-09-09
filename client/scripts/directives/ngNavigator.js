@@ -39,7 +39,7 @@ angular.module('SearchPickGo')
           };
 
           $scope.onLogin = function() {
-            RequestApi.login($scope.startLat, $scope.startLon);
+            RequestApi.onLogin($scope.startLat, $scope.startLon);
           };
 
           function onLocationSuccess(position) {
@@ -64,13 +64,14 @@ angular.module('SearchPickGo')
               'location': latlng
             }, function(results, status) {
               if (status === google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
+                if (results[0]) {
                   $timeout(function() {
                     $scope.showLoader = false;
-                    console.log('results', results)
+                    $scope.address = results[0].formatted_address;
                     $scope.formattedAddress = results[1].formatted_address;
                     $scope.city =  angular.copy($scope.formattedAddress).split(',')[1];
                     localStorageService.set('city', $scope.city);
+                    localStorageService.set('address', $scope.address);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
                   });
                 } else {

@@ -10,22 +10,28 @@ angular.module('SearchPickGo')
         onRequestUber: '=',
         onCancelUber: '=',
         showLoader: '=',
-        showStatus: '='
+        showStatus: '=',
+        getState: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $timeout, RequestApi, localStorageService) {
 
-          console.log('### ngResults.js')
+
+          console.log('### ngResults.js');
+
+          $scope.getState = function(key) {
+            return localStorageService.get(key);
+          };
 
           $timeout(function() {
             var results = localStorageService.get('results').businesses;
             results.forEach(function(obj) {
-              if (obj.snippet_text && obj.snippet_text.length > 130) {
-                obj.snippet_text = (obj.snippet_text).slice(0, 130) + ' ...';
+              if (obj.snippet_text && obj.snippet_text.length > 136) {
+                obj.snippet_text = (obj.snippet_text).slice(0, 133) + '...';
               }
-              if (obj.name && obj.name.length > 31) {
-                obj.name = (obj.name).slice(0, 28) + '...';
+              if (obj.name && obj.name.length > 29) {
+                obj.name = (obj.name).slice(0, 26) + '...';
               }
               obj.lat = obj.location.coordinate.latitude;
               obj.lon = obj.location.coordinate.longitude;
@@ -33,7 +39,7 @@ angular.module('SearchPickGo')
             $scope.results = results;
             console.log('results', results);
           });
-   
+
           $scope.onRequestUber = function(endLat, endLon) {
             $scope.showStatus = true;
             $scope.endLat = endLat;
@@ -44,10 +50,10 @@ angular.module('SearchPickGo')
               });
               console.log('response', response);
               $timeout(function() {
-                getRideStatus();
-              }, 3500);
+                // getRideStatus();
+              }, 4500);
               $timeout(function() {
-                updateRideStatus();
+                // updateRideStatus();
               }, 3500);
             }, function(err) {
               console.log('err', err);

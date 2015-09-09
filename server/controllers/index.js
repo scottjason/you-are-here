@@ -76,6 +76,7 @@ exports.getProductId = function(session, cb) {
       if (err) return cb(err);
       if (response.statusCode === 200) {
         var results = JSON.parse(body);
+        console.log('results product', results);
         cb(null, results)
       } else {
         cb(new Error('unknown error occurred while retreiving uber product id'));
@@ -112,6 +113,7 @@ exports.requestRide = function(req, res, next) {
 };
 
 exports.getRideStatus = function(req, res, next) {
+  console.log('getRideStatus', req.session);
   var url = "https://sandbox-api.uber.com/v1/requests/" + req.params.requestId;
   request(url, {
       'auth': {
@@ -119,7 +121,8 @@ exports.getRideStatus = function(req, res, next) {
       }
     },
     function(err, response, body) {
-      console.log(err || response)
+      console.log('err', err);
+      console.log('body', body);
       if (err) return next(err);
       if (response.statusCode === 200) {
         res.status(200).send(body);
@@ -129,7 +132,8 @@ exports.getRideStatus = function(req, res, next) {
     });
 };
 exports.updateRideStatus = function(req, res, next) {
-  console.log('up', req.params)
+  console.log('updateRideStatus', req.session);
+
   request.put({
       url: "https://sandbox-api.uber.com/v1/sandbox/requests/" + req.params.requestId,
       'auth': {
@@ -141,7 +145,6 @@ exports.updateRideStatus = function(req, res, next) {
       }
     },
     function(err, response, body) {
-      console.log(response)
       console.log(body)
       if (err) return next(err);
       if (response.statusCode === 200) {

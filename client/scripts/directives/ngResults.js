@@ -47,28 +47,33 @@ angular.module('SearchPickGo')
           });
 
           $scope.onRequestUber = function(endLat, endLon) {
+            console.log('requesting uber');
             $scope.showStatus = true;
             $scope.endLat = endLat;
             $scope.endLon = endLon;
             RequestApi.requestRide(endLat, endLon).then(function(response) {
+              console.log('$$$ response', response.data)
               $timeout(function() {
                 $scope.ride = response.data;
+                localStorageService.set('ride', response.data);
+                if ($scope.ride.status !== 'accepted') {
+                  $timeout(function(){
+                    updateRideStatus();
+                  }, 4000);
+                } else {
+                  getRideStatus();
+                }
               });
-              console.log('response', response);
-              $timeout(function() {
-                // getRideStatus();
-              }, 4500);
-              $timeout(function() {
-                // updateRideStatus();
-              }, 3500);
             }, function(err) {
               console.log('err', err);
             });
           };
 
           $scope.onCancelUber = function() {
-            RequestApi.cancelRide($scope.ride.request_id).then(function(response) {
-              console.log('response', response);
+            console.log('canceling uber');
+            var requestId = localStorageService.get('ride').request_id;
+            RequestApi.cancelRide(requestId).then(function(response) {
+              console.log('response onCancelUber', response);
               $timeout(function() {
                 $scope.ride = response.data;
               });
@@ -78,10 +83,14 @@ angular.module('SearchPickGo')
           };
 
           function updateRideStatus() {
-            RequestApi.updateRideStatus($scope.ride.request_id).then(function(response) {
-              console.log('response', response);
+            console.log('updating ride status');
+            var requestId = localStorageService.get('ride').request_id;
+            RequestApi.updateRideStatus(requestId).then(function(response) {
+              console.log('response updateRideStatus', response);
               $timeout(function() {
                 $scope.ride = response.data;
+                console.log('response', response.data);
+                // getRideStatus();
               });
             }, function(err) {
               console.err('ride status', err);
@@ -89,8 +98,10 @@ angular.module('SearchPickGo')
           }
 
           function getRideStatus() {
-            RequestApi.getRideStatus($scope.ride.request_id).then(function(response) {
-              console.log('response', response);
+            console.log('getting ride status');
+            var requestId = localStorageService.get('ride').request_id;
+            RequestApi.getRideStatus(requestId).then(function(response) {
+              console.log("### GOT RIDE STATUS", response.data);
               $timeout(function() {
                 $scope.ride = response.data;
               });

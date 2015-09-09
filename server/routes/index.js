@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
                     console.log('error requesting productId', err.message);
                     req.session.destroy(function(err) {
                       if (err) console.log('err destroying session', err.message);
-                      res.redirect('/');
+                      res.render('index');
                     });
                   }
                 });

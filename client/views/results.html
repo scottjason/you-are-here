@@ -9,11 +9,11 @@
     <p class='request-status copy'>{{ ride.status }}</p>
     <p class='request-status'>ETA</p>
     <p class='request-status copy'>{{ ride.eta }} minutes</p>
-    <!-- <p class='request-status'>DRIVER</p> -->
-    <!-- <p class='request-status-drivername'>DRIVER'S NAME: {{ ride.driver.name }}</p> -->
-    <!-- <p class='request-status'>DRIVER'S VEHICLE: {{ ride.vehicle.make }} + ' ' + {{ ride.vehicle.model }}</p> -->
-    <!-- <p class='request-status'>DRIVER'S PHONE NUMBER: {{ ride.driver.phone_number }}</p> -->
-    <!-- <p class='request-status'>DRIVER'S RATING: {{ ride.driver.rating }}</p> -->
+    <p class='request-status'>DRIVER</p>
+    <p class='request-status-drivername'>DRIVER'S NAME: {{ ride.driver.name }}</p>
+    <p class='request-status'>DRIVER'S VEHICLE: {{ ride.vehicle.make }} + ' ' + {{ ride.vehicle.model }}</p>
+    <p class='request-status'>DRIVER'S PHONE NUMBER: {{ ride.driver.phone_number }}</p>
+    <p class='request-status'>DRIVER'S RATING: {{ ride.driver.rating }}</p>
     <div class='cancel-uber-btn' ng-click='onCancelUber();'>
       <P>CANCEL UBER</P>
     </div>

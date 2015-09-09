@@ -29,7 +29,7 @@ module.exports = function(app, passport) {
       client_id: config.uber.clientId,
       client_secret: config.uber.clientSecret,
       server_token: config.uber.serverToken,
-      name: 'search-pick-go',
+      name: config.uber.name,
       redirect_uri: config.uber.callbackUrl
     });
     process.nextTick(function() {
@@ -62,7 +62,7 @@ module.exports = function(app, passport) {
                     req.session.destroy(function(err) {
                       if (err) console.log('err destroying session', err.message);
                       res.redirect('/');
-                    })
+                    });
                   }
                 });
               });

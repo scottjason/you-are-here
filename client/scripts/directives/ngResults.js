@@ -33,6 +33,12 @@ angular.module('SearchPickGo')
               if (obj.name && obj.name.length > 29) {
                 obj.name = (obj.name).slice(0, 26) + '...';
               }
+              if (!obj.status) {
+                obj.status = '.. loading ..';
+              }
+              if (obj.eta) {
+                obj.eta = obj.eta ? (obj.eta + ' minutes') : ('.. loading ..');
+              }
               obj.lat = obj.location.coordinate.latitude;
               obj.lon = obj.location.coordinate.longitude;
             });

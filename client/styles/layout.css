@@ -208,3 +208,23 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.status-eta-container {
+  position: relative;
+  display: block;
+  height: auto;
+  height: 60px;
+}
+
+.status-eta-left {
+  position: absolute;
+  width: 50%;
+  height: 100px;
+}
+
+.status-eta-right {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100px;
+}

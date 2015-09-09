@@ -2,9 +2,11 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
+var mongoStore = require('connect-mongo')(session);
 var passport = require('passport');
 var logger = require('morgan');
 var compression = require('compression');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config');
 
@@ -27,11 +29,16 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(config.session.secret));
 
 var sessionOpts = {
-  secret: config.session.key,
+  secret: config.session.secret,
   saveUninitialized: true,
-  resave: true
+  resave: true,
+  store: new mongoStore({
+    url: config.session.storeUri,
+    collection: 'sessions'
+  })
 };
 
 app.use(session(sessionOpts));

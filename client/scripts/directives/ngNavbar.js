@@ -13,7 +13,7 @@ angular.module('SearchPickGo')
       controller: ['$scope', '$timeout', '$state', '$window', 'RequestApi', 'localStorageService',
         function($scope, $timeout, $state, $window, RequestApi, localStorageService) {
 
-          console.log('### ngNavbar.js')
+          console.log('### ngNavbar.js');
 
           $timeout(function() {
             $scope.firstName = localStorageService.get('firstName');

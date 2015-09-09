@@ -6,6 +6,7 @@
 
 var env = {};
 var path = require('path');
+var uuid = require('node-uuid');
 
 if (process.env.NODE_ENV !== 'production') {
   env = require('../../env.json')
@@ -16,7 +17,8 @@ module.exports = {
     port: process.env.PORT || 3000
   },
   session: {
-    key: process.env.SESSION_KEY || env.session.sessionKey
+    secret: uuid.v4(),
+    storeUri: process.env.MONGOLAB_URI || env.session.storeUri
   },
   root: path.normalize(__dirname + '../../../'),
   uber: {

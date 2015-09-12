@@ -71,7 +71,7 @@ angular.module('YouAreHere')
                   $timeout(function() {
                     $scope.showLoader = false;
                     $scope.address = results[0].formatted_address;
-                    var encodedAddress = encodeURIComponent(angular.copy($scope.address));
+                    $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
                     $scope.formattedAddress = results[1].formatted_address;
                     $scope.streetNumber = results[0].address_components.short_name;
                     $scope.streetName = results[1].address_components.short_name;

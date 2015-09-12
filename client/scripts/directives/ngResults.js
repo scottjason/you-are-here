@@ -86,11 +86,13 @@ angular.module('YouAreHere')
 
           $scope.requestUber = function(endLat, endLon) {
 
+            console.log('$scope.encodedAddress', $scope.encodedAddress);
+
             var isiPad = navigator.userAgent.match(/iPad/i) != null;
             var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
             var isiOS = isiPad || isiPhone;
 
-            var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&pickup[formatted_address]=' + $scope.encodedAddress;
+            var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedAddress;
             if (isiOS) {
               window.location = deepLink;
             } else {

@@ -19,12 +19,12 @@ angular.module('SearchPickGo')
 
           var requestOpts = {};
 
-          if (isAuthorized === 'true' || localStorageService.get('isAuthorized')) {
+          if (isAuthorized || localStorageService.get('isAuthorized')) {
             localStorageService.set('isAuthorized', true);
-            localStorageService.set('accessToken', accessToken);
-            localStorageService.set('refreshToken', refreshToken);
             localStorageService.set('firstName', firstName);
-            localStorageService.set('uberXId', uberXId);
+            localStorageService.set('lastName', lastName);
+            localStorageService.set('email', email);
+            localStorageService.set('productId', productId);
             $state.go('search');
             return;
           }
@@ -69,8 +69,16 @@ angular.module('SearchPickGo')
                     $scope.showLoader = false;
                     $scope.address = results[0].formatted_address;
                     $scope.formattedAddress = results[1].formatted_address;
+                    $scope.streetNumber = results[0].address_components.short_name;
+                    $scope.streetName = results[1].address_components.short_name;
                     $scope.city =  angular.copy($scope.formattedAddress).split(',')[1];
+                    $scope.state =  angular.copy($scope.formattedAddress).split(',')[2];
+                    $scope.zipcode =  angular.copy($scope.formattedAddress).split(',')[3];
+                    localStorageService.set('streetNumber', $scope.streetNumber);
+                    localStorageService.set('streetName', $scope.streetName);
                     localStorageService.set('city', $scope.city);
+                    localStorageService.set('state', $scope.state);
+                    localStorageService.set('zipcode', $scope.zipcode);
                     localStorageService.set('address', $scope.address);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
                   });

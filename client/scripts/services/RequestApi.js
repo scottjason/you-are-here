@@ -23,10 +23,11 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
-    function requestRide(endLat, endLon) {
+    function getEstimate(params) {
       var request = $http({
-        method: 'GET',
-        url: '/request-ride/' + endLat.toString() + '/' + endLon.toString()
+        method: 'POST',
+        url: '/estimate',
+        data: params
       });
       return (request.then(successHandler, errorHandler));
     }
@@ -47,10 +48,10 @@ angular.module('SearchPickGo')
       return (request.then(successHandler, errorHandler));
     }
 
-    function updateRideStatus(requestId) {
+    function updateRideStatus(requestId, status) {
       var request = $http({
         method: 'GET',
-        url: '/update-ride-status/' + requestId
+        url: '/update-ride-status/' + requestId + '/' + status
       });
       return (request.then(successHandler, errorHandler));
     }
@@ -67,7 +68,7 @@ angular.module('SearchPickGo')
       onLogin: onLogin,
       onLogout: onLogout,
       searchYelp: searchYelp,
-      requestRide: requestRide,
+      getEstimate: getEstimate,
       cancelRide: cancelRide,
       getRideStatus: getRideStatus,
       updateRideStatus: updateRideStatus

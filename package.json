@@ -8,6 +8,7 @@
     "postinstall": "bower cache clean && bower install"
   },
   "dependencies": {
+    "async": "^1.4.2",
     "body-parser": "~1.10.2",
     "bower": "^1.5.2",
     "compression": "^1.5.2",

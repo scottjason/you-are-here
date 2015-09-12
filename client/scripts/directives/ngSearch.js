@@ -25,22 +25,18 @@ angular.module('SearchPickGo')
           init();
 
           function init() {
-            if (isAuthorized !== 'true') {
+            if (!isAuthorized) {
               localStorageService.clearAll();
               $state.go('landing');
             } else {
-              $scope.firstName = localStorageService.get('firstName');
-              $scope.accessToken = localStorageService.get('accessToken');
-              $scope.startLat = localStorageService.get('startLat');
-              $scope.startLon = localStorageService.get('startLon');
-              $scope.uberXId = localStorageService.get('uberXId');
-              $scope.city = localStorageService.get('city');
               $scope.formattedAddress = localStorageService.get('formattedAddress');
+              $scope.isAuthorized = localStorageService.get('isAuthorized');
+              $scope.city = localStorageService.get('city');
             }
           }
 
           $scope.onSearch = function(isLogin) {
-            if (!$scope.accessToken) {
+            if (!$scope.isAuthorized) {
               localStorageService.clearAll();
               $state.go('landing');
               return;

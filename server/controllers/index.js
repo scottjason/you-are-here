@@ -2,7 +2,6 @@ var config = require('../config');
 var querystring = require('querystring');
 var passport = require('passport');
 var request = require('request');
-var http = require('http');
 
 var uberDev = 'https://sandbox-api.uber.com/v1';
 var uberProd = 'https://api.uber.com/v1';
@@ -18,16 +17,16 @@ exports.render = function(req, res, next) {
   var opts = {};
   if (!req.session.isAuthorized) {
     opts.isAuthorized = false;
-    opts.accessToken = false;
-    opts.refreshToken = false;
     opts.firstName = false;
-    opts.uberXId = false;
+    opts.lastName = false;
+    opts.email = false;
+    opts.productId = false;
   } else {
     opts.isAuthorized = true;
-    opts.accessToken = req.session.accessToken;
-    opts.refreshToken = req.session.refreshToken;
     opts.firstName = req.session.firstName;
-    opts.uberXId = req.session.uberXId;
+    opts.lastName = req.session.lastName;
+    opts.email = req.session.email;
+    opts.productId = req.session.productId;
   }
   res.render('index', opts);
 };
@@ -62,11 +61,21 @@ exports.logout = function(req, res, next) {
     }
     res.status(200).end()
   });
-}
+};
+
+exports.getEstimate = function(req, res, next) {
+  var url = 'https://api.uber.com/v1/estimates/price?start_latitude=' + req.body.start.lat + '&start_longitude=' + req.body.start.lon + '&end_latitude=' + req.body.end.lat + '&end_longitude=' + req.body.end.lon;
+  request(url, {
+    'auth': {
+      'bearer': req.session.accessToken
+    },
+  }, function(error, response, body) {
+    res.status(200).send(body);
+  });
+};
 
 exports.getProductId = function(session, cb) {
-
-  var url = uberDev + '/products?latitude=' + session.startLat + '&longitude=' + session.startLon;
+  var url = uberProd + '/products?latitude=' + session.startLat + '&longitude=' + session.startLon;
   request(url, {
       'auth': {
         'bearer': session.accessToken
@@ -91,83 +100,4 @@ exports.searchYelp = function(req, res, next) {
   }, function(err, results) {
     res.status(200).json(results);
   });
-};
-
-exports.requestRide = function(req, res, next) {
-  request.post({
-    url: 'https://sandbox-api.uber.com/v1/requests',
-    'auth': {
-      'bearer': req.session.accessToken,
-      "Content-Type": "application/json"
-    },
-    json: {
-      product_id: req.session.uberXId,
-      start_latitude: req.session.startLat,
-      start_longitude: req.session.startLon,
-      end_latitude: req.params.endLat,
-      end_longitude: req.params.endLon
-    }
-  }, function(err, httpResponse, body) {
-    res.send(body);
-  });
-};
-
-exports.getRideStatus = function(req, res, next) {
-  console.log('getRideStatus', req.session);
-  var url = "https://sandbox-api.uber.com/v1/requests/" + req.params.requestId;
-  request(url, {
-      'auth': {
-        'bearer': req.session.accessToken
-      }
-    },
-    function(err, response, body) {
-      console.log('err', err);
-      console.log('body', body);
-      if (err) return next(err);
-      if (response.statusCode === 200) {
-        res.status(200).send(body);
-      } else {
-        res.status(401).send(new Error('unknown error occurred while retreiving uber ride status'));
-      }
-    });
-};
-exports.updateRideStatus = function(req, res, next) {
-  console.log('updateRideStatus', req.session);
-
-  request.put({
-      url: "https://sandbox-api.uber.com/v1/sandbox/requests/" + req.params.requestId,
-      'auth': {
-        'bearer': req.session.accessToken,
-        "Content-Type": "application/json"
-      },
-      json: {
-        "status": "accepted"
-      }
-    },
-    function(err, response, body) {
-      console.log(body)
-      if (err) return next(err);
-      if (response.statusCode === 200) {
-        res.status(200).send(body);
-      } else {
-        res.status(401).send(new Error('unknown error occurred while updating uber ride status'));
-      }
-    });
-};
-
-exports.cancelRide = function(req, res, next) {
-  request.del({
-      url: "https://sandbox-api.uber.com/v1/requests/" + req.params.requestId,
-      'auth': {
-        'bearer': req.session.accessToken
-      }
-    },
-    function(err, response, body) {
-      if (err) return next(err);
-      if (response.statusCode === 204) {
-        res.status(200).end();
-      } else {
-        res.status(401).send(new Error('unknown error occurred while updating uber ride status'));
-      }
-    });
 };

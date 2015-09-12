@@ -3,6 +3,33 @@
   ** Light Blue #1FBAD6
 **/
 
+.distance,
+.duration,
+.cost {
+  position: relative;
+  color: #efeffe;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  font-weight: 400;
+}
+
+.details {
+  position: absolute;
+  bottom: 68px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  color: #1FBAD6;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.distance {
+  position: relative;
+  padding-top: 11px;
+}
+
 .layout-container {
   position: relative;
   text-align: center;
@@ -106,6 +133,7 @@
   padding-top: 1px;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
+  padding-bottom: 10px;
 }
 
 .call-uber-btn {
@@ -227,4 +255,61 @@
   right: 0;
   width: 50%;
   height: 100px;
+}
+
+.uber-details-btn {
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  width: 250px;
+  height: 65px;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  border: 1px solid #1FBAD6;
+  bottom: 0;
+  background-color: transparent;
+}
+
+.uber-detail-line {
+  position: absolute;
+  width: 200px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #efefef;
+}
+
+.loader.estimate {
+  position: relative;
+  top: 20px;
+  margin: auto;
+}
+
+.estimate-container {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 65px;
+  color: #1FBAD6;
+  text-align: center;
+  left: 0;
+  padding: 0 0 5px;
+  bottom: 0;
+  line-height: 17px;
+}
+
+.loader-container {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 70px;
+  color: #1FBAD6;
+  text-align: center;
+  padding: 0;
+  left: 0;
+  padding: 10px;
+  bottom: 0;
 }

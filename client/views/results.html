@@ -1,26 +1,14 @@
-<div ng-navbar on-logout='onLogout'>
-</div ng-navbar>
-<div ng-results get-state='getState' on-request-uber='onRequestUber' on-cancel-uber='onCancelUber' show-loader='showLoader' show-status='showStatus' results='results' ride='ride' class='container'>
-  <!-- Status -->
-  <div ng-show='showStatus' class='status'>
-    <p class='request-location'>UBER REQUESTED TO</p>
-    <p class='request-location address'>{{ getState("address") }}</p>
-    <p class='request-status'>STATUS</p>
-    <p class='request-status copy'>{{ ride.status }}</p>
-    <p class='request-status'>ETA</p>
-    <p class='request-status copy'>{{ ride.eta }} minutes</p>
-    <p class='request-status'>DRIVER</p>
-    <p class='request-status-drivername'>DRIVER'S NAME: {{ ride.driver.name }}</p>
-    <p class='request-status'>DRIVER'S VEHICLE: {{ ride.vehicle.make }} + ' ' + {{ ride.vehicle.model }}</p>
-    <p class='request-status'>DRIVER'S PHONE NUMBER: {{ ride.driver.phone_number }}</p>
-    <p class='request-status'>DRIVER'S RATING: {{ ride.driver.rating }}</p>
-    <div class='cancel-uber-btn' ng-click='onCancelUber();'>
-      <P>CANCEL UBER</P>
-    </div>
-  </div>
+<div ng-navbar on-logout='onLogout'></div ng-navbar>
+
+<div ng-results
+     get-state='getState'
+     show-loader='showLoader'
+     results='results'
+     class='container'>
+
   <!-- Results -->
   <div class='layout-container'>
-    <div ng-show='results && !showLoader && !showStatus' ng-repeat='result in results' class='layout-container-inner'>
+    <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>
       <p class='layout-name'>{{ result.name }}</p>
       <p class='layout-street'>{{ result.location.display_address[0] }}</p>
       <p class='layout-city-state-zip'>{{ result.location.city + ", " + result.location.state_code + " " + result.location.postal_code }}</p>
@@ -32,9 +20,16 @@
       <p class='layout-rating-count'>{{ result.review_count }} reviews</p>
       <img class='layout-img' ng-src="{{result.image_url}}">
       <p class='layout-snippet'>{{ result.snippet_text }}</p>
-      <div class='call-uber-btn' ng-click='onRequestUber(result.lat, result.lon);'>
-        <P>REQUEST UBER</P>
+      <!-- <div class='layout-line'></div> -->
+      <div ng-hide='result.showEstimate' class='loader-container'>
+        <div class='loader estimate'></div>
       </div>
+      <p ng-show='result.showEstimate' class='details'>uber details</p>
+      <div ng-show='result.showEstimate' class='estimate-container'>
+      <div class="uber-details-btn"></div>
+        <P class='distance'>Distance: {{ result.distance }} miles</P>
+        <P class='duration'>Duration: {{ result.duration }} minutes</P>
+        <P class='cost'>Estimated Cost: {{ result.estimate }}</P>
     </div>
   </div>
 </div ng-results>

@@ -42,9 +42,9 @@ angular.module('YouAreHere')
             $scope.results = results;
             $scope.clientId = localStorageService.get('clientId');
             $scope.productId = localStorageService.get('productId');
-
             $scope.city = localStorageService.get('city');
             $scope.formattedAddress = localStorageService.get('formattedAddress');
+            $scope.encodedAddress = localStorageService.get('encodedAddress');
             var isLoaded = localStorageService.get('isLoaded');
             if (!isLoaded) {
               $scope.getEstimate($scope.results);
@@ -90,15 +90,9 @@ angular.module('YouAreHere')
             var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
             var isiOS = isiPad || isiPhone;
 
-            var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon;
-            // 'uber://?client_id=YOUR_CLIENT_ID&action=setPickup&pickup[latitude]=37.775818&pickup[longitude]=-122.418028&pickup[nickname]=UberHQ&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=37.802374&dropoff[longitude]=-122.405818&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d'
-            // var appStoreUrl = 'https://itunes.apple.com/us/app/uber/id368677368';
-
+            var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&pickup[formatted_address]=' + $scope.encodedAddress;
             if (isiOS) {
               window.location = deepLink;
-              $timeout(function() {
-                // window.location = appStoreUrl;
-              }, 500);
             } else {
               console.log('not isiOS', endLat, endLon);
             }

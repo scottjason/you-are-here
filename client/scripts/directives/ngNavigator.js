@@ -71,6 +71,7 @@ angular.module('YouAreHere')
                   $timeout(function() {
                     $scope.showLoader = false;
                     $scope.address = results[0].formatted_address;
+                    var encodedAddress = encodeURIComponent(angular.copy($scope.address));
                     $scope.formattedAddress = results[1].formatted_address;
                     $scope.streetNumber = results[0].address_components.short_name;
                     $scope.streetName = results[1].address_components.short_name;
@@ -83,6 +84,7 @@ angular.module('YouAreHere')
                     localStorageService.set('state', $scope.state);
                     localStorageService.set('zipcode', $scope.zipcode);
                     localStorageService.set('address', $scope.address);
+                    localStorageService.set('encodedAddress', $scope.encodedAddress);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
                   });
                 } else {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SearchPickGo', [
+angular.module('YouAreHere', [
   'ui.router',
   'LocalStorageModule'
 ]);

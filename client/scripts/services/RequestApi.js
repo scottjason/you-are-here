@@ -1,4 +1,4 @@
-angular.module('SearchPickGo')
+angular.module('YouAreHere')
   .service('RequestApi', function($http) {
 
     'use strict'

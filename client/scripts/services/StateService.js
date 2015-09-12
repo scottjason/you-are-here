@@ -1,4 +1,4 @@
-angular.module('SearchPickGo')
+angular.module('YouAreHere')
   .service('StateService', function() {
 
     'use strict'

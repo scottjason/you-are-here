@@ -1,4 +1,4 @@
-angular.module('SearchPickGo')
+angular.module('YouAreHere')
   .directive('ngResults', function() {
 
     'use strict';

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SearchPickGo')
+angular.module('YouAreHere')
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {
 
     $stateProvider
@@ -18,7 +18,7 @@ angular.module('SearchPickGo')
       })
 
     localStorageServiceProvider
-      .setPrefix('SearchPickGo')
+      .setPrefix('YouAreHere')
       .setNotify(true, true);
 
     $urlRouterProvider.otherwise('/');

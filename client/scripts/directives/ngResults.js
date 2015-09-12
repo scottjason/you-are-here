@@ -86,19 +86,47 @@ angular.module('YouAreHere')
 
           $scope.requestUber = function(endLat, endLon) {
 
-            console.log('$scope.encodedAddress', $scope.encodedAddress);
-
-            var isiPad = navigator.userAgent.match(/iPad/i) != null;
-            var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
-            var isiOS = isiPad || isiPhone;
-
-            var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedAddress;
-            if (isiOS) {
-              window.location = deepLink;
-            } else {
-              console.log('not isiOS', endLat, endLon);
+            function reverseGeo(cb) {
+              var geocoder = new google.maps.Geocoder();
+              var latlng = {
+                lat: endLat,
+                lng: endLon
+              };
+              geocoder.geocode({
+                'location': latlng
+              }, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                  if (results[0]) {
+                    $timeout(function() {
+                      $scope.showLoader = false;
+                      $scope.address = results[0].formatted_address;
+                      $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
+                      localStorageService.set('encodedAddress', $scope.encodedAddress);
+                      cb();
+                    });
+                  } else {
+                    window.alert('No results found');
+                  }
+                } else {
+                  window.alert('Geocoder failed due to: ' + status);
+                }
+              });
             }
-          }
+
+            function onSuccess() {
+              var isiPad = navigator.userAgent.match(/iPad/i) != null;
+              var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
+              var isiOS = isiPad || isiPhone;
+
+              var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedAddress;
+              if (isiOS) {
+                window.location = deepLink;
+              } else {
+                console.log('not isiOS', endLat, endLon, $scope.encodedAddress);
+              }
+            }
+            reverseGeo(onSuccess);
+          };
         }
       ],
     }

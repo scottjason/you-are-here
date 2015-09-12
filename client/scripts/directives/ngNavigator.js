@@ -52,7 +52,8 @@ angular.module('YouAreHere')
           }
 
           function onLocationError() {
-            console.error('unable to retreive your location')
+            console.error('unable to retreive your location');
+            window.alert("Your browser doesn't support geolocation.");
           }
 
           function reverseGeo() {

@@ -43,7 +43,7 @@ module.exports = function(app, passport) {
           if (err) {
             console.error(err);
           } else {
-            request.get(uberDev + '/me', {
+            request.get(uberProd + '/me', {
                 'auth': {
                   'bearer': access_token
                 }

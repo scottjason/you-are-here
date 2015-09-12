@@ -3,6 +3,7 @@
 <div ng-results
      get-state='getState'
      show-loader='showLoader'
+     request-uber='requestUber'
      results='results'
      class='container'>
 
@@ -23,7 +24,7 @@
       <div ng-hide='result.showEstimate' class='loader-container'>
         <div class='loader estimate'></div>
       </div>
-      <p ng-show='result.showEstimate' class='details'>uber details</p>
+      <p ng-click='requestUber(result.lat, result.lon)' ng-show='result.showEstimate' class='details'>request uber</p>
       <div ng-show='result.showEstimate' class='estimate-container'>
       <div class="uber-details-btn"></div>
         <P class='distance'>Distance: {{ result.distance }} miles</P>

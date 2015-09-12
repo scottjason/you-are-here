@@ -6,12 +6,10 @@ angular.module('YouAreHere')
     var directive = {
       scope: {
         results: '=',
-        ride: '=',
-        requestInfo: '=',
-        onCancelUber: '=',
         showLoader: '=',
         showStatus: '=',
-        getState: '='
+        getState: '=',
+        requestUber: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',
@@ -42,6 +40,7 @@ angular.module('YouAreHere')
               obj.lon = obj.location.coordinate.longitude;
             });
             $scope.results = results;
+            $scope.clientId = localStorageService.get('clientId');
             $scope.city = localStorageService.get('city');
             $scope.products = localStorageService.get('products');
             $scope.formattedAddress = localStorageService.get('formattedAddress');
@@ -77,6 +76,25 @@ angular.module('YouAreHere')
               console.log('complete');
             }
           };
+
+          $scope.requestUber = function(endLat, endLon) {
+
+            var isiPad = navigator.userAgent.match(/iPad/i) != null;
+            var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
+            var isiOS = isiPad || isiPhone;
+
+            var deepLink = 'uber://?action=setPickup&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon;
+            var appStoreUrl = 'https://itunes.apple.com/us/app/uber/id368677368';
+
+            if (isiOS) {
+              window.location = deepLink;
+              setTimeout(function() {
+                window.location = appStoreUrl;
+              }, 25);
+            } else {
+              console.log('not isiOS', endLat, endLon);
+            }
+          }
         }
       ],
     }

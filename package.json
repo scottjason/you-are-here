@@ -24,7 +24,6 @@
     "nodemon": "^1.4.1",
     "passport": "^0.3.0",
     "passport-uber": "0.0.1",
-    "querystring": "^0.2.0",
     "request": "^2.61.0",
     "serve-favicon": "~2.2.0",
     "yelp": "^0.2.0"

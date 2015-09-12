@@ -1,5 +1,4 @@
 var config = require('../config');
-var querystring = require('querystring');
 var passport = require('passport');
 var request = require('request');
 
@@ -21,12 +20,14 @@ exports.render = function(req, res, next) {
     opts.lastName = false;
     opts.email = false;
     opts.productId = false;
+    opts.clientId = false;
   } else {
     opts.isAuthorized = true;
     opts.firstName = req.session.firstName;
     opts.lastName = req.session.lastName;
     opts.email = req.session.email;
     opts.productId = req.session.productId;
+    opts.clientId = config.uber.clientId;
   }
   res.render('index', opts);
 };

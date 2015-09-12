@@ -52,6 +52,7 @@ module.exports = function(app, passport) {
                 var user = JSON.parse(body);
                 var opts = {};
                 opts.productIds = [];
+                opts.clientId = req.session.clientId = config.uber.clientId;
                 opts.accessToken = req.session.accessToken = access_token;
                 opts.refreshToken = req.session.refreshToken = refresh_token;
                 opts.firstName = req.session.firstName = user.first_name || null;

@@ -36,8 +36,8 @@ angular.module('YouAreHere')
             $scope.showLoader = true;
             navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
               enableHighAccuracy: true,
-              maximumAge: 0,
-              timeout: 30000
+              maximumAge: 600000,
+              timeout: 600000
             });
           };
 

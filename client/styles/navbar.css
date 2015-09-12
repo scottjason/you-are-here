@@ -32,12 +32,13 @@
 }
 
 .navbar-right-copy {
-  position: relative;
-  display: inline-block;
-  color: white;
-  font-family: 'Open Sans', sans-serif;
-  padding-right: 15px;
-  top: 21px;
+    display: inline-block;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    padding-right: 15px;
+    top: 10px;
+    right: 0;
+    position: absolute;
 }
 
 .icon-user-1 {

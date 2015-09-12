@@ -9,7 +9,10 @@ angular.module('YouAreHere')
         getLocation: '=',
         formattedAddress: '=',
         showLoader: '=',
-        onLogin: '='
+        onLogin: '=',
+        showResults: '=',
+        lineOne: '=',
+        lineTwo: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
@@ -70,9 +73,15 @@ angular.module('YouAreHere')
                 if (results[0]) {
                   $timeout(function() {
                     $scope.showLoader = false;
+                    $scope.showResults = true;
                     $scope.address = results[0].formatted_address;
                     $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
                     $scope.formattedAddress = results[1].formatted_address;
+                    var arr = angular.copy($scope.formattedAddress.split(','));
+                    $scope.lineOne = arr[0];
+                    arr.shift();
+                    arr = arr.join(',');
+                    $scope.lineTwo = arr;
                     $scope.streetNumber = results[0].address_components.short_name;
                     $scope.streetName = results[1].address_components.short_name;
                     $scope.city = angular.copy($scope.formattedAddress).split(',')[1];

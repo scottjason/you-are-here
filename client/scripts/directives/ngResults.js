@@ -52,8 +52,8 @@ angular.module('YouAreHere')
           });
 
           $scope.getEstimate = function(arr) {
-            $scope.arr = [];
 
+            $scope.arr = [];
             async.eachLimit(arr, 2, makeRequest, onComplete);
 
             function makeRequest(obj, cb, i) {
@@ -114,10 +114,7 @@ angular.module('YouAreHere')
             }
 
             function onSuccess() {
-              var isiPad = navigator.userAgent.match(/iPad/i) != null;
-              var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
-              var isiOS = isiPad || isiPhone;
-
+              var isiOS = localStorageService.get('isiOS', isiOS);
               var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedAddress;
               if (isiOS) {
                 window.location = deepLink;

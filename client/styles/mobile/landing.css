@@ -1,40 +1,120 @@
-/* Iphone 6 */
-
-@media (min-width: 321px) and (max-width: 667px) {
-  .container-inner {
-    width: 320px;
-    height: 250px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 70px;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+  /* Iphone 6 */
+  
+  @media (min-width: 321px) and (max-width: 667px) {
+    .container-inner {
+      width: 320px;
+      height: 250px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 70px;
+      bottom: 0;
+      margin: auto;
+      text-align: center;
+      -moz-transition: all .3s ease;
+      -ms-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+    .navbar-logo {
+      position: absolute;
+      left: 0;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
+      cursor: pointer;
+      max-width: 160px;
+      text-align: center;
+      right: 0;
+      margin: auto;
+      top: 50px;
+    }
+    .welcome {
+      display: none;
+    }
+    .navbar-right {
+      position: absolute;
+      height: 60px;
+      width: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+    }
+    .logout {
+      font-size: 14px;
+    }
+    .icon-logout {
+      position: relative;
+      right: 10px;
+    }
+    .icon-log-out:before {
+      content: "p";
+      color: #1FBAD6;
+      margin-left: 10px;
+      top: 2px;
+      position: relative;
+    }
   }
-}
-
-
-/* Iphone 5, 5s */
-
-@media (min-width: 320px) and (max-width: 568px) {
-  .container-inner {
-    width: 280px;
-    height: 250px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 70px;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+  /* Iphone 5, 5s */
+  
+  @media (min-width: 320px) and (max-width: 568px) {
+    .container-inner {
+      width: 280px;
+      height: 250px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 70px;
+      bottom: 0;
+      margin: auto;
+      text-align: center;
+      -moz-transition: all .3s ease;
+      -ms-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+    .navbar-logo {
+      position: absolute;
+      left: 0;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
+      cursor: pointer;
+      max-width: 160px;
+      text-align: center;
+      right: 0;
+      margin: auto;
+      top: 50px;
+    }
+    .welcome {
+      display: none;
+    }
+    .navbar-right {
+      position: absolute;
+      height: 60px;
+      width: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+    }
+    .logout-copy {
+      font-size: 14px;
+    }
+    .icon-logout {
+      position: relative;
+      right: 10px;
+      cursor: pointer;
+    }
+    .icon-log-out:before {
+      cursor: pointer;
+      color: #1FBAD6;
+      content: "p";
+      margin-left: 10px;
+      top: 2px;
+      position: relative;
+    }
   }
-}

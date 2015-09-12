@@ -17,8 +17,8 @@ angular.module('YouAreHere')
           }
         });
       },
-      controller: ['$scope', '$rootScope', '$timeout', '$state', 'RequestApi', 'StateService', 'localStorageService',
-        function($scope, $rootScope, $timeout, $state, RequestApi, StateService, localStorageService) {
+      controller: ['$scope', '$rootScope', '$timeout', '$state', 'RequestApi', 'localStorageService',
+        function($scope, $rootScope, $timeout, $state, RequestApi, localStorageService) {
 
           console.log('### ngSearch.js');
 

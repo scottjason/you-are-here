@@ -12,7 +12,7 @@ angular.module('YouAreHere')
     }
 
     function onLogin(startLat, startLon) {
-      window.location.href = "http://localhost:3000/login/" + startLat + "/" + startLon;
+      window.location.href = window.location.protocol + '//' + window.location.host + '/login/' + startLat + '/' + startLon;
     }
 
     function onLogout() {

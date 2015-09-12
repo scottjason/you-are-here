@@ -11,9 +11,7 @@ angular.module('YouAreHere')
         showLoader: '=',
         onLogin: '='
       },
-      link: function(scope, element, attrs) {
-        element.bind('keydown', function($event) {});
-      },
+      link: function(scope, element, attrs) {},
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
 
@@ -36,7 +34,11 @@ angular.module('YouAreHere')
 
           $scope.getLocation = function() {
             $scope.showLoader = true;
-            navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+            navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
+              enableHighAccuracy: true,
+              maximumAge: 0,
+              timeout: 30000
+            });
           };
 
           $scope.onLogin = function() {

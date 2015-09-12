@@ -4,6 +4,17 @@
   .container-inner {
     width: 320px;
     height: 250px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
   }
 }
 
@@ -14,6 +25,16 @@
   .container-inner {
     width: 280px;
     height: 250px;
-
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
   }
 }

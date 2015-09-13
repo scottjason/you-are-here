@@ -1,0 +1,21 @@
+.logo.landing {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30px;
+  margin: auto;
+  font-family: 'geomanist_regularregular';
+  font-size: 24px;
+  color: #1FBAD6;
+}
+
+.logo.login {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-family: 'geomanist_regularregular';
+  font-size: 24px;
+  color: #1FBAD6;
+  bottom: 50px;
+}

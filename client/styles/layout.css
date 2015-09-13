@@ -3,6 +3,37 @@
   ** Light Blue #1FBAD6
 **/
 
+.request-uber-btn {
+  background-color: #1FBAD6;
+  width: 150px;
+  position: absolute;
+  height: 30px;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  bottom: 67px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.request-uber-btn > p {
+  position: relative;
+  color: white;
+  font-family: 'geomanist_regularregular';
+  font-size: 14px;
+  top: 5px;
+}
+
+.snippet-container {
+  height: 53px;
+  overflow: hidden;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .distance,
 .duration,
 .cost {
@@ -48,6 +79,8 @@
 
 .layout-container-inner {
   position: relative;
+  display: inline-block;
+  overflow: hidden;
   margin: auto;
   width: 240px;
   height: 430px;

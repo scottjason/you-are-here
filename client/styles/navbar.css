@@ -13,14 +13,16 @@
 
 .navbar-logo {
   position: relative;
-  left: 15px;
-  top: 18px;
+  left: 0;
   font-family: 'geomanist_regularregular';
   font-size: 24px;
   color: #1FBAD6;
   cursor: pointer;
   max-width: 160px;
   text-align: center;
+  right: 0;
+  margin: auto;
+  padding-bottom: 25px;
 }
 
 .navbar-left {

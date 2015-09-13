@@ -16,6 +16,21 @@
       -o-transition: all .3s ease;
       transition: all .3s ease;
     }
+    .container-inner.landing {
+      width: 280px;
+      height: 70px;
+      bottom: 60px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      text-align: center;
+      -moz-transition: all .3s ease;
+      -ms-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
     .navbar-logo {
       position: relative;
       left: 0;
@@ -85,10 +100,28 @@
       margin: 0;
       position: relative;
     }
+    .submit-btn {
+      top: 0;
+    }
   }
   /* Iphone 5, 5s */
   
   @media (min-width: 320px) and (max-width: 568px) {
+    .container-inner {
+      width: 280px;
+      height: 70px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      top: 0;
+      bottom: 60px;
+      -moz-transition: all .3s ease;
+      -ms-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
     .container-inner.landing {
       width: 280px;
       height: 70px;
@@ -178,5 +211,8 @@
       font-family: 'Open Sans', sans-serif;
       font-size: 12px;
       color: white;
+    }
+    .submit-btn {
+      top: 0;
     }
   }

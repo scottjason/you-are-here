@@ -4,5 +4,3 @@ client/dist/
 env.json
 .DS_STORE
 *.log
-key.pem
-cert.pem

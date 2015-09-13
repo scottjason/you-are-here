@@ -1,12 +1,5 @@
 <div ng-navbar on-logout='onLogout'></div ng-navbar>
-
-<div ng-results
-     get-state='getState'
-     show-loader='showLoader'
-     request-uber='requestUber'
-     results='results'
-     class='container'>
-
+<div ng-results get-state='getState' show-loader='showLoader' request-uber='requestUber' results='results' class='container'>
   <!-- Results -->
   <div class='layout-container'>
     <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>
@@ -20,16 +13,22 @@
       <p class='layout-rating-number'>{{ result.rating }} stars with </p>
       <p class='layout-rating-count'>{{ result.review_count }} reviews</p>
       <img class='layout-img' ng-src="{{result.image_url}}">
-      <p class='layout-snippet'>{{ result.snippet_text }}</p>
+      <div class="snippet-container">
+        <p class='layout-snippet'>{{ result.snippet_text }}</p>
+      </div>
       <div ng-hide='result.showEstimate' class='loader-container'>
         <div class='loader estimate'></div>
       </div>
-      <p ng-click='requestUber(result.lat, result.lon)' ng-show='result.showEstimate' class='details'>request uber</p>
-      <div ng-show='result.showEstimate' class='estimate-container'>
-      <div class="uber-details-btn"></div>
-        <P class='distance'>Distance: {{ result.distance }} miles</P>
-        <P class='duration'>Duration: {{ result.duration }} minutes</P>
-        <P class='cost'>Estimated Cost: {{ result.estimate }}</P>
+      <div class="uber-details-btn">
+        <div ng-show='result.showEstimate' class='estimate-container'>
+          <P class='distance'>Distance: {{ result.distance }} miles</P>
+          <P class='duration'>Duration: {{ result.duration }} minutes</P>
+          <P class='cost'>Estimated Cost: {{ result.estimate }}</P>
+        </div>
+      </div>
+      <div ng-show='result.showEstimate' ng-click='requestUber(result.lat, result.lon)' class='request-uber-btn'>
+        <p>request uber</p>
+      </div>
     </div>
   </div>
 </div ng-results>

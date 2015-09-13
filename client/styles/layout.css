@@ -15,7 +15,7 @@
 }
 
 .details {
-  position: absolute;
+  position: relative;
   bottom: 68px;
   margin: auto;
   left: 0;

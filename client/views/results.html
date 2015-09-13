@@ -24,14 +24,14 @@
       <div  class="snippet-container">
         <!-- <p class='layout-snippet'>{{ result.snippet_text }}</p> -->
       </div>
-      <div ng-hide='result.showEstimate' class='loader-container'>
+      <div ng-class="{ 'remove-opacity' : (result.showEstimate) }" class='loader-container'>
         <div class='loader estimate'></div>
       </div>
 
-      <div ng-show='result.showEstimate' ng-click='requestUber(result.lat, result.lon)' class='request-uber-btn'>
+      <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  ng-click='requestUber(result.lat, result.lon)' class='request-uber-btn'>
         <p>request uber</p>
       </div>
-      <div class="uber-details-btn">
+      <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  class="uber-details-btn">
           <P class='distance'>Distance: {{ result.distance }} miles</P>
           <P class='duration'>Duration: {{ result.duration }} minutes</P>
           <P class='cost'>Estimated Cost: {{ result.estimate }}</P>

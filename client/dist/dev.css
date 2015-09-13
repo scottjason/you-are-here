@@ -537,9 +537,13 @@ ul {
   border-radius: 5px 5px 0 0;
   color: white;
   cursor: pointer;
-  cursor: pointer;
   border: 1px solid #1FBAD6;
   background-color: transparent;
+  opacity: 0;
+}
+
+.uber-details-btn.add-opacity {
+  opacity: 1;
 }
 
 .uber-detail-line {
@@ -581,7 +585,9 @@ ul {
   padding: 10px;
   bottom: 0;
 }
-
+.loader-container.remove-opacity {
+  opacity: 0;
+}
 /*
   ** Dark Blue #09091a
   ** Light Blue #1FBAD6
@@ -754,6 +760,10 @@ ul {
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
+      opacity: 0;
+    }
+    .request-uber-btn.add-opacity {
+      opacity: 1;
     }
     .request-uber-btn > p {
       position: relative;
@@ -898,6 +908,10 @@ ul {
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
+      opacity: 0;
+    }
+    .request-uber-btn.add-opacity {
+      opacity: 1;
     }
     .request-uber-btn > p {
       position: relative;

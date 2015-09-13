@@ -190,15 +190,7 @@ p.second {
 }
 
 .icon-location.inverted {
-  color: #80E697;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: .3s;
-  transition: 0.3s;
-}
-
-.icon-location.inverted:hover {
-  color: white;
+  color: #80E697 !important;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: .3s;
@@ -1017,5 +1009,12 @@ p.second {
     transition: 0.3s;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
+  }
+  .layout-line.description {
+    width: 260px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
   }
 }

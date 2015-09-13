@@ -390,7 +390,9 @@ angular.module('YouAreHere')
               localStorageService.clearAll();
               $state.go('landing');
             } else {
-              angular.element(document.getElementById('search'))[0].focus();
+              $timeout(function() {
+                angular.element(document.getElementById('search'))[0].focus();
+              }, 100);
               $scope.formattedAddress = localStorageService.get('formattedAddress');
               var lineOne = angular.copy($scope.formattedAddress).split(',')[0];
               var lineTwo = angular.copy($scope.formattedAddress).split(',');

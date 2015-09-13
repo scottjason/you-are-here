@@ -48,7 +48,6 @@ angular.module('YouAreHere')
             }
           }
 
-
           $scope.isResults = function() {
             return $state.current.name === 'results';
           };

@@ -12,9 +12,7 @@ angular.module('YouAreHere')
         var isBackBtn = (fromState.name === 'results' && toState.name === 'search' && !$rootScope.isSearchBtn);
         if (isBackBtn) {
           event.preventDefault();
-          $rootScope.isSearchBtn = null;
           $state.transitionTo('results', {reload: false});
-
         }
       }
     )

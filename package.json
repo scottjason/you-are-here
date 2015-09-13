@@ -27,5 +27,11 @@
     "request": "^2.61.0",
     "serve-favicon": "~2.2.0",
     "yelp": "^0.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-util": "^3.0.6"
   }
 }

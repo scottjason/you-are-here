@@ -3,7 +3,8 @@
   @media (min-width: 321px) and (max-width: 667px) {
     .container-inner {
       width: 280px;
-      height: 250px;
+      /*height: 250px;*/
+      height: 70px;
       position: absolute;
       left: 0;
       right: 0;
@@ -69,13 +70,14 @@
   /* Iphone 5, 5s */
   
   @media (min-width: 320px) and (max-width: 568px) {
-    .container-inner {
+    .container-inner.landing {
       width: 280px;
-      height: 250px;
+      /*height: 250px;*/
+      height: 70px;
       position: absolute;
       left: 0;
       right: 0;
-            top: 0;
+      top: 0;
       bottom: 0;
       margin: auto;
       text-align: center;

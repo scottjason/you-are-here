@@ -86,7 +86,6 @@ exports.getProductId = function(session, cb) {
       if (err) return cb(err);
       if (response.statusCode === 200) {
         var results = JSON.parse(body);
-        console.log('results product', results);
         cb(null, results)
       } else {
         cb(new Error('unknown error occurred while retreiving uber product id'));

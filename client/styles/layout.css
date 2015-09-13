@@ -41,7 +41,8 @@
   position: relative;
   margin: auto;
   width: 240px;
-  height: 430px;
+  /*height: 430px;*/
+      height: 320px;
   /*display: inline-block;*/
   background: transparent;
   border: 1px solid white;

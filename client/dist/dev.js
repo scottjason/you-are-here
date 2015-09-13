@@ -115,7 +115,7 @@ angular.module('YouAreHere')
 
           console.log('### ngNavigator.js')
 
-          localStorageService.clearAll();
+          // localStorageService.clearAll();
 
           $scope.getLocation = function() {
             $scope.showLoader = true;

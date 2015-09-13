@@ -304,7 +304,8 @@ ul {
   position: relative;
   margin: auto;
   width: 240px;
-  height: 430px;
+  /*height: 430px;*/
+      height: 320px;
   /*display: inline-block;*/
   background: transparent;
   border: 1px solid white;
@@ -765,8 +766,9 @@ ul {
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      top: 29px;
+      /*top: 29px;*/
       opacity: 0;
+      bottom: 9px;
     }
     .request-uber-btn.add-opacity {
       opacity: 1;
@@ -914,7 +916,9 @@ ul {
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      top: 29px;
+      /*top: 29px;*/
+      bottom: 9px;
+      
       opacity: 0;
     }
     .request-uber-btn.add-opacity {

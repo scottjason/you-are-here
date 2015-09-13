@@ -305,13 +305,13 @@ ul {
   margin: auto;
   width: 240px;
   height: 400px;
-  display: inline-block;
+  /*display: inline-block;*/
   background: transparent;
   border: 1px solid white;
   padding: 20px;
   color: white;
   margin-bottom: 30px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .layout-name {

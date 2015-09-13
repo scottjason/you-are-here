@@ -131,10 +131,10 @@
 
 .layout-snippet {
   position: relative;
-  padding-top: 1px;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
-  padding-bottom: 10px;
+  overflow: hidden;
+  padding: 0 10px;
 }
 
 .call-uber-btn {

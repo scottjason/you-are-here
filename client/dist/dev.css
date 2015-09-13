@@ -394,10 +394,10 @@ ul {
 
 .layout-snippet {
   position: relative;
-  padding-top: 1px;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
-  padding-bottom: 10px;
+  overflow: hidden;
+  padding: 0 10px;
 }
 
 .call-uber-btn {
@@ -763,9 +763,16 @@ ul {
       top: 5px;
     }
     .snippet-container {
-      width: 100%;
       height: 53px;
       overflow: hidden;
+      margin: auto;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 280px;
+      top: 176px;
+      bottom: 0;
     }
   }
   /* Iphone 5, 5s */
@@ -906,9 +913,16 @@ ul {
       top: 5px;
     }
     .snippet-container {
-      width: 100%;
       height: 53px;
       overflow: hidden;
+      margin: auto;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 280px;
+      top: 176px;
+      bottom: 0;
     }
   }
 

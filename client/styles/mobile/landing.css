@@ -130,9 +130,16 @@
       top: 5px;
     }
     .snippet-container {
-      width: 100%;
       height: 53px;
       overflow: hidden;
+      margin: auto;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 280px;
+      top: 176px;
+      bottom: 0;
     }
   }
   /* Iphone 5, 5s */
@@ -273,8 +280,15 @@
       top: 5px;
     }
     .snippet-container {
-      width: 100%;
       height: 53px;
       overflow: hidden;
+      margin: auto;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 280px;
+      top: 176px;
+      bottom: 0;
     }
   }

@@ -19,7 +19,7 @@
       <p class='layout-rating-number'>{{ result.rating }} stars with </p>
       <p class='layout-rating-count'>{{ result.review_count }} reviews</p>
       <img class='layout-img' ng-src="{{result.image_url}}">
-      <div nf-if="!isiOs" class="snippet-container">
+      <div ng-if="!isiOs" class="snippet-container">
         <p class='layout-snippet'>{{ result.snippet_text }}</p>
       </div>
       <div ng-hide='result.showEstimate' class='loader-container'>

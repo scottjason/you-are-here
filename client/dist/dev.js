@@ -204,7 +204,8 @@ angular.module('YouAreHere')
         showLoader: '=',
         showStatus: '=',
         getState: '=',
-        requestUber: '='
+        requestUber: '=',
+        isiOs: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',
@@ -217,32 +218,38 @@ angular.module('YouAreHere')
           };
 
           $timeout(function() {
+            $scope.isiOs = localStorageService.get('isiOS');
+            console.log('isiOS', $scope.isiOs)
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
-            results.forEach(function(obj) {
-              if (obj.snippet_text && obj.snippet_text.length > 121) {
-                obj.snippet_text = (obj.snippet_text).slice(0, 118) + '...';
+            if (results && results.length) {
+              results.forEach(function(obj) {
+                if (obj.snippet_text && obj.snippet_text.length > 121) {
+                  obj.snippet_text = (obj.snippet_text).slice(0, 118) + '...';
+                }
+                if (obj.name && obj.name.length > 29) {
+                  obj.name = (obj.name).slice(0, 26) + '...';
+                }
+                if (!obj.status) {
+                  obj.status = '.. loading ..';
+                }
+                if (obj.eta) {
+                  obj.eta = obj.eta ? (obj.eta + ' minutes') : ('.. loading ..');
+                }
+                obj.lat = obj.location.coordinate.latitude;
+                obj.lon = obj.location.coordinate.longitude;
+              });
+              $scope.results = results;
+              $scope.clientId = localStorageService.get('clientId');
+              $scope.productId = localStorageService.get('productId');
+              $scope.city = localStorageService.get('city');
+              $scope.formattedAddress = localStorageService.get('formattedAddress');
+              $scope.encodedAddress = localStorageService.get('encodedAddress');
+              var isLoaded = localStorageService.get('isLoaded');
+              if (!isLoaded) {
+                $scope.getEstimate($scope.results);
               }
-              if (obj.name && obj.name.length > 29) {
-                obj.name = (obj.name).slice(0, 26) + '...';
-              }
-              if (!obj.status) {
-                obj.status = '.. loading ..';
-              }
-              if (obj.eta) {
-                obj.eta = obj.eta ? (obj.eta + ' minutes') : ('.. loading ..');
-              }
-              obj.lat = obj.location.coordinate.latitude;
-              obj.lon = obj.location.coordinate.longitude;
-            });
-            $scope.results = results;
-            $scope.clientId = localStorageService.get('clientId');
-            $scope.productId = localStorageService.get('productId');
-            $scope.city = localStorageService.get('city');
-            $scope.formattedAddress = localStorageService.get('formattedAddress');
-            $scope.encodedAddress = localStorageService.get('encodedAddress');
-            var isLoaded = localStorageService.get('isLoaded');
-            if (!isLoaded) {
-              $scope.getEstimate($scope.results);
+            } else {
+              $state.go('search');
             }
           });
 

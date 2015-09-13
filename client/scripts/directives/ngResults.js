@@ -23,7 +23,8 @@ angular.module('YouAreHere')
           };
 
           $timeout(function() {
-            $scope.isiOS = localStorageService.get('isiOS', isiOS);
+            $scope.isiOs = localStorageService.get('isiOS');
+            console.log('isiOS', $scope.isiOs)
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
               results.forEach(function(obj) {

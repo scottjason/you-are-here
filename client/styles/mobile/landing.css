@@ -3,7 +3,6 @@
   @media (min-width: 321px) and (max-width: 667px) {
     .container-inner {
       width: 280px;
-      /*height: 250px;*/
       height: 70px;
       position: absolute;
       left: 0;
@@ -11,7 +10,7 @@
       margin: auto;
       text-align: center;
       top: 0;
-      bottom: 0;
+      bottom: 60px;
       -moz-transition: all .3s ease;
       -ms-transition: all .3s ease;
       -o-transition: all .3s ease;
@@ -30,6 +29,26 @@
       margin: auto;
       padding-bottom: 50px;
       padding-bottom: 25px;
+    }
+    .logo.landing {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 30px;
+      margin: auto;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
+    }
+    .logo.login {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
+      bottom: 50px;
     }
     .welcome {
       display: none;
@@ -72,13 +91,12 @@
   @media (min-width: 320px) and (max-width: 568px) {
     .container-inner.landing {
       width: 280px;
-      /*height: 250px;*/
       height: 70px;
+      bottom: 60px;
       position: absolute;
       left: 0;
       right: 0;
       top: 0;
-      bottom: 0;
       margin: auto;
       text-align: center;
       -moz-transition: all .3s ease;
@@ -98,6 +116,26 @@
       right: 0;
       margin: auto;
       padding-bottom: 25px;
+    }
+    .logo.landing {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 30px;
+      margin: auto;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
+    }
+    .logo.login {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 50px;
+      margin: auto;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
     }
     .welcome {
       display: none;

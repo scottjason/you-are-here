@@ -568,6 +568,10 @@ ul {
   margin: auto;
 }
 
+.loader.estimate.remove-opacity {
+  opacity: 0;
+}
+
 .estimate-container {
   position: absolute;
   margin: auto;

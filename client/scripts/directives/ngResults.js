@@ -9,7 +9,8 @@ angular.module('YouAreHere')
         showLoader: '=',
         showStatus: '=',
         getState: '=',
-        requestUber: '='
+        requestUber: '=',
+        isiOs: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',

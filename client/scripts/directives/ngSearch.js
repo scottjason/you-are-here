@@ -7,7 +7,10 @@ angular.module('YouAreHere')
       restrict: 'A',
       scope: {
         searchTerm: '=',
-        onSearch: '='
+        onSearch: '=',
+        formattedAddress: '=',
+        addressLineOne: '=',
+        addressLineTwo: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {
@@ -30,6 +33,12 @@ angular.module('YouAreHere')
               $state.go('landing');
             } else {
               $scope.formattedAddress = localStorageService.get('formattedAddress');
+              var lineOne = angular.copy($scope.formattedAddress).split(',')[0];
+              var lineTwo = angular.copy($scope.formattedAddress).split(',');
+              lineTwo.shift()
+              lineTwo = lineTwo.join(',')
+              $scope.addressLineOne = lineOne;
+              $scope.addressLineTwo = lineTwo;
               $scope.isAuthorized = localStorageService.get('isAuthorized');
               $scope.city = localStorageService.get('city');
             }

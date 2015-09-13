@@ -235,7 +235,6 @@ ul {
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  top: 45px;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
   -o-transition: all .2s;
@@ -635,81 +634,22 @@ ul {
   
   @media (min-width: 321px) and (max-width: 667px) {
     .container-inner {
-      width: 320px;
-      height: 250px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 70px;
-      bottom: 0;
-      margin: auto;
-      text-align: center;
-      -moz-transition: all .3s ease;
-      -ms-transition: all .3s ease;
-      -o-transition: all .3s ease;
-      transition: all .3s ease;
-    }
-    .navbar-logo {
-      position: absolute;
-      left: 0;
-      font-family: 'geomanist_regularregular';
-      font-size: 24px;
-      color: #1FBAD6;
-      cursor: pointer;
-      max-width: 160px;
-      text-align: center;
-      right: 0;
-      margin: auto;
-      top: 50px;
-    }
-    .welcome {
-      display: none;
-    }
-    .navbar-right {
-      position: absolute;
-      height: 60px;
-      width: auto;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      text-align: center;
-    }
-    .logout {
-      font-size: 14px;
-    }
-    .icon-logout {
-      position: relative;
-      right: 10px;
-    }
-    .icon-log-out:before {
-      content: "p";
-      color: #1FBAD6;
-      margin-left: 10px;
-      top: 2px;
-      position: relative;
-    }
-  }
-  /* Iphone 5, 5s */
-  
-  @media (min-width: 320px) and (max-width: 568px) {
-    .container-inner {
       width: 280px;
       height: 250px;
       position: absolute;
       left: 0;
       right: 0;
-      top: 70px;
-      bottom: 0;
       margin: auto;
       text-align: center;
+      top: 0;
+      bottom: 0;
       -moz-transition: all .3s ease;
       -ms-transition: all .3s ease;
       -o-transition: all .3s ease;
       transition: all .3s ease;
     }
     .navbar-logo {
-      position: absolute;
+      position: relative;
       left: 0;
       font-family: 'geomanist_regularregular';
       font-size: 24px;
@@ -719,7 +659,8 @@ ul {
       text-align: center;
       right: 0;
       margin: auto;
-      top: 50px;
+      padding-bottom: 50px;
+      padding-bottom: 25px;
     }
     .welcome {
       display: none;
@@ -735,7 +676,74 @@ ul {
       text-align: center;
     }
     .logout-copy {
-      font-size: 14px;
+      font-size: 13px;
+    }
+    .icon-logout {
+      position: relative;
+      right: 10px;
+    }
+    .icon-log-out:before {
+      content: "p";
+      color: #1FBAD6;
+      margin-left: 10px;
+      top: 2px;
+      position: relative;
+    }
+    .instructions {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: white;
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+  }
+  /* Iphone 5, 5s */
+  
+  @media (min-width: 320px) and (max-width: 568px) {
+    .container-inner {
+      width: 280px;
+      height: 250px;
+      position: absolute;
+      left: 0;
+      right: 0;
+            top: 0;
+      bottom: 0;
+      margin: auto;
+      text-align: center;
+      -moz-transition: all .3s ease;
+      -ms-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+    .navbar-logo {
+      position: relative;
+      left: 0;
+      font-family: 'geomanist_regularregular';
+      font-size: 24px;
+      color: #1FBAD6;
+      cursor: pointer;
+      max-width: 160px;
+      text-align: center;
+      right: 0;
+      margin: auto;
+      padding-bottom: 25px;
+    }
+    .welcome {
+      display: none;
+    }
+    .navbar-right {
+      position: absolute;
+      height: 60px;
+      width: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+    }
+    .logout-copy {
+      font-size: 13px;
     }
     .icon-logout {
       position: relative;
@@ -749,6 +757,19 @@ ul {
       margin-left: 10px;
       top: 2px;
       position: relative;
+    }
+    .instructions {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: white;
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+    .address-copy {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: white;
     }
   }
 

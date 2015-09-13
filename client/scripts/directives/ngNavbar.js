@@ -10,8 +10,8 @@ angular.module('YouAreHere')
       },
       link: function(scope, element, attrs) {},
       templateUrl: 'views/navbar.html',
-      controller: ['$scope', '$timeout', '$state', '$window', 'RequestApi', 'localStorageService',
-        function($scope, $timeout, $state, $window, RequestApi, localStorageService) {
+      controller: ['$scope', '$rootScope', '$timeout', '$state', '$window', 'RequestApi', 'localStorageService',
+        function($scope, $rootScope, $timeout, $state, $window, RequestApi, localStorageService) {
 
           console.log('### ngNavbar.js');
 

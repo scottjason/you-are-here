@@ -41,7 +41,7 @@
   position: relative;
   margin: auto;
   width: 240px;
-  height: 400px;
+  height: 430px;
   /*display: inline-block;*/
   background: transparent;
   border: 1px solid white;
@@ -267,16 +267,21 @@
 }
 
 .uber-details-btn {
-  position: relative;
-  text-align: center;
-  margin: auto;
-  height: 65px;
-  border-radius: 5px 5px 0 0;
-  color: white;
-  cursor: pointer;
-  border: 1px solid #1FBAD6;
-  background-color: transparent;
-  opacity: 0;
+    position: absolute;
+    text-align: center;
+    height: 65px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    cursor: pointer;
+    border: 1px solid #1FBAD6;
+    background-color: transparent;
+    opacity: 0;
+    width: 280px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 00;
+    min-height: 65px;
 }
 
 .uber-details-btn.add-opacity {

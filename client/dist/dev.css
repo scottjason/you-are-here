@@ -269,16 +269,18 @@ ul {
 .distance,
 .duration,
 .cost {
-  position: relative;
+  position: absolute;
   color: #efeffe;
   font-size: 13px;
   font-family: 'Open Sans', sans-serif;
-  padding: 0;
   font-weight: 400;
+  top: 42px;
+  left: 0;
+  right: 0;
 }
 
 .details {
-  position: relative;
+  position: absolute;
   bottom: 68px;
   margin: auto;
   left: 0;
@@ -290,8 +292,15 @@ ul {
 }
 
 .distance {
-  position: relative;
-  padding-top: 5px;
+  top: 6px;
+  left: 0;
+  right: 0;
+}
+
+.duration {
+  top: 24px;
+  left: 0;
+  right: 0;
 }
 
 .layout-container {
@@ -304,15 +313,12 @@ ul {
   position: relative;
   margin: auto;
   width: 240px;
-  /*height: 430px;*/
-      height: 320px;
-  /*display: inline-block;*/
+  height: 430px;
   background: transparent;
   border: 1px solid white;
   padding: 20px;
   color: white;
   margin-bottom: 30px;
-  /*overflow: hidden;*/
 }
 
 .layout-name {
@@ -531,25 +537,21 @@ ul {
 }
 
 .uber-details-btn {
-    position: absolute;
-    text-align: center;
-    height: 65px;
-    border-radius: 5px 5px 0 0;
-    color: white;
-    cursor: pointer;
-    border: 1px solid #1FBAD6;
-    background-color: transparent;
-    opacity: 0;
-    width: 280px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    bottom: 00;
-    min-height: 65px;
-}
-
-.uber-details-btn.add-opacity {
-  opacity: 1;
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  height: 65px;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #1FBAD6;
+  background-color: transparent;
+  width: 280px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 00;
+  min-height: 65px;
 }
 
 .uber-detail-line {
@@ -591,9 +593,11 @@ ul {
   padding: 10px;
   bottom: 0;
 }
+
 .loader-container.remove-opacity {
   opacity: 0;
 }
+
 /*
   ** Dark Blue #09091a
   ** Light Blue #1FBAD6
@@ -761,17 +765,14 @@ ul {
     .request-uber-btn {
       background-color: #1FBAD6;
       width: 150px;
-      position: relative;
-      margin: auto;
+      position: absolute;
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      /*top: 29px;*/
-      opacity: 0;
-      bottom: 9px;
-    }
-    .request-uber-btn.add-opacity {
-      opacity: 1;
+      bottom: 67px;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
     .request-uber-btn > p {
       position: relative;
@@ -785,7 +786,6 @@ ul {
       overflow: hidden;
       margin: auto;
       text-align: center;
-      background: green;
       position: relative;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -911,18 +911,14 @@ ul {
     .request-uber-btn {
       background-color: #1FBAD6;
       width: 150px;
-      position: relative;
-      margin: auto;
+      position: absolute;
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      /*top: 29px;*/
-      bottom: 9px;
-      
-      opacity: 0;
-    }
-    .request-uber-btn.add-opacity {
-      opacity: 1;
+      bottom: 67px;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
     .request-uber-btn > p {
       position: relative;
@@ -936,7 +932,6 @@ ul {
       overflow: hidden;
       margin: auto;
       text-align: center;
-      background: green;
       position: relative;
       margin-top: 10px;
       margin-bottom: 10px;

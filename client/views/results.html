@@ -18,20 +18,20 @@
       <img class='layout-rating-img' ng-src="{{result.rating_img_url}}">
       <p class='layout-rating-number'>{{ result.rating }} stars with </p>
       <p class='layout-rating-count'>{{ result.review_count }} reviews</p>
-      <div class='img-container'>
-        <!-- <img class='layout-img' ng-src="{{result.image_url}}"> -->
+        <img class='layout-img' ng-src="{{result.image_url}}">
+      <div  class="snippet-container">
+        <p class='layout-snippet'>{{ result.snippet_text }}</p>
       </div>
-      <!-- <div  class="snippet-container"> -->
-        <!-- <p class='layout-snippet'>{{ result.snippet_text }}</p> -->
-      <!-- </div> -->
-      <div ng-class="{ 'remove-opacity' : (result.showEstimate) }" class='loader-container'>
+<!--       <div ng-class="{ 'remove-opacity' : (result.showEstimate) }" class='loader-container'>
         <div class='loader estimate'></div>
-      </div>
+      </div> -->
 
       <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  ng-click='requestUber(result.lat, result.lon)' class='request-uber-btn'>
         <p>request uber</p>
       </div>
       <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  class="uber-details-btn">
+      <div ng-class="{ 'remove-opacity' : (result.showEstimate) }" class='loader estimate'></div>
+
           <P class='distance'>Distance: {{ result.distance }} miles</P>
           <P class='duration'>Duration: {{ result.duration }} minutes</P>
           <P class='cost'>Estimated Cost: {{ result.estimate }}</P>

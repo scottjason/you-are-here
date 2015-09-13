@@ -112,17 +112,14 @@
     .request-uber-btn {
       background-color: #1FBAD6;
       width: 150px;
-      position: relative;
-      margin: auto;
+      position: absolute;
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      /*top: 29px;*/
-      opacity: 0;
-      bottom: 9px;
-    }
-    .request-uber-btn.add-opacity {
-      opacity: 1;
+      bottom: 67px;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
     .request-uber-btn > p {
       position: relative;
@@ -136,7 +133,6 @@
       overflow: hidden;
       margin: auto;
       text-align: center;
-      background: green;
       position: relative;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -262,18 +258,14 @@
     .request-uber-btn {
       background-color: #1FBAD6;
       width: 150px;
-      position: relative;
-      margin: auto;
+      position: absolute;
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      /*top: 29px;*/
-      bottom: 9px;
-      
-      opacity: 0;
-    }
-    .request-uber-btn.add-opacity {
-      opacity: 1;
+      bottom: 67px;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
     .request-uber-btn > p {
       position: relative;
@@ -287,7 +279,6 @@
       overflow: hidden;
       margin: auto;
       text-align: center;
-      background: green;
       position: relative;
       margin-top: 10px;
       margin-bottom: 10px;

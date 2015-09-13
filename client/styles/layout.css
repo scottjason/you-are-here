@@ -28,7 +28,7 @@
 
 .distance {
   position: relative;
-      padding-top: 5px;
+  padding-top: 5px;
 }
 
 .layout-container {
@@ -205,6 +205,13 @@
   padding-top: 25px;
 }
 
+.img-container {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
 .request-location.address {
   position: relative;
   color: #efeffe;
@@ -270,7 +277,6 @@
   cursor: pointer;
   border: 1px solid #1FBAD6;
   background-color: transparent;
-  top: 63px;
 }
 
 .uber-detail-line {

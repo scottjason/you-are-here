@@ -291,7 +291,7 @@ ul {
 
 .distance {
   position: relative;
-      padding-top: 5px;
+  padding-top: 5px;
 }
 
 .layout-container {
@@ -468,6 +468,13 @@ ul {
   padding-top: 25px;
 }
 
+.img-container {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
 .request-location.address {
   position: relative;
   color: #efeffe;
@@ -533,7 +540,6 @@ ul {
   cursor: pointer;
   border: 1px solid #1FBAD6;
   background-color: transparent;
-  top: 63px;
 }
 
 .uber-detail-line {
@@ -748,7 +754,6 @@ ul {
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      top: 63px;
     }
     .request-uber-btn > p {
       position: relative;
@@ -763,12 +768,9 @@ ul {
       margin: auto;
       text-align: center;
       background: green;
-      position: absolute;
-      left: 0;
-      right: 0;
-      width: 280px;
-      top: 176px;
-      bottom: 0;
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
   }
   /* Iphone 5, 5s */
@@ -896,7 +898,6 @@ ul {
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      top: 63px;
     }
     .request-uber-btn > p {
       position: relative;
@@ -911,12 +912,9 @@ ul {
       margin: auto;
       text-align: center;
       background: green;
-      position: absolute;
-      left: 0;
-      right: 0;
-      width: 280px;
-      top: 176px;
-      bottom: 0;
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
   }
 

@@ -31,6 +31,9 @@
       -o-transition: all .3s ease;
       transition: all .3s ease;
     }
+    .container-inner.search {
+      bottom: 180px;
+    }
     .navbar-logo {
       position: relative;
       left: 0;
@@ -103,6 +106,9 @@
     .submit-btn {
       top: 0;
     }
+    .submit-btn.login {
+      top: 60px;
+    }
   }
   /* Iphone 5, 5s */
   
@@ -136,6 +142,9 @@
       -ms-transition: all .3s ease;
       -o-transition: all .3s ease;
       transition: all .3s ease;
+    }
+    .container-inner.search {
+      bottom: 180px;
     }
     .navbar-logo {
       position: relative;
@@ -214,5 +223,8 @@
     }
     .submit-btn {
       top: 0;
+    }
+    .submit-btn.login {
+      top: 60px;
     }
   }

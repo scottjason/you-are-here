@@ -4,7 +4,7 @@ var concat = require('gulp-concat');
 var nodemon = require('gulp-nodemon');
 
 gulp.task('default', ['concatDevScripts', 'concatBowerScripts', 'concatDevStyles', 'watch', 'start']);
-gulp.task('build', ['concatDevScripts', 'concatBowerScripts']);
+gulp.task('build', ['concatDevScripts', 'concatBowerScripts', 'concatDevStyles']);
 
 gulp.task('concatDevScripts', function() {
   return gulp.src(['client/scripts/app.js', 'client/scripts/app.config.js', 'client/scripts/app.run.js', 'client/scripts/directives/*.js', 'client/scripts/services/*.js'])
@@ -36,5 +36,5 @@ gulp.task('start', function() {
     })
     .on('restart', function() {
       console.log('server restarted');
-    })
+    });
 });

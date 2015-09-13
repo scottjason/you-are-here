@@ -26,7 +26,8 @@
       </div>
 
       <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  ng-click='requestUber(result.lat, result.lon)' class='request-uber-btn'>
-        <p>request uber</p>
+        <p ng-if='isiOs'>request uber</p>
+        <p ng-if='!isiOs' class="no-click">uber details</p>
       </div>
       <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  class="uber-details-btn">
       <div ng-hide='result.showEstimate' class='loader estimate'></div>

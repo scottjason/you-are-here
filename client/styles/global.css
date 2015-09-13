@@ -25,6 +25,10 @@ body {
   outline: 0;
 }
 
+.no-click {
+  cursor: default;
+}
+
 a {
   text-decoration: none;
 }

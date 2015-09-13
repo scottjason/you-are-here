@@ -22,7 +22,19 @@
   max-width: 160px;
   text-align: center;
 }
+.navbar-left {
+  position: absolute;
+  left: 0;
+  height: 60px;
+  width: auto;
+  top: 0;
+}
 
+.logo.nav {
+    position: relative;
+    left: 20px;
+    top: 10px;
+}
 .navbar-right {
   position: absolute;
   right: 0;

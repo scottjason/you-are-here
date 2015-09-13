@@ -562,6 +562,29 @@ ul {
   border-bottom: 1px solid #efefef;
 }
 
+.new-search-btn {
+  width: 200px;
+  height: 50px;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  top: 71px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #1FBAD6;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.new-search-btn > p {
+  color: white;
+  position: relative;
+  top: 14px;
+  font-size: 16px;
+  font-family: 'geomanist_regularregular';
+  letter-spacing: 2px;
+}
+
 .loader.estimate {
   position: relative;
   top: 20px;
@@ -626,7 +649,19 @@ ul {
   max-width: 160px;
   text-align: center;
 }
+.navbar-left {
+  position: absolute;
+  left: 0;
+  height: 60px;
+  width: auto;
+  top: 0;
+}
 
+.logo.nav {
+    position: relative;
+    left: 20px;
+    top: 10px;
+}
 .navbar-right {
   position: absolute;
   right: 0;
@@ -728,18 +763,9 @@ ul {
     .welcome {
       display: none;
     }
-    .navbar-right {
-      position: absolute;
-      height: 60px;
-      width: auto;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      text-align: center;
-    }
+
     .logout-copy {
-      font-size: 13px;
+      font-size: 18px;
     }
     .icon-logout {
       position: relative;
@@ -867,18 +893,10 @@ ul {
     .welcome {
       display: none;
     }
-    .navbar-right {
-      position: absolute;
-      height: 60px;
-      width: auto;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      text-align: center;
-    }
+
     .logout-copy {
-      font-size: 13px;
+      font-size: 18px;
+      cursor: pointer;
     }
     .icon-logout {
       position: relative;

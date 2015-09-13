@@ -1,8 +1,11 @@
 <div class='navbar-container'>
+<div class="navbar-left">
+	<p class='logo nav'>you.are.here</p>
+</div>
   <div class='navbar-right'>
     <div class="navbar-right-copy">
       <p class='welcome'>Welcome {{firstName}}<span><i ng-click='onLogout();' class='icon-user-1'></i></span></p>
-      <P class='logout-copy'>logout<span><i ng-click='onLogout();' class="icon-log-out"></i></span></P>
+      <p ng-click='onLogout();' class='logout-copy'>logout<span><i ng-click='onLogout();' class="icon-log-out"></i></span></P>
     </div>
   </div>
 </div>

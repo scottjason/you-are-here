@@ -291,7 +291,7 @@ ul {
 
 .distance {
   position: relative;
-  padding-top: 11px;
+      padding-top: 5px;
 }
 
 .layout-container {
@@ -523,20 +523,17 @@ ul {
 }
 
 .uber-details-btn {
-  position: absolute;
+  position: relative;
   text-align: center;
   margin: auto;
-  width: 250px;
   height: 65px;
   border-radius: 5px 5px 0 0;
   color: white;
   cursor: pointer;
-  left: 0;
-  right: 0;
   cursor: pointer;
   border: 1px solid #1FBAD6;
-  bottom: 0;
   background-color: transparent;
+  top: 63px;
 }
 
 .uber-detail-line {
@@ -746,15 +743,12 @@ ul {
     .request-uber-btn {
       background-color: #1FBAD6;
       width: 150px;
-      position: absolute;
-      text-align: center;
+      position: relative;
       margin: auto;
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      left: 0;
-      right: 0;
-      bottom: 67px;
+      top: 63px;
     }
     .request-uber-btn > p {
       position: relative;
@@ -768,6 +762,7 @@ ul {
       overflow: hidden;
       margin: auto;
       text-align: center;
+      background: green;
       position: absolute;
       left: 0;
       right: 0;
@@ -896,15 +891,12 @@ ul {
     .request-uber-btn {
       background-color: #1FBAD6;
       width: 150px;
-      position: absolute;
-      text-align: center;
+      position: relative;
       margin: auto;
       height: 30px;
       border-radius: 5px 5px 0 0;
       cursor: pointer;
-      left: 0;
-      right: 0;
-      bottom: 67px;
+      top: 63px;
     }
     .request-uber-btn > p {
       position: relative;
@@ -918,6 +910,7 @@ ul {
       overflow: hidden;
       margin: auto;
       text-align: center;
+      background: green;
       position: absolute;
       left: 0;
       right: 0;

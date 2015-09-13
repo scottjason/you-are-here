@@ -28,7 +28,7 @@
 
 .distance {
   position: relative;
-  padding-top: 11px;
+      padding-top: 5px;
 }
 
 .layout-container {
@@ -260,20 +260,17 @@
 }
 
 .uber-details-btn {
-  position: absolute;
+  position: relative;
   text-align: center;
   margin: auto;
-  width: 250px;
   height: 65px;
   border-radius: 5px 5px 0 0;
   color: white;
   cursor: pointer;
-  left: 0;
-  right: 0;
   cursor: pointer;
   border: 1px solid #1FBAD6;
-  bottom: 0;
   background-color: transparent;
+  top: 63px;
 }
 
 .uber-detail-line {

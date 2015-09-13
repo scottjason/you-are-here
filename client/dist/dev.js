@@ -35,11 +35,21 @@ angular.module('YouAreHere')
 'use strict';
 
 angular.module('YouAreHere')
-  .run(['localStorageService', function(localStorageService) {
+  .run(['$rootScope', '$location', 'localStorageService', function($rootScope, $location, localStorageService) {
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
     var isiPhone = !isiPad && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null));
     var isiOS = isiPad || isiPhone;
     localStorageService.set('isiOS', isiOS);
+
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams) {
+        var isBackBtn = (fromState.name === 'results' && toState.name === 'search' && !$rootScope.isSearchBtn);
+        if (isBackBtn) {
+          $rootScope.isSearchBtn = null;
+          event.preventDefault();
+        }
+      }
+    )
   }]);
 
 angular.module('YouAreHere')
@@ -209,23 +219,27 @@ angular.module('YouAreHere')
         newSearch: '='
       },
       link: function(scope, element, attrs) {},
-      controller: ['$scope', '$state', '$timeout', 'RequestApi', 'localStorageService',
-        function($scope, $state, $timeout, RequestApi, localStorageService) {
+      controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
+        function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
 
           console.log('### ngResults.js');
 
-          var stopRequst;
+          var stopRequest = null;
 
           $scope.getState = function(key) {
             return localStorageService.get(key);
           };
 
           $scope.newSearch = function() {
-            stopRequst = true;
+            console.log('stop reqeust')
+            $rootScope.isSearchBtn = true;
+            stopRequest = true;
             $state.go('search');
           }
 
-          $timeout(function() {
+          $scope.init = function() {
+            stopRequest = null;
+            $rootScope.isSearchBtn = null;
             $scope.isiOs = localStorageService.get('isiOS');
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
@@ -251,22 +265,20 @@ angular.module('YouAreHere')
               $scope.city = localStorageService.get('city');
               $scope.formattedAddress = localStorageService.get('formattedAddress');
               $scope.encodedAddress = localStorageService.get('encodedAddress');
-              var isLoaded = localStorageService.get('isLoaded');
-              if (!isLoaded) {
-                $scope.getEstimate($scope.results);
-              }
+              $scope.getEstimate($scope.results);
             } else {
               $state.go('search');
             }
-          });
+          }
 
           $scope.getEstimate = function(arr) {
 
             $scope.arr = [];
             async.eachLimit(arr, 2, makeRequest, onComplete);
 
-            function makeRequest(obj, cb, i) {
-              if (stopRequst) return;
+            function makeRequest(obj, cb) {
+              console.log('in makeRequest', stopRequest);
+              if (stopRequest) return cb(true);
               var opts = {};
               opts.start = {};
               opts.end = {};
@@ -276,6 +288,7 @@ angular.module('YouAreHere')
               opts.end.lon = obj.lon;
               RequestApi.getEstimate(opts).then(function(response) {
                 $timeout(function() {
+                  console.log('got response', response);
                   obj.showEstimate = true;
                   obj.distance = response.data.prices[1].distance;
                   obj.duration = Math.floor(response.data.prices[1].duration / 60);
@@ -288,9 +301,10 @@ angular.module('YouAreHere')
               })
             }
 
-            function onComplete() {
+            function onComplete(err) {
+              console.log('onComplete called');
+              if (err) return;
               localStorageService.set('results', $scope.arr);
-              localStorageService.set('isLoaded', true);
             }
           };
 
@@ -334,6 +348,7 @@ angular.module('YouAreHere')
             }
             reverseGeo(onSuccess);
           };
+          $scope.init();
         }
       ],
     }

@@ -50,7 +50,7 @@ angular.module('YouAreHere')
     var directive = {
       restrict: 'A',
       scope: {
-        onLogout: '='
+        onLogout: '=',
       },
       link: function(scope, element, attrs) {},
       templateUrl: 'views/navbar.html',
@@ -205,21 +205,28 @@ angular.module('YouAreHere')
         showStatus: '=',
         getState: '=',
         requestUber: '=',
-        isiOs: '='
+        isiOs: '=',
+        newSearch: '='
       },
       link: function(scope, element, attrs) {},
-      controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',
-        function($scope, $timeout, RequestApi, localStorageService) {
+      controller: ['$scope', '$state', '$timeout', 'RequestApi', 'localStorageService',
+        function($scope, $state, $timeout, RequestApi, localStorageService) {
 
           console.log('### ngResults.js');
+
+          var stopRequst;
 
           $scope.getState = function(key) {
             return localStorageService.get(key);
           };
 
+          $scope.newSearch = function() {
+            stopRequst = true;
+            $state.go('search');
+          }
+
           $timeout(function() {
             $scope.isiOs = localStorageService.get('isiOS');
-            console.log('isiOS', $scope.isiOs)
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
               results.forEach(function(obj) {
@@ -259,6 +266,7 @@ angular.module('YouAreHere')
             async.eachLimit(arr, 2, makeRequest, onComplete);
 
             function makeRequest(obj, cb, i) {
+              if (stopRequst) return;
               var opts = {};
               opts.start = {};
               opts.end = {};
@@ -344,7 +352,8 @@ angular.module('YouAreHere')
         onSearch: '=',
         formattedAddress: '=',
         addressLineOne: '=',
-        addressLineTwo: '='
+        addressLineTwo: '=',
+        isResults: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {
@@ -377,6 +386,11 @@ angular.module('YouAreHere')
               $scope.city = localStorageService.get('city');
             }
           }
+
+
+          $scope.isResults = function() {
+            return $state.current.name === 'results';
+          };
 
           $scope.onSearch = function(isLogin) {
             if (!$scope.isAuthorized) {

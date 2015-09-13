@@ -10,21 +10,28 @@ angular.module('YouAreHere')
         showStatus: '=',
         getState: '=',
         requestUber: '=',
-        isiOs: '='
+        isiOs: '=',
+        newSearch: '='
       },
       link: function(scope, element, attrs) {},
-      controller: ['$scope', '$timeout', 'RequestApi', 'localStorageService',
-        function($scope, $timeout, RequestApi, localStorageService) {
+      controller: ['$scope', '$state', '$timeout', 'RequestApi', 'localStorageService',
+        function($scope, $state, $timeout, RequestApi, localStorageService) {
 
           console.log('### ngResults.js');
+
+          var stopRequst;
 
           $scope.getState = function(key) {
             return localStorageService.get(key);
           };
 
+          $scope.newSearch = function() {
+            stopRequst = true;
+            $state.go('search');
+          }
+
           $timeout(function() {
             $scope.isiOs = localStorageService.get('isiOS');
-            console.log('isiOS', $scope.isiOs)
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
               results.forEach(function(obj) {
@@ -64,6 +71,7 @@ angular.module('YouAreHere')
             async.eachLimit(arr, 2, makeRequest, onComplete);
 
             function makeRequest(obj, cb, i) {
+              if (stopRequst) return;
               var opts = {};
               opts.start = {};
               opts.end = {};

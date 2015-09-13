@@ -22,6 +22,7 @@
   max-width: 160px;
   text-align: center;
 }
+
 .navbar-left {
   position: absolute;
   left: 0;
@@ -31,10 +32,12 @@
 }
 
 .logo.nav {
-    position: relative;
-    left: 20px;
-    top: 10px;
+  position: relative;
+  left: 20px;
+  top: 12px;
+  font-size: 21px;
 }
+
 .navbar-right {
   position: absolute;
   right: 0;
@@ -44,13 +47,13 @@
 }
 
 .navbar-right-copy {
-    display: inline-block;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-    padding-right: 15px;
-    top: 10px;
-    right: 0;
-    position: absolute;
+  display: inline-block;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  padding-right: 15px;
+  top: 10px;
+  right: 0;
+  position: absolute;
 }
 
 .icon-user-1 {

@@ -71,9 +71,11 @@
     .welcome {
       display: none;
     }
-
     .logout-copy {
       font-size: 18px;
+      cursor: pointer;
+      top: 4px;
+      position: relative;
     }
     .icon-logout {
       position: relative;
@@ -201,10 +203,11 @@
     .welcome {
       display: none;
     }
-
     .logout-copy {
       font-size: 18px;
       cursor: pointer;
+      top: 4px;
+      position: relative;
     }
     .icon-logout {
       position: relative;

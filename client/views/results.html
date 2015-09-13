@@ -3,10 +3,11 @@
      get-state='getState' 
      show-loader='showLoader' 
      request-uber='requestUber' 
+     new-search='newSearch'
      results='results' 
      isi-os='isiOs'
      class='container'>
-     <div class='new-search-btn'><p>new search</p></div>
+     <div ng-click='newSearch();' class='new-search-btn'><p>new search</p></div>
   <!-- Results -->
   <div class='layout-container'>
     <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>
@@ -28,11 +29,11 @@
         <p>request uber</p>
       </div>
       <div ng-class="{ 'add-opacity' : (result.showEstimate) }"  class="uber-details-btn">
-      <div ng-class="{ 'remove-opacity' : (result.showEstimate) }" class='loader estimate'></div>
+      <div ng-hide='result.showEstimate' class='loader estimate'></div>
 
-          <P class='distance'>Distance: {{ result.distance }} miles</P>
-          <P class='duration'>Duration: {{ result.duration }} minutes</P>
-          <P class='cost'>Estimated Cost: {{ result.estimate }}</P>
+          <P ng-show='result.showEstimate' class='distance'>Distance: {{ result.distance }} miles</P>
+          <P ng-show='result.showEstimate' class='duration'>Duration: {{ result.duration }} minutes</P>
+          <P ng-show='result.showEstimate' class='cost'>Estimated Cost: {{ result.estimate }}</P>
       </div>
 
     </div>

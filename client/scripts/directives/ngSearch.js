@@ -10,7 +10,8 @@ angular.module('YouAreHere')
         onSearch: '=',
         formattedAddress: '=',
         addressLineOne: '=',
-        addressLineTwo: '='
+        addressLineTwo: '=',
+        isResults: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown', function($event) {
@@ -43,6 +44,11 @@ angular.module('YouAreHere')
               $scope.city = localStorageService.get('city');
             }
           }
+
+
+          $scope.isResults = function() {
+            return $state.current.name === 'results';
+          };
 
           $scope.onSearch = function(isLogin) {
             if (!$scope.isAuthorized) {

@@ -38,25 +38,13 @@ ul {
 }
 
 .logout-copy {
-  font-size: 18px;
+  font-size: 21px;
   cursor: pointer;
-  top: 4px;
+  top: 5px;
   position: relative;
-}
-
-.icon-logout {
-  position: relative;
-  right: 10px;
-  cursor: pointer;
-}
-
-.icon-log-out:before {
-  cursor: pointer;
-  color: #1FBAD6;
-  content: "p";
-  margin-left: 10px;
-  top: 2px;
-  position: relative;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
 }
 
 .instructions {
@@ -74,9 +62,48 @@ ul {
   color: white;
 }
 
-
 .submit-btn.login {
-  top: 60px;
+  margin-top: 10px;
+}
+
+.description-container {
+  max-width: 500px;
+  height: auto;
+  position: relative;
+  margin: auto;
+}
+
+.description-container > p {
+  color: white;
+  line-height: 1.7;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+p.small {
+  color: white;
+  line-height: 1.7;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  padding-top: 10px;
+}
+
+p.second {
+  font-size: 14px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.blue {
+  color: #1FBAD6;
+}
+
+.description-container > p.first {
+  color: #1FBAD6;
 }
 
 /*
@@ -99,9 +126,8 @@ ul {
   height: 100%;
 }
 
-
 .container-inner {
-  width: 280px;
+  width: 500px;
   height: 70px;
   position: absolute;
   left: 0;
@@ -110,10 +136,10 @@ ul {
   text-align: center;
   top: 0;
   bottom: 60px;
-  -moz-transition: all .3s ease;
-  -ms-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .container-inner.landing {
@@ -126,10 +152,10 @@ ul {
   top: 0;
   margin: auto;
   text-align: center;
-  -moz-transition: all .3s ease;
-  -ms-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .container-inner.search {
@@ -142,10 +168,6 @@ ul {
 **/
 
 .icon-location {
-  -moz-transition: all .1s ease-out;
-  -ms-transition: all .1s ease-out;
-  -o-transition: all .1s ease-out;
-  transition: all .1s ease-out;
   color: white;
   font-size: 24px;
   width: auto;
@@ -153,11 +175,159 @@ ul {
   margin: auto;
   margin-bottom: 10px;
   cursor: pointer;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .icon-location:hover {
   color: #1FBAD6;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
+
+.icon-location.inverted {
+  color: #80E697;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
+}
+
+.icon-location.inverted:hover {
+  color: white;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
+}
+
+.formatted-address {
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+
+/*
+  * Location and Category Inputs
+**/
+
+.location,
+.category {
+  position: relative;
+  margin: auto;
+  background: transparent;
+  height: 10px;
+  color: #fff;
+  font-size: 14px;
+  padding: 15px;
+  border: transparent;
+  border-bottom: 1px solid white;
+  width: 250px;
+  margin-bottom: 30px;
+  display: block;
+  padding-top: 45px;
+  text-align: center;
+}
+
+.location {
+  margin-bottom: 30px;
+}
+
+.submit-btn {
+  position: relative;
+  text-align: center;
+  margin: auto;
+  width: 265px;
+  height: 50px;
+  background-color: #1FBAD6;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  -moz-box-shadow: inset 0 0 15px #000000;
+  -webkit-box-shadow: inset 0 0 15px #000000;
+  box-shadow: inset 0 0 15px #000000;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
+}
+
+.submit-btn > p {
+  position: relative;
+  top: 12px;
+  font-family: 'geomanist_regularregular';
+  letter-spacing: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/*
+  * Logo
+**/
+
+.logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-family: 'geomanist_regularregular';
+  color: #1FBAD6;
+}
+
+.logo.landing {
+  top: 30px;
+  margin: auto;
+  font-family: 'geomanist_regularregular';
+  font-size: 32px;
+  color: #1FBAD6;
+}
+
+.logo.login {
+  margin: auto;
+  font-family: 'geomanist_regularregular';
+  font-size: 32px;
+  color: #1FBAD6;
+  bottom: 50px;
+}
+
+.logo.nav {
+  position: relative;
+  left: 20px;
+  top: 12px;
+  font-size: 28px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+
+.icon-logout {
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+}
+
+.icon-log-out:before {
+  cursor: pointer;
+  color: #1FBAD6;
+  content: "p";
+  margin-left: 10px;
+  top: 2px;
+  position: relative;
+}
+
 
 .loader-big {
   width: 60px;
@@ -236,113 +406,6 @@ ul {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
-
-
-/*
-  * Logo
-**/
-
-.logo {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-family: 'geomanist_regularregular';
-  font-size: 24px;
-  color: #1FBAD6;
-}
-
-.formatted-address {
-  position: relative;
-  top: 38px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  color: white;
-}
-
-
-/*
-  * Location and Category Inputs
-**/
-
-.location,
-.category {
-  position: relative;
-  margin: auto;
-  background: transparent;
-  height: 10px;
-  color: #fff;
-  font-size: 14px;
-  padding: 15px;
-  border: transparent;
-  border-bottom: 1px solid white;
-  width: 250px;
-  margin-bottom: 30px;
-  display: block;
-  padding-top: 45px;
-  text-align: center;
-}
-
-.location {
-  margin-bottom: 30px;
-}
-
-.submit-btn {
-  position: relative;
-  text-align: center;
-  margin: auto;
-  width: 265px;
-  height: 50px;
-  background-color: #1FBAD6;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  -moz-transition: all .2s;
-  -ms-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
-}
-
-.submit-btn:hover {
-  -moz-box-shadow: inset 0 0 15px #000000;
-  -webkit-box-shadow: inset 0 0 15px #000000;
-  box-shadow: inset 0 0 15px #000000;
-  -moz-transition: all .2s;
-  -ms-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
-}
-
-.submit-btn > p {
-  position: relative;
-  top: 12px;
-  font-family: 'geomanist_regularregular';
-  letter-spacing: 4px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.logo.landing {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 30px;
-  margin: auto;
-  font-family: 'geomanist_regularregular';
-  font-size: 24px;
-  color: #1FBAD6;
-}
-
-.logo.login {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-family: 'geomanist_regularregular';
-  font-size: 24px;
-  color: #1FBAD6;
-  bottom: 50px;
 }
 
 /*
@@ -473,6 +536,15 @@ ul {
   border-bottom: 1px solid white;
   margin: auto;
   margin-bottom: 10px;
+}
+
+.layout-line.description {
+  width: 300px;
+  opacity: .9;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
 }
 
 .layout-rating-img {
@@ -708,10 +780,6 @@ ul {
   margin: auto;
 }
 
-.loader.estimate.remove-opacity {
-  opacity: 0;
-}
-
 .estimate-container {
   position: absolute;
   margin: auto;
@@ -738,6 +806,7 @@ ul {
   bottom: 0;
 }
 
+.loader.estimate.remove-opacity,
 .loader-container.remove-opacity {
   opacity: 0;
 }
@@ -777,12 +846,6 @@ ul {
   top: 0;
 }
 
-.logo.nav {
-  position: relative;
-  left: 20px;
-  top: 12px;
-  font-size: 21px;
-}
 
 .navbar-right {
   position: absolute;
@@ -812,23 +875,147 @@ ul {
   cursor: pointer;
 }
 
-  /* Iphone 6 */
+
 
   @media (min-width: 321px) and (max-width: 667px) {
-    .welcome {
-      display: none;
+    .container-inner {
+      width: 280px;
+    }
+    .logo.nav {
+      font-size: 21px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.landing {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.login {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logout-copy {
+      font-size: 18px;
+      top: 4px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .layout-line.description {
+      width: 220px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .description-container > p {
+      font-size: 15px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    p.second {
+      font-size: 13px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
     }
   }
-
-  /* Iphone 5, 5s */
+  
   @media (min-width: 320px) and (max-width: 568px) {
-    .welcome {
-      display: none;
+    .container-inner {
+      width: 280px;
+    }
+    .logo.nav {
+      font-size: 21px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.landing {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.login {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logout-copy {
+      font-size: 18px;
+      top: 4px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .layout-line.description {
+      width: 220px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .description-container > p {
+      font-size: 15px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    p.second {
+      font-size: 13px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
     }
   }
 
 @media (min-width: 668px) and (max-width: 1024px) {
-}
-
-@media (min-width: 1025px) {
+  .container-inner {
+    width: 280px;
+  }
+  .logo.nav {
+    font-size: 21px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+  }
+  .logo.landing {
+    font-size: 28px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+  }
+  .logo.login {
+    font-size: 28px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+  }
+  .logout-copy {
+    font-size: 18px;
+    top: 4px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+  }
 }

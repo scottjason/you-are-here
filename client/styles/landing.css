@@ -18,9 +18,8 @@
   height: 100%;
 }
 
-
 .container-inner {
-  width: 280px;
+  width: 500px;
   height: 70px;
   position: absolute;
   left: 0;
@@ -29,10 +28,10 @@
   text-align: center;
   top: 0;
   bottom: 60px;
-  -moz-transition: all .3s ease;
-  -ms-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .container-inner.landing {
@@ -45,10 +44,10 @@
   top: 0;
   margin: auto;
   text-align: center;
-  -moz-transition: all .3s ease;
-  -ms-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .container-inner.search {
@@ -61,10 +60,6 @@
 **/
 
 .icon-location {
-  -moz-transition: all .1s ease-out;
-  -ms-transition: all .1s ease-out;
-  -o-transition: all .1s ease-out;
-  transition: all .1s ease-out;
   color: white;
   font-size: 24px;
   width: auto;
@@ -72,109 +67,38 @@
   margin: auto;
   margin-bottom: 10px;
   cursor: pointer;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .icon-location:hover {
   color: #1FBAD6;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
-.loader-big {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  position: relative;
-  background-color: black;
-  -webkit-animation: loadLocation .9s infinite linear;
-  animation: loadLocation .9s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  margin: auto;
-  top: 200px;
+.icon-location.inverted {
+  color: #80E697;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
-.loader {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  position: relative;
-  background: black;
-  -webkit-animation: loadLocation .9s infinite linear;
-  animation: loadLocation .9s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  margin: auto;
-  margin-bottom: 10px;
-}
-
-.loader:before,
-.loader-big:before {
-  width: 50%;
-  height: 50%;
-  background: #1FBAD6;
-  border-radius: 100% 0 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-}
-
-.loader:after,
-.loader-big:after {
-  background: rgba(225, 225, 225, .3);
-  width: 75%;
-  height: 75%;
-  border-radius: 50%;
-  content: '';
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-@-webkit-keyframes loadLocation {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loadLocation {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-
-/*
-  * Logo
-**/
-
-.logo {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-family: 'geomanist_regularregular';
-  font-size: 24px;
-  color: #1FBAD6;
+.icon-location.inverted:hover {
+  color: white;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .formatted-address {
   position: relative;
-  top: 38px;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   color: white;
@@ -217,20 +141,20 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  -moz-transition: all .2s;
-  -ms-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .submit-btn:hover {
   -moz-box-shadow: inset 0 0 15px #000000;
   -webkit-box-shadow: inset 0 0 15px #000000;
   box-shadow: inset 0 0 15px #000000;
-  -moz-transition: all .2s;
-  -ms-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: .3s;
+  transition: 0.3s;
 }
 
 .submit-btn > p {

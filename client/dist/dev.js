@@ -60,7 +60,7 @@ angular.module('YouAreHere')
     var directive = {
       restrict: 'A',
       scope: {
-        onLogout: '=',
+        onLogout: '='
       },
       link: function(scope, element, attrs) {},
       templateUrl: 'views/navbar.html',
@@ -390,6 +390,7 @@ angular.module('YouAreHere')
               localStorageService.clearAll();
               $state.go('landing');
             } else {
+              angular.element(document.getElementById('search'))[0].focus();
               $scope.formattedAddress = localStorageService.get('formattedAddress');
               var lineOne = angular.copy($scope.formattedAddress).split(',')[0];
               var lineTwo = angular.copy($scope.formattedAddress).split(',');

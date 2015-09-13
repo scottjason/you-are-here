@@ -33,12 +33,6 @@
   top: 0;
 }
 
-.logo.nav {
-  position: relative;
-  left: 20px;
-  top: 12px;
-  font-size: 21px;
-}
 
 .navbar-right {
   position: absolute;
@@ -67,3 +61,5 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+

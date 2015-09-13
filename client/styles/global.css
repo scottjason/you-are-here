@@ -38,25 +38,13 @@ ul {
 }
 
 .logout-copy {
-  font-size: 18px;
+  font-size: 21px;
   cursor: pointer;
-  top: 4px;
+  top: 5px;
   position: relative;
-}
-
-.icon-logout {
-  position: relative;
-  right: 10px;
-  cursor: pointer;
-}
-
-.icon-log-out:before {
-  cursor: pointer;
-  color: #1FBAD6;
-  content: "p";
-  margin-left: 10px;
-  top: 2px;
-  position: relative;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
 }
 
 .instructions {
@@ -74,7 +62,46 @@ ul {
   color: white;
 }
 
-
 .submit-btn.login {
-  top: 60px;
+  margin-top: 10px;
+}
+
+.description-container {
+  max-width: 500px;
+  height: auto;
+  position: relative;
+  margin: auto;
+}
+
+.description-container > p {
+  color: white;
+  line-height: 1.7;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+p.small {
+  color: white;
+  line-height: 1.7;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  padding-top: 10px;
+}
+
+p.second {
+  font-size: 14px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.blue {
+  color: #1FBAD6;
+}
+
+.description-container > p.first {
+  color: #1FBAD6;
 }

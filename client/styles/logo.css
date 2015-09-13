@@ -1,21 +1,53 @@
-.logo.landing {
+/*
+  * Logo
+**/
+
+.logo {
   position: absolute;
   left: 0;
   right: 0;
+  margin: auto;
+  font-family: 'geomanist_regularregular';
+  color: #1FBAD6;
+}
+
+.logo.landing {
   top: 30px;
   margin: auto;
   font-family: 'geomanist_regularregular';
-  font-size: 24px;
+  font-size: 32px;
   color: #1FBAD6;
 }
 
 .logo.login {
-  position: absolute;
-  left: 0;
-  right: 0;
   margin: auto;
   font-family: 'geomanist_regularregular';
-  font-size: 24px;
+  font-size: 32px;
   color: #1FBAD6;
   bottom: 50px;
+}
+
+.logo.nav {
+  position: relative;
+  left: 20px;
+  top: 12px;
+  font-size: 28px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+
+.icon-logout {
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+}
+
+.icon-log-out:before {
+  cursor: pointer;
+  color: #1FBAD6;
+  content: "p";
+  margin-left: 10px;
+  top: 2px;
+  position: relative;
 }

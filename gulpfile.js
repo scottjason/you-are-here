@@ -19,7 +19,7 @@ gulp.task('concatBowerScripts', function() {
 });
 
 gulp.task('concatDevStyles', function() {
-  return gulp.src(['client/styles/global.css', 'client/styles/landing.css', 'client/styles/logo.css', 'client/styles/layout.css', 'client/styles/navbar.css', 'client/styles/mobile/*.css', 'client/styles/tablet/*.css', 'client/styles/desktop/*.css'])
+  return gulp.src(['client/styles/global.css', 'client/styles/landing.css', 'client/styles/logo.css', 'client/styles/loader.css', 'client/styles/layout.css', 'client/styles/navbar.css', 'client/styles/mobile/*.css', 'client/styles/tablet/*.css'])
     .pipe(concat('dev.css'))
     .pipe(gulp.dest('./client/dist/'));
 })

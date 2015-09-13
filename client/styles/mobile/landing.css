@@ -1,14 +1,111 @@
-  /* Iphone 6 */
-
   @media (min-width: 321px) and (max-width: 667px) {
-    .welcome {
-      display: none;
+    .container-inner {
+      width: 280px;
+    }
+    .logo.nav {
+      font-size: 21px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.landing {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.login {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logout-copy {
+      font-size: 18px;
+      top: 4px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .layout-line.description {
+      width: 220px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .description-container > p {
+      font-size: 15px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    p.second {
+      font-size: 13px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
     }
   }
-
-  /* Iphone 5, 5s */
+  
   @media (min-width: 320px) and (max-width: 568px) {
-    .welcome {
-      display: none;
+    .container-inner {
+      width: 280px;
+    }
+    .logo.nav {
+      font-size: 21px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.landing {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logo.login {
+      font-size: 24px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .logout-copy {
+      font-size: 18px;
+      top: 4px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .layout-line.description {
+      width: 220px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .description-container > p {
+      font-size: 15px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    p.second {
+      font-size: 13px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
     }
   }

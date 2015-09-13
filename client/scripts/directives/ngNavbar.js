@@ -6,7 +6,7 @@ angular.module('YouAreHere')
     var directive = {
       restrict: 'A',
       scope: {
-        onLogout: '=',
+        onLogout: '='
       },
       link: function(scope, element, attrs) {},
       templateUrl: 'views/navbar.html',

@@ -23,7 +23,7 @@ angular.module('YouAreHere')
           };
 
           $timeout(function() {
-            var isiOS = localStorageService.get('isiOS', isiOS);
+            $scope.isiOS = localStorageService.get('isiOS', isiOS);
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
               results.forEach(function(obj) {
@@ -41,7 +41,6 @@ angular.module('YouAreHere')
                 }
                 obj.lat = obj.location.coordinate.latitude;
                 obj.lon = obj.location.coordinate.longitude;
-                obj.isiOS = isiOS;
               });
               $scope.results = results;
               $scope.clientId = localStorageService.get('clientId');

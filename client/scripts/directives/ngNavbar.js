@@ -23,10 +23,12 @@ angular.module('YouAreHere')
             RequestApi.onLogout().then(function(response) {
               $timeout(function() {
                 localStorageService.clearAll();
+                $window.location.href = $window.location.host;
                 $window.location.reload();
               })
             }, function(err) {
               localStorageService.clearAll();
+              $window.location.href = $window.location.host;
               $window.location.reload();
             });
           }

@@ -52,6 +52,8 @@ module.exports = function(app, passport) {
                 var user = JSON.parse(body);
                 var opts = {};
                 opts.productIds = [];
+                req.session.cookie.expires = new Date().getTime() + 1.74e+6;
+                req.session.cookie.maxAge = 1.74e+6;
                 opts.clientId = req.session.clientId = config.uber.clientId;
                 opts.accessToken = req.session.accessToken = access_token;
                 opts.refreshToken = req.session.refreshToken = refresh_token;
@@ -63,6 +65,7 @@ module.exports = function(app, passport) {
                 indexCtrl.getProductId(req.session, function(err, results) {
                   if (err) return next(err);
                   opts.productId = req.session.productId = results.products[0].product_id;
+                  console.log('req.session', req.session);
                   res.render('index', opts);
                 });
               });

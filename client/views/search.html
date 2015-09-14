@@ -7,18 +7,18 @@
          formatted-address='formattedAddress'
          address-line-one='addressLineOne'
          address-line-two='addressLineTwo'
-         show-loader='showLoader'>
+         show-search-loader='showSearchLoader'>
       <div class='description-container'>
         <p>Search Your Local Listings</p>
         <div class="layout-line description"></div>
         <p class="second">get yelp reviews with uber ride-time & price estimates</p>
       </div>
       <input id='search' class='category' type='text' ng-model='searchTerm' placeholder="tacos, dinner, bars, Max's">
-      <div ng-show='showLoader' class="loader search"></div>
-      <div ng-hide='showLoader' class='submit-btn' ng-click='onSearch();'>
+      <div ng-show='showSearchLoader' class="loader search"></div>
+      <div ng-hide='showSearchLoader' class='submit-btn' ng-click='onSearch();'>
         <p>SEARCH</p>
       </div>
-      <p ng-hide='showLoader' class="small">*request an uber directly from your location to any listing, <span class='blue'> iOS only</span></p>
+      <p ng-hide='showSearchLoader' class="small">*request an uber directly from your location to any listing, <span class='blue'> iOS only</span></p>
     </div ng-search>
   </div>
 </div>

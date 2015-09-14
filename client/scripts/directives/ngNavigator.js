@@ -19,11 +19,14 @@ angular.module('YouAreHere')
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
 
+          console.log('ngNavigator')
+
           $scope.isSupported = localStorageService.isSupported;
 
           var requestOpts = {};
 
           if (isAuthorized && !localStorageService.get('isRedirect')) {
+            console.log('isAuthorized');
             localStorageService.set('isAuthorized', true);
             localStorageService.set('firstName', firstName);
             localStorageService.set('lastName', lastName);

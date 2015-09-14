@@ -12,9 +12,7 @@ angular.module('YouAreHere')
 
     var isProduction = ((window.location.origin.indexOf('localhost:3000') === -1));
     if (isProduction) {
-      window.console.log = function() {
-        return false;
-      };
+
     }
 
     $stateProvider
@@ -130,11 +128,14 @@ angular.module('YouAreHere')
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
 
+          console.log('ngNavigator')
+
           $scope.isSupported = localStorageService.isSupported;
 
           var requestOpts = {};
 
           if (isAuthorized && !localStorageService.get('isRedirect')) {
+            console.log('isAuthorized');
             localStorageService.set('isAuthorized', true);
             localStorageService.set('firstName', firstName);
             localStorageService.set('lastName', lastName);

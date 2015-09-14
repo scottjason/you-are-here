@@ -8,7 +8,12 @@
          on-login='onLogin'
          show-results='showResults'
          line-one='lineOne'
-         line-two='lineTwo'>
+         line-two='lineTwo'
+         is-supported='isSupported'>
+
+      <!-- For Testing -->
+      <!-- <p style="color:yellow; font-size:18px">{{isSupported}}</p> -->
+
       <div ng-hide='showResults'>
         <p class='logo landing'>you.are.here</p>
         <div ng-if='!showLoader' ng-click='getLocation();' class="icon-location"></div>

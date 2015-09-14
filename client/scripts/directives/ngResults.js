@@ -61,8 +61,6 @@ angular.module('YouAreHere')
               $scope.clientId = localStorageService.get('clientId');
               $scope.productId = localStorageService.get('productId');
               $scope.city = localStorageService.get('city');
-              $scope.formattedAddress = localStorageService.get('formattedAddress');
-              $scope.encodedAddress = localStorageService.get('encodedAddress');
               $scope.getEstimate($scope.results);
             } else {
               $state.go('search');
@@ -118,12 +116,13 @@ angular.module('YouAreHere')
                 'location': latlng
               }, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
-                  if (results[0]) {
+                  if (results[1]) {
                     $timeout(function() {
                       $scope.showLoader = false;
-                      $scope.address = results[0].formatted_address;
-                      $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
-                      localStorageService.set('encodedAddress', $scope.encodedAddress);
+                      $scope.address = results[1].formatted_address;
+                      $scope.encodedPickUp = localStorageService.get('encodedPickUp');
+                      $scope.encodedDropOff = encodeURIComponent(angular.copy($scope.address));
+                      localStorageService.set('encodedDropOff', $scope.encodedDropOff);
                       cb();
                     });
                   } else {
@@ -137,7 +136,7 @@ angular.module('YouAreHere')
 
             function onSuccess() {
               var isiOS = localStorageService.get('isiOS', isiOS);
-              var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedAddress;
+              var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup[formatted_address]=' + $scope.encodedPickUp + '&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedDropOff;
               if (isiOS) {
                 window.location = deepLink;
               } else {

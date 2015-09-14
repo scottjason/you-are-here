@@ -12,11 +12,14 @@ angular.module('YouAreHere')
         onLogin: '=',
         showResults: '=',
         lineOne: '=',
-        lineTwo: '='
+        lineTwo: '=',
+        isSupported: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
+
+          $scope.isSupported = localStorageService.isSupported;
 
           var requestOpts = {};
 
@@ -38,7 +41,6 @@ angular.module('YouAreHere')
           $scope.getLocation = function() {
             $scope.showLoader = true;
             navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
-              enableHighAccuracy: true,
               maximumAge: 600000,
               timeout: 600000
             });
@@ -96,7 +98,8 @@ angular.module('YouAreHere')
                     localStorageService.set('state', $scope.state);
                     localStorageService.set('zipcode', $scope.zipcode);
                     localStorageService.set('address', $scope.address);
-                    localStorageService.set('encodedAddress', $scope.encodedAddress);
+                    $scope.encodedPickUp = encodeURIComponent(results[0].formatted_address);
+                    localStorageService.set('encodedPickUp', $scope.encodedPickUp);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
                     console.log(localStorageService.get('formattedAddress'));
                     console.log('in ngNavigator.js init');

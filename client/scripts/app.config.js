@@ -26,7 +26,6 @@ angular.module('YouAreHere')
       })
 
     localStorageServiceProvider
-      .setPrefix('YouAreHere')
       .setNotify(true, true);
 
     $urlRouterProvider.otherwise('/');

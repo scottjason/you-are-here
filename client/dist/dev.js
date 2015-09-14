@@ -33,7 +33,6 @@ angular.module('YouAreHere')
       })
 
     localStorageServiceProvider
-      .setPrefix('YouAreHere')
       .setNotify(true, true);
 
     $urlRouterProvider.otherwise('/');
@@ -112,11 +111,14 @@ angular.module('YouAreHere')
         onLogin: '=',
         showResults: '=',
         lineOne: '=',
-        lineTwo: '='
+        lineTwo: '=',
+        isSupported: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
         function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
+
+          $scope.isSupported = localStorageService.isSupported;
 
           var requestOpts = {};
 
@@ -138,7 +140,6 @@ angular.module('YouAreHere')
           $scope.getLocation = function() {
             $scope.showLoader = true;
             navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
-              enableHighAccuracy: true,
               maximumAge: 600000,
               timeout: 600000
             });
@@ -196,7 +197,8 @@ angular.module('YouAreHere')
                     localStorageService.set('state', $scope.state);
                     localStorageService.set('zipcode', $scope.zipcode);
                     localStorageService.set('address', $scope.address);
-                    localStorageService.set('encodedAddress', $scope.encodedAddress);
+                    $scope.encodedPickUp = encodeURIComponent(results[0].formatted_address);
+                    localStorageService.set('encodedPickUp', $scope.encodedPickUp);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
                     console.log(localStorageService.get('formattedAddress'));
                     console.log('in ngNavigator.js init');
@@ -279,8 +281,6 @@ angular.module('YouAreHere')
               $scope.clientId = localStorageService.get('clientId');
               $scope.productId = localStorageService.get('productId');
               $scope.city = localStorageService.get('city');
-              $scope.formattedAddress = localStorageService.get('formattedAddress');
-              $scope.encodedAddress = localStorageService.get('encodedAddress');
               $scope.getEstimate($scope.results);
             } else {
               $state.go('search');
@@ -336,12 +336,13 @@ angular.module('YouAreHere')
                 'location': latlng
               }, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
-                  if (results[0]) {
+                  if (results[1]) {
                     $timeout(function() {
                       $scope.showLoader = false;
-                      $scope.address = results[0].formatted_address;
-                      $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
-                      localStorageService.set('encodedAddress', $scope.encodedAddress);
+                      $scope.address = results[1].formatted_address;
+                      $scope.encodedPickUp = localStorageService.get('encodedPickUp');
+                      $scope.encodedDropOff = encodeURIComponent(angular.copy($scope.address));
+                      localStorageService.set('encodedDropOff', $scope.encodedDropOff);
                       cb();
                     });
                   } else {
@@ -355,7 +356,7 @@ angular.module('YouAreHere')
 
             function onSuccess() {
               var isiOS = localStorageService.get('isiOS', isiOS);
-              var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup=my_location&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedAddress;
+              var deepLink = 'uber://?action=setPickup&product_id=' + $scope.productId + '&pickup[formatted_address]=' + $scope.encodedPickUp + '&client_id=' + $scope.clientId + '&dropoff[latitude]=' + endLat + '&dropoff[longitude]=' + endLon + '&dropoff[formatted_address]=' + $scope.encodedDropOff;
               if (isiOS) {
                 window.location = deepLink;
               } else {

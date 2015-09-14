@@ -263,6 +263,9 @@ angular.module('YouAreHere')
                 }
                 obj.lat = obj.location.coordinate.latitude;
                 obj.lon = obj.location.coordinate.longitude;
+                if (!obj.image_url || obj.image_url === '') {
+                  obj.image_url = "http://bigpurplebutton.com/sites/default/files/default_images/397_resized_700_700_90_516407cbbe17d_placeholder.jpg";
+                }
               });
               $scope.results = results;
               $scope.clientId = localStorageService.get('clientId');

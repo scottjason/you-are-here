@@ -574,6 +574,7 @@ p.second {
   border: 1px solid rgba(225, 225, 225, .7);
   margin: auto;
   margin-bottom: 7px;
+  width: 100px;
   height: 100px;
 }
 
@@ -594,12 +595,7 @@ p.second {
 }
 
 
-
-
-
-
 .img-container {
-  background-color: red;
   width: 100px;
   height: 100px;
   margin: auto;

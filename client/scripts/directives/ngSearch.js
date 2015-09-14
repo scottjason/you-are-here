@@ -64,7 +64,7 @@ angular.module('YouAreHere')
                 localStorageService.set('results', response.data);
                 $state.go('results');
                 $timeout(function() {
-                  $scope.showSearchLoader = true;
+                  $scope.showSearchLoader = false;
                 }, 200);
               }, function(err) {
                 console.log(err);

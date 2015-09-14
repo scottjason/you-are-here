@@ -77,6 +77,9 @@ angular.module('YouAreHere')
                     $scope.address = results[0].formatted_address;
                     $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
                     $scope.formattedAddress = results[1].formatted_address;
+                    if (!$scope.formattedAddress) {
+                      $scope.formattedAddress = results[0].formatted_address;
+                    }
                     var arr = angular.copy($scope.formattedAddress.split(','));
                     $scope.lineOne = arr[0];
                     arr.shift();

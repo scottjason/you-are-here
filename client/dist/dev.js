@@ -169,6 +169,9 @@ angular.module('YouAreHere')
                     $scope.address = results[0].formatted_address;
                     $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
                     $scope.formattedAddress = results[1].formatted_address;
+                    if (!$scope.formattedAddress) {
+                      $scope.formattedAddress = results[0].formatted_address;
+                    }
                     var arr = angular.copy($scope.formattedAddress.split(','));
                     $scope.lineOne = arr[0];
                     arr.shift();
@@ -187,6 +190,8 @@ angular.module('YouAreHere')
                     localStorageService.set('address', $scope.address);
                     localStorageService.set('encodedAddress', $scope.encodedAddress);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
+                    console.log(localStorageService.get('formattedAddress'));
+                    console.log('in ngNavigator.js init');
                   });
                 } else {
                   window.alert('No results found');
@@ -392,6 +397,8 @@ angular.module('YouAreHere')
               $timeout(function() {
                 angular.element(document.getElementById('search'))[0].focus();
               }, 100);
+              console.log('in ngSearch.js init');
+              console.log(localStorageService.get('formattedAddress'));
               $scope.formattedAddress = localStorageService.get('formattedAddress');
               var lineOne = angular.copy($scope.formattedAddress).split(',')[0];
               var lineTwo = angular.copy($scope.formattedAddress).split(',');
@@ -421,7 +428,7 @@ angular.module('YouAreHere')
                 localStorageService.set('results', response.data);
                 $state.go('results');
                 $timeout(function() {
-                  $scope.showSearchLoader = true;
+                  $scope.showSearchLoader = false;
                 }, 200);
               }, function(err) {
                 console.log(err);

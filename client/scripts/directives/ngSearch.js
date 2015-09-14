@@ -35,6 +35,8 @@ angular.module('YouAreHere')
               $timeout(function() {
                 angular.element(document.getElementById('search'))[0].focus();
               }, 100);
+              console.log('in ngSearch.js init');
+              console.log(localStorageService.get('formattedAddress'));
               $scope.formattedAddress = localStorageService.get('formattedAddress');
               var lineOne = angular.copy($scope.formattedAddress).split(',')[0];
               var lineTwo = angular.copy($scope.formattedAddress).split(',');

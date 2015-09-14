@@ -98,6 +98,8 @@ angular.module('YouAreHere')
                     localStorageService.set('address', $scope.address);
                     localStorageService.set('encodedAddress', $scope.encodedAddress);
                     localStorageService.set('formattedAddress', $scope.formattedAddress);
+                    console.log(localStorageService.get('formattedAddress'));
+                    console.log('in ngNavigator.js init');
                   });
                 } else {
                   window.alert('No results found');

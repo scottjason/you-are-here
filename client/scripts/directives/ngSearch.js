@@ -1,7 +1,6 @@
 angular.module('YouAreHere')
   .directive('ngSearch', function() {
 
-    'use strict';
 
     var directive = {
       restrict: 'A',

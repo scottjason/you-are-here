@@ -306,7 +306,7 @@ p.second {
   font-size: 28px;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
-  -0-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -770,18 +770,9 @@ p.second {
   @media (min-width: 321px) and (max-width: 667px) {
     .container-inner {
       width: 280px;
-      height: 70px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: auto;
-      text-align: center;
-      top: 0;
-      bottom: 60px;
+      transition: 0.3s;
       -webkit-transition: 0.3s;
       -moz-transition: 0.3s;
-      -o-transition: .3s;
-      transition: 0.3s;
     }
     .logo.nav {
       font-size: 21px;
@@ -834,22 +825,10 @@ p.second {
       -o-transition: 0.3s;
     }
   }
-  
+
   @media (min-width: 320px) and (max-width: 568px) {
     .container-inner {
       width: 280px;
-      height: 70px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: auto;
-      text-align: center;
-      top: 0;
-      bottom: 60px;
-      -webkit-transition: 0.3s;
-      -moz-transition: 0.3s;
-      -o-transition: .3s;
-      transition: 0.3s;
     }
     .logo.nav {
       font-size: 21px;
@@ -906,18 +885,9 @@ p.second {
 @media (min-width: 668px) and (max-width: 1024px) {
   .container-inner {
     width: 280px;
-    height: 70px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    text-align: center;
-    top: 0;
-    bottom: 60px;
+    transition: 0.3s;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
-    -o-transition: .3s;
-    transition: 0.3s;
   }
   .logo.nav {
     font-size: 21px;

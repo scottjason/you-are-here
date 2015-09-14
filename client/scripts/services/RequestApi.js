@@ -1,8 +1,6 @@
 angular.module('YouAreHere')
   .service('RequestApi', function($http) {
 
-    'use strict'
-
     function searchYelp(term, city) {
       var request = $http({
         method: 'GET',

@@ -1,7 +1,6 @@
 angular.module('YouAreHere')
   .directive('ngResults', function() {
 
-    'use strict';
 
     var directive = {
       scope: {

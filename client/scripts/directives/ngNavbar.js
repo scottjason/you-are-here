@@ -1,8 +1,6 @@
 angular.module('YouAreHere')
   .directive('ngNavbar', function() {
 
-    'use strict';
-
     var directive = {
       restrict: 'A',
       scope: {

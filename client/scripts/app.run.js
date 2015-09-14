@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('YouAreHere')
   .run(['$rootScope', '$state', '$location', 'localStorageService', function($rootScope, $state, $location, localStorageService) {
     var isiPad = navigator.userAgent.match(/iPad/i) != null;

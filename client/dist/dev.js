@@ -10,6 +10,14 @@ angular.module('YouAreHere', [
 angular.module('YouAreHere')
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {
 
+    var isProduction = ((window.location.origin.indexOf('localhost:3000') === -1));
+    if (isProduction) {
+      window.console.log = function() {
+        return false;
+      };
+    }
+
+
     $stateProvider
       .state('landing', {
         url: '/',

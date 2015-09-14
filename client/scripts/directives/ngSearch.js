@@ -12,7 +12,8 @@ angular.module('YouAreHere')
         addressLineOne: '=',
         addressLineTwo: '=',
         isResults: '=',
-        showSearchLoader: '='
+        showSearchLoader: '=',
+        city: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown keypress', function($event) {
@@ -60,13 +61,17 @@ angular.module('YouAreHere')
               return;
             }
             if ($scope.searchTerm) {
+              if ($scope.isSearching) return;
+              console.log('city', $scope.city)
               var requestOpts = {};
+              $scope.isSearching = true;
               $scope.showSearchLoader = true;
               RequestApi.searchYelp($scope.searchTerm, $scope.city).then(function(response) {
                 localStorageService.set('results', response.data);
                 $state.go('results');
                 $timeout(function() {
                   $scope.showSearchLoader = false;
+                  $scope.isSearching = false;
                 }, 200);
               }, function(err) {
                 console.log(err);

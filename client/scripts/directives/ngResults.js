@@ -35,6 +35,9 @@ angular.module('YouAreHere')
           $scope.init = function() {
             stopRequest = null;
             $rootScope.isSearchBtn = null;
+            if (!localStorageService.get('results')) {
+              return;
+            }
             $scope.isiOs = localStorageService.get('isiOS');
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {

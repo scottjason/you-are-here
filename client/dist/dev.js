@@ -135,7 +135,7 @@ angular.module('YouAreHere')
 
           console.log('### ngNavigator.js')
 
-          // localStorageService.clearAll();
+          localStorageService.clearAll();
 
           $scope.getLocation = function() {
             $scope.showLoader = true;
@@ -176,7 +176,7 @@ angular.module('YouAreHere')
                     $scope.showLoader = false;
                     $scope.showResults = true;
                     $scope.address = results[0].formatted_address;
-                    $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
+
                     $scope.formattedAddress = results[1].formatted_address;
                     if (!$scope.formattedAddress) {
                       $scope.formattedAddress = results[0].formatted_address;
@@ -188,7 +188,8 @@ angular.module('YouAreHere')
                     $scope.lineTwo = arr;
                     $scope.streetNumber = results[0].address_components.short_name;
                     $scope.streetName = results[1].address_components.short_name;
-                    $scope.city = angular.copy($scope.formattedAddress).split(',')[1];
+                    $scope.city = angular.copy(results[0].formatted_address).split(',')[1];
+                    console.log('city', $scope.city);
                     $scope.state = angular.copy($scope.formattedAddress).split(',')[2];
                     $scope.zipcode = angular.copy($scope.formattedAddress).split(',')[3];
                     localStorageService.set('streetNumber', $scope.streetNumber);
@@ -255,6 +256,9 @@ angular.module('YouAreHere')
           $scope.init = function() {
             stopRequest = null;
             $rootScope.isSearchBtn = null;
+            if (!localStorageService.get('results')) {
+              return;
+            }
             $scope.isiOs = localStorageService.get('isiOS');
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
@@ -386,7 +390,8 @@ angular.module('YouAreHere')
         addressLineOne: '=',
         addressLineTwo: '=',
         isResults: '=',
-        showSearchLoader: '='
+        showSearchLoader: '=',
+        city: '='
       },
       link: function(scope, element, attrs) {
         element.bind('keydown keypress', function($event) {
@@ -434,13 +439,17 @@ angular.module('YouAreHere')
               return;
             }
             if ($scope.searchTerm) {
+              if ($scope.isSearching) return;
+              console.log('city', $scope.city)
               var requestOpts = {};
+              $scope.isSearching = true;
               $scope.showSearchLoader = true;
               RequestApi.searchYelp($scope.searchTerm, $scope.city).then(function(response) {
                 localStorageService.set('results', response.data);
                 $state.go('results');
                 $timeout(function() {
                   $scope.showSearchLoader = false;
+                  $scope.isSearching = false;
                 }, 200);
               }, function(err) {
                 console.log(err);

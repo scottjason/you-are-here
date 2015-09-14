@@ -36,7 +36,7 @@ angular.module('YouAreHere')
 
           console.log('### ngNavigator.js')
 
-          // localStorageService.clearAll();
+          localStorageService.clearAll();
 
           $scope.getLocation = function() {
             $scope.showLoader = true;
@@ -77,7 +77,7 @@ angular.module('YouAreHere')
                     $scope.showLoader = false;
                     $scope.showResults = true;
                     $scope.address = results[0].formatted_address;
-                    $scope.encodedAddress = encodeURIComponent(angular.copy($scope.address));
+
                     $scope.formattedAddress = results[1].formatted_address;
                     if (!$scope.formattedAddress) {
                       $scope.formattedAddress = results[0].formatted_address;
@@ -89,7 +89,8 @@ angular.module('YouAreHere')
                     $scope.lineTwo = arr;
                     $scope.streetNumber = results[0].address_components.short_name;
                     $scope.streetName = results[1].address_components.short_name;
-                    $scope.city = angular.copy($scope.formattedAddress).split(',')[1];
+                    $scope.city = angular.copy(results[0].formatted_address).split(',')[1];
+                    console.log('city', $scope.city);
                     $scope.state = angular.copy($scope.formattedAddress).split(',')[2];
                     $scope.zipcode = angular.copy($scope.formattedAddress).split(',')[3];
                     localStorageService.set('streetNumber', $scope.streetNumber);

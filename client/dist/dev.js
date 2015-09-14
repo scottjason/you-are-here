@@ -368,10 +368,11 @@ angular.module('YouAreHere')
         formattedAddress: '=',
         addressLineOne: '=',
         addressLineTwo: '=',
-        isResults: '='
+        isResults: '=',
+        showLoader: '='
       },
       link: function(scope, element, attrs) {
-        element.bind('keydown', function($event) {
+        element.bind('keydown keypress', function($event) {
           var isEnterBtn = ($event.which === 13);
           if (isEnterBtn) {
             scope.$parent.onSearch();
@@ -383,9 +384,7 @@ angular.module('YouAreHere')
 
           console.log('### ngSearch.js');
 
-          init();
-
-          function init() {
+          $scope.init = function() {
             if (!isAuthorized) {
               localStorageService.clearAll();
               $state.go('landing');
@@ -417,9 +416,13 @@ angular.module('YouAreHere')
             }
             if ($scope.searchTerm) {
               var requestOpts = {};
+              $scope.showLoader = true;
               RequestApi.searchYelp($scope.searchTerm, $scope.city).then(function(response) {
                 localStorageService.set('results', response.data);
                 $state.go('results');
+                $timeout(function() {
+                  $scope.showLoader = true;
+                }, 200);
               }, function(err) {
                 console.log(err);
               });
@@ -427,6 +430,7 @@ angular.module('YouAreHere')
               console.log('bad submit', $scope);
             }
           };
+          $scope.init();
         }
       ],
     }

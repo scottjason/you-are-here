@@ -13,11 +13,6 @@ var yelp = require("yelp").createClient({
 });
 
 exports.render = function(req, res, next) {
-  if (!req.session) {
-    req.session.regenerate(function(err) {
-      console.log('New Session Generated', req.session);
-    });
-  }
   var opts = {};
   if (!req.session.isAuthorized) {
     opts.isAuthorized = false;

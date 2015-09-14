@@ -15,14 +15,7 @@ angular.module('YouAreHere')
       window.console.log = function() {
         return false;
       };
-      window.console.warn = function() {
-        return false;
-      };
-      window.console.info = function() {
-        return false;
-      };
     }
-
 
     $stateProvider
       .state('landing', {

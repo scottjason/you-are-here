@@ -13,6 +13,11 @@ var yelp = require("yelp").createClient({
 });
 
 exports.render = function(req, res, next) {
+  if (!req.session) {
+    req.session.regenerate(function(err) {
+      console.log('New Session Generated', req.session);
+    });
+  }
   var opts = {};
   if (!req.session.isAuthorized) {
     opts.isAuthorized = false;
@@ -54,13 +59,10 @@ exports.isAuthorized = function(req, res, next) {
 };
 
 exports.logout = function(req, res, next) {
+  req.session.isAuthorized = null;
   req.session.destroy(function(err) {
-    if (!err) {
-      console.log('Session Destroyed', req.session);
-    } else {
-      console.log('Error Destroying Session', err.message);
-    }
-    res.status(200).end()
+    if (err) console.log('error destroying session', err);
+    res.redirect('/');
   });
 };
 

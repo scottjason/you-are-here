@@ -23,21 +23,42 @@ angular.module('YouAreHere')
           }
         });
       },
-      controller: ['$scope', '$rootScope', '$timeout', '$state', 'RequestApi', 'localStorageService',
-        function($scope, $rootScope, $timeout, $state, RequestApi, localStorageService) {
+      controller: ['$scope', '$rootScope', '$timeout', '$window', '$state', 'RequestApi', 'localStorageService',
+        function($scope, $rootScope, $timeout, $window, $state, RequestApi, localStorageService) {
 
           console.log('### ngSearch.js');
 
           $scope.init = function() {
-            if (!isAuthorized) {
-              localStorageService.clearAll();
-              $state.go('landing');
+            if (!isAuthorized || !localStorageService.get('isAuthorized') || localStorageService.get('isRedirect')) {
+              var isRequesting = $rootScope.isRequesting;
+              if (isRequesting) {
+                isReady();
+              } else {
+                onReady();
+              }
+
+              function isReady() {
+                var isRequesting = $rootScope.isRequesting;
+                if (isRequesting) {
+                  $timeout(isReady, 200);
+                } else {
+                  $rootScope.isLogout = null;
+                  onReady();
+                }
+              }
+
+              function onReady() {
+                localStorageService.clearAll();
+                isAuthorized = null;
+                localStorageService.set('isRedirect', true);
+                RequestApi.onLogout().then(function() {
+                  window.location.href = window.location.protocol + '//' + window.location.host;
+                })
+              }
             } else {
               $timeout(function() {
                 angular.element(document.getElementById('search'))[0].focus();
               }, 100);
-              console.log('in ngSearch.js init');
-              console.log(localStorageService.get('formattedAddress'));
               $scope.formattedAddress = localStorageService.get('formattedAddress');
               var lineOne = angular.copy($scope.formattedAddress).split(',')[0];
               var lineTwo = angular.copy($scope.formattedAddress).split(',');
@@ -62,7 +83,6 @@ angular.module('YouAreHere')
             }
             if ($scope.searchTerm) {
               if ($scope.isSearching) return;
-              console.log('city', $scope.city)
               var requestOpts = {};
               $scope.isSearching = true;
               $scope.showSearchLoader = true;

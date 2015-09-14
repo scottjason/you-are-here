@@ -14,30 +14,36 @@ angular.module('YouAreHere')
         newSearch: '='
       },
       link: function(scope, element, attrs) {},
-      controller: ['$scope', '$rootScope', '$state', '$timeout', 'RequestApi', 'localStorageService',
-        function($scope, $rootScope, $state, $timeout, RequestApi, localStorageService) {
+      controller: ['$scope', '$rootScope', '$state', '$window', '$timeout', 'RequestApi', 'localStorageService',
+        function($scope, $rootScope, $state, $window, $timeout, RequestApi, localStorageService) {
 
           console.log('### ngResults.js');
-
-          var stopRequest = null;
 
           $scope.getState = function(key) {
             return localStorageService.get(key);
           };
 
           $scope.newSearch = function() {
-            console.log('stop reqeust')
-            $rootScope.isSearchBtn = true;
-            stopRequest = true;
-            $state.go('search');
-          }
+            var isRequesting = $rootScope.isRequesting;
+            if (isRequesting) {
+              $rootScope.isSearchBtn = true;
+              isReady();
+            } else {
+              $state.go('search');
+            }
+
+            function isReady() {
+              var isRequesting = $rootScope.isRequesting;
+              if (isRequesting) {
+                $timeout(isReady, 200);
+              } else {
+                $state.go('search');
+              }
+            }
+          };
 
           $scope.init = function() {
-            stopRequest = null;
             $rootScope.isSearchBtn = null;
-            if (!localStorageService.get('results')) {
-              return;
-            }
             $scope.isiOs = localStorageService.get('isiOS');
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
             if (results && results.length) {
@@ -72,12 +78,13 @@ angular.module('YouAreHere')
 
           $scope.getEstimate = function(arr) {
 
+            $rootScope.isRequesting = true;
+
             $scope.arr = [];
-            async.eachLimit(arr, 2, makeRequest, onComplete);
+            async.eachLimit(arr, 6, makeRequest, onComplete);
 
             function makeRequest(obj, cb) {
-              console.log('in makeRequest', stopRequest);
-              if (stopRequest) return cb(true);
+              if ($rootScope.isLogout || $rootScope.isSearchBtn) return cb(true);
               var opts = {};
               opts.start = {};
               opts.end = {};
@@ -87,12 +94,13 @@ angular.module('YouAreHere')
               opts.end.lon = obj.lon;
               RequestApi.getEstimate(opts).then(function(response) {
                 $timeout(function() {
-                  console.log('got response', response);
+                  console.log('response', response);
                   obj.showEstimate = true;
                   obj.distance = response.data.prices[1].distance;
                   obj.duration = Math.floor(response.data.prices[1].duration / 60);
                   obj.estimate = response.data.prices[1].estimate;
                   $scope.arr.push(obj);
+                  if ($rootScope.isLogout || $rootScope.isSearchBtn) return cb(true);
                   cb(null);
                 });
               }, function(err) {
@@ -101,7 +109,7 @@ angular.module('YouAreHere')
             }
 
             function onComplete(err) {
-              console.log('onComplete called');
+              $rootScope.isRequesting = null;
               if (err) return;
               localStorageService.set('results', $scope.arr);
             }

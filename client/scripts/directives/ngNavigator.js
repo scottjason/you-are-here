@@ -23,7 +23,7 @@ angular.module('YouAreHere')
 
           var requestOpts = {};
 
-          if (isAuthorized || localStorageService.get('isAuthorized')) {
+          if (isAuthorized && !localStorageService.get('isRedirect')) {
             localStorageService.set('isAuthorized', true);
             localStorageService.set('firstName', firstName);
             localStorageService.set('lastName', lastName);

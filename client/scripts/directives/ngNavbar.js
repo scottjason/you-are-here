@@ -15,22 +15,33 @@ angular.module('YouAreHere')
 
           console.log('### ngNavbar.js');
 
-          $timeout(function() {
-            $scope.firstName = localStorageService.get('firstName');
-          });
-
           $scope.onLogout = function() {
-            RequestApi.onLogout().then(function(response) {
-              $timeout(function() {
+              $rootScope.isLogout = true;
+              var isRequesting = $rootScope.isRequesting;
+              if (isRequesting) {
+                isReady();
+              } else {
+                onReady();
+              }
+
+              function isReady() {
+                var isRequesting = $rootScope.isRequesting;
+                if (isRequesting) {
+                  $timeout(isReady, 200);
+                } else {
+                  $rootScope.isLogout = null;
+                  onReady();
+                }
+              }
+
+              function onReady() {
                 localStorageService.clearAll();
-                $window.location.href = $window.location.host;
-                $window.location.reload();
-              })
-            }, function(err) {
-              localStorageService.clearAll();
-              $window.location.href = $window.location.host;
-              $window.location.reload();
-            });
+                isAuthorized = null;
+                localStorageService.set('isRedirect', true);
+                RequestApi.onLogout().then(function() {
+                  window.location.href = window.location.protocol + '//' + window.location.host;
+                })
+              }
           }
         }
       ],

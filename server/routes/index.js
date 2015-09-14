@@ -65,7 +65,6 @@ module.exports = function(app, passport) {
                 indexCtrl.getProductId(req.session, function(err, results) {
                   if (err) return next(err);
                   opts.productId = req.session.productId = results.products[0].product_id;
-                  console.log('req.session', req.session);
                   res.render('index', opts);
                 });
               });

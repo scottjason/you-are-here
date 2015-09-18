@@ -6,8 +6,11 @@
      new-search='newSearch'
      results='results' 
      isi-os='isiOs'
-     class='container'>
-     <div ng-click='newSearch();' class='new-search-btn'><p>new search</p></div>
+     class='container'
+     show-search-loader='showSearchLoader'>
+     <div ng-class="{ 'remove-opacity' : (showSearchLoader) }" ng-click='newSearch();' class='new-search-btn'><p>new search</p></div>
+      <div ng-class="{ 'add-opacity' : (showSearchLoader) }" class="loader results"></div>
+
   <!-- Results -->
   <div class='layout-container'>
     <div ng-show='results' ng-repeat='result in results' class='layout-container-inner'>

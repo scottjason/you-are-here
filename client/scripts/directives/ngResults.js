@@ -10,7 +10,8 @@ angular.module('YouAreHere')
         getState: '=',
         requestUber: '=',
         isiOs: '=',
-        newSearch: '='
+        newSearch: '=',
+        showSearchLoader: '='
       },
       link: function(scope, element, attrs) {},
       controller: ['$scope', '$rootScope', '$state', '$window', '$timeout', 'RequestApi', 'localStorageService',
@@ -25,10 +26,13 @@ angular.module('YouAreHere')
           $scope.newSearch = function() {
             var isRequesting = $rootScope.isRequesting;
             if (isRequesting) {
+              $scope.showSearchLoader = true;
               $rootScope.isSearchBtn = true;
               isReady();
             } else {
-              $state.go('search');
+              $state.go('search', {
+                reload: true
+              });
             }
 
             function isReady() {
@@ -36,12 +40,16 @@ angular.module('YouAreHere')
               if (isRequesting) {
                 $timeout(isReady, 200);
               } else {
-                $state.go('search');
+                $state.go('search', {
+                  reload: true
+                });
               }
             }
           };
 
           $scope.init = function() {
+            $scope.showSearchLoader = null;
+            $rootScope.isLogout = null;
             $rootScope.isSearchBtn = null;
             $scope.isiOs = localStorageService.get('isiOS');
             var results = localStorageService.get('results').businesses || localStorageService.get('results');
@@ -80,10 +88,14 @@ angular.module('YouAreHere')
             $rootScope.isRequesting = true;
 
             $scope.arr = [];
-            async.eachLimit(arr, 6, makeRequest, onComplete);
+            async.eachLimit(arr, 2, makeRequest, onComplete);
 
             function makeRequest(obj, cb) {
-              if ($rootScope.isLogout || $rootScope.isSearchBtn) return cb(true);
+
+              if ($rootScope.isLogout || $rootScope.isSearchBtn) {
+                return cb(true);
+
+              }
               var opts = {};
               opts.start = {};
               opts.end = {};
@@ -99,8 +111,11 @@ angular.module('YouAreHere')
                   obj.duration = Math.floor(response.data.prices[1].duration / 60);
                   obj.estimate = response.data.prices[1].estimate;
                   $scope.arr.push(obj);
-                  if ($rootScope.isLogout || $rootScope.isSearchBtn) return cb(true);
-                  cb(null);
+                  if ($rootScope.isLogout || $rootScope.isSearchBtn) {
+                    cb(true);
+                  } else {
+                    cb(null);
+                  }
                 });
               }, function(err) {
                 console.log(err);
@@ -108,6 +123,7 @@ angular.module('YouAreHere')
             }
 
             function onComplete(err) {
+              console.log('onComplete')
               $rootScope.isRequesting = null;
               if (err) return;
               localStorageService.set('results', $scope.arr);

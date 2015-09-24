@@ -48,6 +48,7 @@ angular.module('YouAreHere')
           };
 
           $scope.init = function() {
+            var filteredArr = [];
             $scope.showSearchLoader = null;
             $rootScope.isLogout = null;
             $rootScope.isSearchBtn = null;
@@ -67,13 +68,18 @@ angular.module('YouAreHere')
                 if (obj.eta) {
                   obj.eta = obj.eta ? (obj.eta + ' minutes') : ('.. loading ..');
                 }
-                obj.lat = obj.location.coordinate.latitude;
-                obj.lon = obj.location.coordinate.longitude;
+                if (obj.location && obj.location.coordinate) {
+                  obj.lat = obj.location.coordinate.latitude;
+                  obj.lon = obj.location.coordinate.longitude;
+                }
                 if (!obj.image_url || obj.image_url === '') {
                   obj.image_url = "http://bigpurplebutton.com/sites/default/files/default_images/397_resized_700_700_90_516407cbbe17d_placeholder.jpg";
                 }
+                if (obj.lat) {
+                  filteredArr.push(obj);
+                }
               });
-              $scope.results = results;
+              $scope.results = filteredArr;
               $scope.clientId = localStorageService.get('clientId');
               $scope.productId = localStorageService.get('productId');
               $scope.city = localStorageService.get('city');
@@ -123,7 +129,6 @@ angular.module('YouAreHere')
             }
 
             function onComplete(err) {
-              console.log('onComplete')
               $rootScope.isRequesting = null;
               if (err) return;
               localStorageService.set('results', $scope.arr);
@@ -131,7 +136,6 @@ angular.module('YouAreHere')
           };
 
           $scope.requestUber = function(endLat, endLon) {
-
             function reverseGeo(cb) {
               var geocoder = new google.maps.Geocoder();
               var latlng = {

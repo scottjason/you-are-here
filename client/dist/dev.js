@@ -323,7 +323,7 @@ angular.module('YouAreHere')
             $rootScope.isRequesting = true;
 
             $scope.arr = [];
-            async.eachLimit(arr, 2, makeRequest, onComplete);
+            async.eachLimit(arr, 5, makeRequest, onComplete);
 
             function makeRequest(obj, cb) {
 

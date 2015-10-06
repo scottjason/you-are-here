@@ -253,10 +253,10 @@ angular.module('YouAreHere')
           };
 
           $scope.newSearch = function() {
+            $rootScope.isSearchBtn = true;            
             var isRequesting = $rootScope.isRequesting;
             if (isRequesting) {
               $scope.showSearchLoader = true;
-              $rootScope.isSearchBtn = true;
               isReady();
             } else {
               $state.go('search', {
@@ -328,6 +328,7 @@ angular.module('YouAreHere')
             function makeRequest(obj, cb) {
 
               if ($rootScope.isLogout || $rootScope.isSearchBtn) {
+                $rootScope.isRequesting = false;
                 return cb(true);
 
               }
@@ -347,6 +348,7 @@ angular.module('YouAreHere')
                   obj.estimate = response.data.prices[1].estimate;
                   $scope.arr.push(obj);
                   if ($rootScope.isLogout || $rootScope.isSearchBtn) {
+                    $rootScope.isRequesting = false;
                     cb(true);
                   } else {
                     cb(null);
@@ -358,9 +360,9 @@ angular.module('YouAreHere')
             }
 
             function onComplete(err) {
-              $rootScope.isRequesting = null;
-              if (err) return;
+              $rootScope.isRequesting = false;
               localStorageService.set('results', $scope.arr);
+              if (err) return;              
             }
           };
 
